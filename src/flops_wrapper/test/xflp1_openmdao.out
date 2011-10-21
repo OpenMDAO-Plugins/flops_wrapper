@@ -1,0 +1,1815 @@
+
+#TITLE, BEGIN INPUT DATA ECHO
+
+ SUBSONIC TRANSPORT EXAMPLE PROBLEM WITH COSTS AND RERUN                         
+
+
+
+# NAMELIST $OPTION
+  PROGRAM CONTROL, EXECUTION, ANALYSIS AND PLOT OPTION DATA
+
+   DESCRIPTION                NAME         VALUE  DIMENSIONS
+
+   TYPE OF PROBLEM            IOPT             1
+   ANALYSIS OPTION            IANAL            3
+   MAIN ENGINE DECK SWITCH    INENG            0
+   DETAILED TAKEOFF SWITCH    ITAKOF           0
+   DETAILED LANDING SWITCH    ILAND            0
+   COST CALCULATION SWITCH    ICOST            1
+   TRANSPORT/FIGHTER/GEN AV   IFITE            0
+   TAKEOFF PROFILE FOR NOISE  NOPRO            0
+   PROFILE OUTPUT FILE SWITCH NPFILE           0
+   NOISE CALCULATIONS SWITCH  NOISE            0
+   MASTER PRINT CONTROL       MPRINT           1
+   XFLOPS DATA PLOT SWITCH    IXFL             0
+   AERO POLAR PLOT SWITCH     IPOLP            0
+   THRUST DATA PLOT SWITCH    IPLTTH           0
+   HISTORY DATA PLOT SWITCH   IPLTHS           0
+   EXCESS POWER PLOT SWITCH   IPLTPS           0
+
+
+
+# FUSELAGE DESIGN MODULE RESULTS
+  INTERIOR FUSELAGE LAYOUT DATA - LOWER DECK
+   NUMBER OF GALLEYS                           3
+   NUMBER OF LAVATORIES                        4
+   NUMBER OF CLOSETS                           4
+   NUMBER OF DOORS                             3
+   NUMBER OF FIRST CLASS ABREAST               6
+   NUMBER OF FIRST CLASS ROWS                  3
+   SEATING PITCH FOR FIRST CLASS            38.0 IN
+   NUMBER OF TOURIST CLASS ABREAST             7
+   NUMBER OF TOURIST CLASS ROWS               25
+   SEATING PITCH FOR TOURIST CLASS          34.0 IN
+   NUMBER OF AISLES                            2
+
+
+
+# NAMELIST $WTIN
+  GEOMETRIC, WEIGHT, BALANCE AND INERTIA DATA
+
+   DESCRIPTION                NAME         VALUE  DIMENSIONS
+
+   MAX OPER MACH NUMBER       VMMO        0.0000
+   ULTIMATE LOAD FACTOR       ULF         3.7500
+   REF WEIGHT NUMBER          NWREF           39
+   CG REFERENCE LENGTH        CGREFL      1817.1  IN
+   X FOR START OF CGREFL      CGREFX         0.0  IN
+   SWITCH TO COMPUTE WEIGHTS  MYWTS            0
+   DESIGN GROSS WT. (RATIO)   DGW          1.000
+   HYDRAULIC SYSTEM PRESSURE  HYDPR        3000.
+
+ WING DATA
+   DIHEDRAL(POSITIVE)         DIH          0.000  DEG
+   GLOVE AND BAT AREA         GLOV          0.00  SQ FT
+   SPAN                       SPAN        129.33  FT
+   CONTROL SURFACE AREA RATIO FLAPR       0.3330
+   FRACTION OF COMPOSITES     FCOMP       0.0000
+   AEROELASTIC TAILORING FACT FAERT       0.0000
+   STRUT BRACING FACTOR       FSTRT       0.0000
+   VARIABLE SWEEP FACTOR      VARSWP      0.0000
+
+ HORIZONTAL TAIL DATA
+   AREA                       SHT           0.00  SQ FT
+   1/4 CHORD SWEEP ANGLE      SWPHT        32.00  DEG
+   ASPECT RATIO               ARHT          4.00
+   TAPER RATIO                TRHT        0.2700
+   T/C                        TCHT        0.1100
+   LOCATION ON VERTICAL TAIL  HHT         0.0000
+
+ VERTICAL TAIL DATA
+   NUMBER OF VERTICAL TAILS   NVERT            1
+   AREA                       SVT           0.00  SQ FT
+   1/4 CHORD SWEEP ANGLE      SWPVT        32.00  DEG
+   ASPECT RATIO               ARVT        2.0000
+   TAPER RATIO                TRVT        0.2700
+   T/C                        TCVT        0.1100
+
+ FUSELAGE DATA
+   NUMBER OF FUSELAGES        NFUSE            1
+   TOTAL LENGTH               XL          151.43  FT (CALC)
+   MAXIMUM WIDTH              WF           16.43  FT (CALC)
+   MAXIMUM DEPTH              DF           17.33  FT (CALC)
+   CARGO AIRCRAFT FACTOR      CARGF       0.0000
+   PASSENGER COMPART LENGTH   XLP         111.43  FT (CALC)
+
+ LANDING GEAR DATA
+   LENGTH OF MAIN GEAR        XMLG          0.00  IN
+   LENGTH OF NOSE GEAR        XNLG          0.00  IN
+   DESIGN LANDING WEIGHT      WLDG      207000.0  LBF
+   SET WLDG TO END OF DESCENT MLDWT            0
+     DELTA WEIGHT FOR MLDWT=1 DLDWT          0.0  LBF
+   CARRIER BASED AIRCRAFT     CARBAS        0.00
+
+ PROPULSION SYSTEM DATA
+   NUMBER OF ENGINES ON WING  NEW              2
+   NUMBER OF ENGINES ON FUSE  NEF              0
+   BASELINE ENGINE THRUST     THRSO      40000.0  LBF
+   BASELINE ENGINE WEIGHT     WENG           0.0  LBF
+   WEIGHT SCALING PARAMETER   EEXP       1.15000
+   BASELINE INLET WEIGHT      WINL           0.0  LBF
+   INLET WT SCALING EXPONENT  EINL       1.00000
+   BASELINE NOZZLE WEIGHT     WNOZ           0.0  LBF
+   NOZZLE WT SCALING EXPONENT ENOZ       1.00000
+   BASELINE NACELLE LENGTH    XNAC          0.00  FT
+   BASELINE NACELLE DIAMETER  DNAC          0.00  FT
+   FUEL CAPACITY OF WING      FULWMX     71205.7  LBM
+   FUEL DENSITY RATIO         FULDEN     1.00000
+     (FUEL CAPACITY FACTOR    FWMAX       23.000)
+   FUEL CAPACITY OF FUSELAGE  FULFMX         0.0  LBM
+   ADJUST FUSE FUEL CAPACITY  IFUFU            0
+   AUXIL TANK FUEL CAPACITY   FULAUX         0.0  LBM
+   NUMBER OF FUEL TANKS       NTANK            7
+   ADDED MISC PROP SYSTEM WT  WPMISC       0.000  LBF
+
+ CREW AND PAYLOAD DATA
+   FIRST CLASS PASSENGERS     NPF             20
+   BUSINESS PASSENGERS        NPB              0
+   TOURIST PASSENGERS         NPT            180
+   STEWARDESSES               NSTU            -1
+   GALLEY CREW                NGALC           -1
+   FLIGHT CREW                NFLCR           -1
+   WEIGHT PER PASSENGER       WPPASS       165.0  LBF
+   BAGGAGE PER PASSENGER      BPP           40.0  LBF
+   CARGO IN WING              CARGOW         0.0  LBF
+   CARGO IN FUSELAGE          CARGOF         0.0  LBF
+
+ OVERRIDE PARAMETERS FOR WEIGHTS
+   WING - TOTAL               FRWI        1.0000
+     WING WEIGHT FIRST  TERM  FRWI1       1.0000
+     WING WEIGHT SECOND TERM  FRWI2       1.0000
+     WING WEIGHT THIRD  TERM  FRWI3       1.0000
+     WING WEIGHT FOURTH TERM  FRWI4       1.0000
+   HORIZONTAL TAIL            FRHT        1.0000
+   VERTICAL TAIL              FRVT        1.0000
+   WING VERTICAL FIN          FRFIN       1.0000
+   CANARD                     FRCAN       1.0000
+   FUSELAGE                   FRFU        1.0000
+   NOSE LANDING GEAR          FRLGN       1.0000
+   MAIN LANDING GEAR          FRLGM       1.0000
+   NACELLES - TOTAL   OR      FRNA        1.0000
+      AIR INDUCTION SYSTEM           
+   THRUST REVERSERS - TOTAL   WTHR        0.0000
+   MISC PROPULSION SYSTEMS    WPMSC       1.0000
+   FUEL SYSTEM                WFSYS       1.0000
+   SURFACE CONTROLS           FRSC        1.0000
+   AUXILIARY POWER UNIT       WAPU        1.0000
+   INSTRUMENT GROUP           WIN         1.0000
+   HYDRAULICS GROUP           WHYD        1.0000
+   ELECTRICAL GROUP           WELEC       1.0000
+   AVIONICS GROUP             WAVONC      1.0000
+   ARMAMENT GROUP             WARM        0.0000
+   FURNISHINGS GROUP          WFURN       1.0000
+   AIR CONDITIONING GROUP     WAC         1.0000
+   ANTI-ICING GROUP  OR       WAI         1.0000
+      AUXILIARY GEAR                 
+   UNUSABLE FUEL              WUF         1.0000
+   ENGINE OIL                 WOIL        1.0000
+   PASSENGER SERVICE OR AMMO  WSRV        1.0000
+     AND NONFIXED WEAPONS            
+   CARGO AND BAGGAGE CONTAIN. WCON        1.0000
+     OR MISCELL. USEFUL LOAD         
+   AUXILIARY FUEL TANKS       WAUXT       1.0000
+   FLIGHT CREW AND BAGGAGE    WFLCRB      1.0000
+   CABIN CREW AND BAGGAGE     WSTUAB      1.0000
+
+ HORIZONTAL CENTER OF GRAVITY DATA
+   WING                       CGW            0.0  IN
+   HORIZONTAL TAIL            CGHT           0.0  IN
+   VERTICAL TAIL              CGVT           0.0  IN
+   WING VERTICAL FINS         CGFIN          0.0  IN
+   CANARD                     CGCAN          0.0  IN
+   FUSELAGE                   CGF            0.0  IN
+   NOSE LANDING GEAR          CGLGN          0.0  IN
+   MAIN LANDING GEAR          CGLGM          0.0  IN
+   TWO FORWARD ENGINES        CGEF           0.0  IN
+   ONE OR TWO AFT ENGINES     CGEA           0.0  IN
+   AUXILIARY POWER UNIT       CGAP           0.0  IN
+   AVIONICS GROUP             CGAV           0.0  IN
+   ARMAMENT GROUP             CGARM          0.0  IN
+   FLIGHT CREW                CGCR           0.0  IN
+   PASSENGERS                 CGP            0.0  IN
+   CARGO/EXT STORES IN WING   CGCW           0.0  IN
+   CARGO/EXT STORES IN FUSE   CGCF           0.0  IN
+   FUSELAGE FUEL              CGZWF          0.0  IN
+   WING FUEL                  CGFWF          0.0  IN
+   AIR INDUCTION SYSTEM       CGN            0.0  IN
+   AIR CONDITIONING           CGAC           0.0  IN
+   AUXILIARY GEAR             CGAI           0.0  IN
+   AUXILIARY TANKS            CGAUT          0.0  IN
+   AMMO AND NONFIXED GUNS     CGAMMO         0.0  IN
+   MISCELLANEOUS USEFUL LOAD  CGMIS          0.0  IN
+   SYSTEM WT FOR ALT ENGINES  CGPOW          0.0  IN
+   ALTERNATE ENGINES          CGALTE         0.0  IN
+   ALTERNATE ENERGY STORAGE   CGBAT          0.0  IN
+
+
+
+# NAMELIST $CONFIN
+  GEOMETRIC RATIOS, OBJECTIVE FUNCTION FACTORS, AND DESIGN VARIABLES
+
+   DESCRIPTION                NAME         VALUE  DIMENSIONS
+
+   DESIGN RANGE               DESRNG      2500.0  N MI
+   WING LOADING REQUIRED      WSR         110.00
+   THRUST/WEIGHT REQUIRED     TWR        0.19000
+   GLOVE/WING AREA REQUIRED   PGLOV      0.00000
+   HORIZ TAIL VOLUME COEF     HTVC      1.600000       
+   VERT TAIL VOLUME COEF      VTVC      0.200000       
+   COST CALCULATION SWITCH    ICOST            1
+
+ FUNCTION TO BE OPTIMIZED - OBJ =  0.0000*(RAMP WEIGHT) +  1.0000*FUEL +  0.0000*MACH*(L/D) +
+                                   0.0000*RANGE +  0.0000*COST +  0.0000*(NOX EMISSIONS) +
+                                   0.0000*(SIDELINE NOISE) +  0.0000*(FLYOVER NOISE) +
+                                   0.0000*(NOISE FIGURE OF MERIT) +  0.0000*(NOISE FOOTPRINT AREA) +
+                                   0.0000*(HOLD TIME FOR SEGMENT NHOLD)
+
+
+ DESIGN VARIABLE DATA
+
+   VARIABLE                  NAME       VALUE  ACTIVITY  LOWER BOUND  UPPER BOUND  SCALE FACTOR
+
+    - CONFIGURATION VARIABLES -    
+   RAMP WEIGHT, LBF          GW       230000.0    0.            0.0          0.0       0.00000
+   WING ASPECT RATIO         AR         8.0000    0.         0.0000       0.0000       0.00000
+   THRUST PER ENGINE, LBF    THRUST    43700.0    0.          0.000        0.000       0.00000
+   REF WING AREA, SQ FT      SW         2090.9    0.            0.0          0.0       0.00000
+   WING TAPER RATIO          TR        0.27000    0.        0.00000      0.00000       0.00000
+   WING 1/4 CHORD SWEEP, DEG SWEEP       32.00    0.           0.00         0.00       0.00000
+   WING T/C                  TCA       0.11000    0.        0.00000      0.00000       0.00000
+
+    - MISSION VARIABLES -          
+   CRUISE MACH NUMBER        VCMN      0.80000    0.        0.00000      0.00000       0.00000
+   MAX CRUISE ALTITUDE, FT   CH        40000.0    0.            0.0          0.0       0.00000
+
+    - PROPULSION SYSTEM VARIABLES -
+   TURBINE INLET TEMP (R)    ETIT         0.00    0.           0.00         0.00       0.00000
+   OVERALL PRESSURE RATIO    EOPR        0.000    0.          0.000        0.000       0.00000
+   FAN PRESSURE RATIO        EFPR       0.0000    0.         0.0000       0.0000       0.00000
+   BYPASS RATIO              EBPR       0.0000    0.         0.0000       0.0000       0.00000
+   THROTTLE RATIO            ETTR      0.00000    0.        0.00000      0.00000       0.00000
+   PROPELLER BLADE ANGLE     EBLA      0.00000    0.        0.00000      0.00000       0.00000
+
+    - NOISE ABATEMENT VARIABLES -
+   TAKEOFF THRUST FACTOR     VARTH     0.00000    0.        0.00000      0.00000       0.00000
+   ROTATION VELOCITY         ROTVEL       0.00    0.           0.00         0.00          0.00
+   THRUST FRACTION AFTER           
+     PROGRAMMED LAPSE RATE   PLR       0.00000    0.        0.00000      0.00000       0.00000
+
+
+
+# NAMELIST $AERIN
+  AERODYNAMIC OPTIONS AND APPROXIMATE TAKEOFF AND LANDING DATA
+
+   DESCRIPTION                NAME         VALUE  DIMENSIONS
+
+   AERODYNAMIC INPUT METHOD   MYAERO           0
+   WAVE DRAG INPUT SWITCH     IWAVE            0
+   WAVE DRAG FACTOR           FWAVE       1.0000
+   LINEAR/PARABOLIC INTERP    ITPAER           2
+   AERO MATRIX FORMAT SWITCH  IBO              0
+   MAX CAMBER AT 70 PERCENT          
+    SEMISPAN                  CAM           0.00 PERCENT CHORD
+   AIRCRAFT BASE AREA         SBASE          0.0  SQ FT
+   WING TECHNOLOGY            AITEK          1.5
+   MODIFY EDET DATA           MODARO           0
+   FIXED DESIGN CL            FCLDES     -1.0000
+   FIXED DESIGN MACH NUMBER   FMDES      -1.0000
+   TURBULENT/LAMINAR FLOW     XLLAM          0.0
+   AERO EFFICIENCY FACTOR     E           1.0000
+
+ OVERRIDE PARAMETERS FOR WETTED AREAS
+   WING WETTED AREA           SWETW       1.0000
+   HOR. TAIL WETTED AREA      SWETH       1.0000
+   VERT. TAIL WETTED AREA     SWETV       1.0000
+   FUSELAGE WETTED AREA       SWETF       1.0000
+   NACELLE WETTED AREA        SWETN       1.0000
+   CANARD WETTED AREA         SWETC       1.0000
+
+ TAKEOFF AND LANDING DATA
+   RATIO OF MAX. LANDING WT.         
+         TO MAX. TAKEOFF WT.  WRATIO      0.9000
+   MAX. LANDING VELOCITY      VAPPR     150.0000  KTS
+   MAX. TAKEOFF FIELD LENGTH  FLTO        7000.0  FT
+   MAX. LANDING FIELD LENGTH  FLLDG       7000.0  FT
+   MAX. CL TAKEOFF CONFIG.    CLTOM       2.0000
+   MAX. CL LANDING CONFIG.    CLLDM       3.0000
+   APPROACH CL                CLAPP       0.0000
+   AIR DENSITY RATIO          DRATIO      1.0000
+   L/D RATIO 2ND SEG. CLIMB   ELODSS      0.0000
+   L/D RATIO MISSED APPROACH  ELODMA      0.0000
+   THRUST PER ENGINE TAKEOFF  THROFF      0.0000
+   THRUST PER ENGINE 2ND             
+    SEG. CLIMB                THRSS          0.0  LBF
+   THRUST PER ENGINE MISSED          
+    APPROACH                  THRMA          0.0  LBF
+
+
+
+# NAMELIST $COSTIN
+  COST CALCULATION DATA
+
+   DESCRIPTION                         NAME            VALUE  DIMENSIONS
+
+   COST TYPE SWITCH                    ICOSTP              1
+   R&D SWITCH                          IRAD                1
+   PRINT SWITCH                        IPFLAG              1
+   YEAR FOR CALCULATIONS               DYEAR            1986
+   SPARES FACTOR FOR AIRFRAME          FAFMSP           0.10
+   SPARES FACTOR FOR ENGINES           FENGSP           0.30
+   NACELLE ACOUSTICAL TREAT SWITCH     IACOUS              0
+   NOZZLE TYPE SWITCH                  INOZZ               1
+   AIRFRAME PRODUCTION QUANTITY        Q              100.00
+   DEVELOPMENT START TIME              DEVST           1980.  YEAR
+   FAA CERTIFICATION DATE              PLMQT           1984.  YEAR
+   NO OF PROTOTYPE AIRCRAFT            NPROTP              2
+   NO OF FLIGHT TEST AIRCRAFT          NFLTST              2
+   SPARES FACTOR FOR DEVELOPMENT       FPPFT            0.50
+   PRIOR NO OF ENGINES PROCURRED       PRPROC           0.00
+   ENGINE PRESSURE RATIO               EPR             20.00
+   ENGINE DESIGN SFC                   SFC            0.6000  LB/HR/LB
+   MAX TURBINE INLET TEMP              TEMP           1800.0  DEG F
+   BODY TYPE SWITCH                    IBODY               0
+   CIRCUIT INDICATOR                   ICIRC               1
+   THRUST REVERSER SWITCH              ICOREV              1
+   MULTIPLEX SWITCH                    IMUX                0
+   RANGE TYPE SWITCH                   IRANGE              1
+   APU COMPLEXITY SWITCH               ISPOOL              0
+   WINDSHIELD TYPE SWITCH              IWIND               0
+   AC TOTAL PACK FLOW                  AC              350.0  LB/MIN
+   APU FLOW RATE                       APUFLW          400.0  LB/MIN
+   APU SHAFT HORSEPOWER                APUSHP          170.0  HP
+   HYDRAULIC PUMP FLOW RATE            HYDGPM          150.0  GAL/MIN
+   KVA RATING OF FULL-TIME GENS        KVA             200.0  KVA
+   NO OF APUS                          NAPU                1
+   NO OF AUTOPILOT CHANNELS            NCHAN               1
+   NO OF INFLIGHT-OPERATED GENS        NGEN                3
+   NO OF INERTIAL NAV SYSTEMS          NINS                0
+   NO OF PODDED ENGINES                NPOD                2
+   MANUFACTURERS PROFIT RATE           PRORAT           15.0  PERCENT
+   DEPRECIATION PERIOD                 DEPPER           14.0  YRS
+   FARE                                FARE           0.1000  DOL/PASS/MILE
+   FUEL PRICE                          FUELPR         0.5000  DOL/GAL
+   TAX RATE FOR ROI CALCULATIONS       TAXRAT         0.3300
+   DIRECT LABOR BURDEN FACTOR          DLBUR            2.00
+   NO OF YEARS FOR LCC CALCULATION     LIFE             14.0
+   RESIDUAL VALUE AT END OF DEPPER     RESID             2.0  PERCENT
+   RETURN ON INVESTMENT                ROI              7.00  PERCENT
+   OPERATION TYPE SWITCH               IDOM                1
+   TRANSER OPERATION SWITCH            ITRAN               0
+   LOAD FACTOR                         LF               55.0  PERCENT
+   PERCENT OF SEATS FOR 1ST CLASS      PCTFC            10.0  PERCENT
+
+
+   TECHNOLOGY FACTORS
+
+     R&D
+       AIRFRAME                        FAFRD            1.00
+       ENGINE                          FENRD            1.00
+
+     MANUFACTURING
+       WING                            FMWING           1.00
+       TAIL                            FMTAIL           1.00
+       FUSELAGE                        FMBODY           1.00
+       LANDING GEAR                    FMGEAR           1.00
+       NACELLE                         FMNAC            1.00
+       THRUST REVERSER                 FMTRV            1.00
+       ENGINE                          FMENG            1.00
+       FUEL SYSTEM                     FMFUSY           1.00
+       ENGINE SYSTEM                   FMENSY           1.00
+       FLIGHT CONTROL SYSTEM           FMFCS            1.00
+       HYDRAULICS                      FMHYD            1.00
+       ELECTRICAL SYSTEM               FMEL             1.00
+       PNEUMATICS                      FMPNM            1.00
+       AIR CONDITIONING                FMAC             1.00
+       ANTI-ICING                      FMAI             1.00
+       AUX. POWER UNIT                 FMAPU            1.00
+       FURNISHINGS AND EQP             FMFEQ            1.00
+       INSTRUMENTS                     FMINS            1.00
+       AVIONICS                        FMAV             1.00
+       COMPOSITE STRUCTURES            FMCOMP           1.00
+
+     OPERATING
+       COMPOSITES                      FOCOMP           1.00
+       WING                            FOWING           1.00
+       FUSELAGE                        FOBODY           1.00
+       NACELLE                         FONAC            1.00
+       LANDING GEAR                    FOGEAR           1.00
+       PROPULSION SYSTEM               FOPROP           1.00
+       FLIGHT CONTROL SYSTEM           FOFCS            1.00
+       FUEL SYSTEM                     FOFUSY           1.00
+       PNEUMATICS                      FOPNM            1.00
+       ELECTRICAL                      FOEL             1.00
+       FURNISHINGS AND EQP             FOFEQ            1.00
+       AIR CONDITIONING                FOAC             1.00
+       INSTRUMENTS                     FOINS            1.00
+       AVIONICS                        FOAV             1.00
+       ANTI-ICING                      FOAI             1.00
+       AUX. POWER UNIT                 FOAPU            1.00
+       HYDRAULICS                      FOHYD            1.00
+
+     ECONOMICS
+       DEPRECIATION                    FEDEP            1.00
+       INSURANCE                       FEINS            1.00
+       CONTROL FEE                     FECFEE           1.00
+       LANDING FEE                     FELDFE           1.00
+       A/C SERVICING                   FEACSR           1.00
+       FLIGHT ATTENDANTS               FEFLTA           1.00
+       FLIGHT CREW                     FECRW            1.00
+       MAINTAINENCE LABOR RATE         FEMAIN           1.00
+       R&D LABOR RATE                  FELABR           1.00
+
+
+
+
+# NAMELIST $ENGDIN
+  ENGINE DECK CONTROL, SCALING AND USAGE DATA
+
+   DESCRIPTION                NAME         VALUE  DIMENSIONS
+
+   ENGINE DECK PRINT CONTROL  NGPRT            0
+   ENGINE DECK SOURCE SWITCH  IGENEN           1
+   SLOPE FACTOR FOR                  
+    EXTRAPOLATING FUEL FLOWS  EXTFAC      1.0000
+   SUBSONIC FUEL FLOW FACTOR  FFFSUB      1.0000
+   SUPERSONIC FUEL FLOW FACT  FFFSUP      1.0000
+   FLIGHT IDLE SWITCH         IDLE             1
+   IGNORE NEGATIVE THRUSTS    NONEG            0
+   MIN IDLE FUEL FLOW FRACT   FIDMIN      0.0800
+   MAX IDLE FUEL FLOW FRACT   FIDMAX      1.0000
+   SFC EXTRAPOLATION SWITCH   IXTRAP           1
+   PART POWER DATA SWITCH     IFILL            2
+   MAX. CRUISE POWER SETTING  MAXCR            1
+   BOOST ENGINE SWITCH        BOOST       0.0000
+   FUEL FLOW SCALING                 
+    CONSTANT TERM             DFFAC       0.0000
+   FUEL FLOW SCALING                 
+    LINEAR TERM               FFFAC       0.0000
+   NITROGEN OXIDES SWITCH     NOX              0
+   INSTALLATION DRAG SWITCH   INSDRG           0
+
+
+
+# NAMELIST $ENGINE
+  ENGINE CYCLE ANALYSIS INPUT DATA
+
+   DESCRIPTION                NAME         VALUE  DIMENSIONS
+
+   2-COMP SEP FLOW TURBOFAN   IENG             2
+   ENGINE CYCLE DEF. FILE     IFILE       TFNSEP                                                                          
+   COMPONENT MAP TABLES FILE  TFILE       ENGTAB                                                                          
+   PRINT LEVEL INDICATOR      IPRINT           0
+   PRINT VIB/ANOPP DATA       NPRINT           0
+   PRINT LEVEL FOR WEIGHTS    IWTPRT           1
+   PLOT ENGINE SCHEMATIC      IWTPLT           0
+   CYCLE ANALYSIS OUTPUT FILE OFILE       OUTPUT                                                                          
+   FLAG TO GENERATE A DECK    GENDEK           F
+   SWITCH FOR WEIGHT CALCS    NGINWT           0
+    (0=NONE, 1=ENGINE, 2=1+INLET, 3=2+NACELLE, 4=3+NOZZLE)
+   PART POWER DATA CONTROL    ITHROT           1
+   NUMBER OF A/B POINTS       NPAB             0
+   NUMBER OF DRY POINTS       NPDRY           15
+   PART POWER THRUST CUTOFF   XIDLE      0.05000
+   MAX ALLOWABLE ITERATIONS   NITMAX          50
+
+ DESIGN POINT DATA
+   DESIGN POINT NET THRUST    DESFN      43700.0  LBF
+   OVERALL PRESSURE RATIO     OPRDES     29.5000
+   FAN PRESSURE RATIO         FPRDES      1.6700
+   BYPASS RATIO               BPRDES      0.0000
+   DESIGN TURBINE INLET TEMP  TETDES      2660.0  DEG R
+   DESIGN THROTTLE RATIO      TTRDES      1.0000
+
+ OTHER ENGINE CONFIGURATION DEFINITION DATA
+   FLAG FOR AFTERBURNER       ABURN            F
+   FLAG FOR DUCT BURNER       DBURN            F
+   AFTERBURNER EFFICIENCY     EFFAB      0.85000
+   MAX AFTERBURNER TEMP       TABMAX      3500.0  DEG R
+   FLAG FOR VARIABLE NOZZLE   VEN              F
+   CUSTOMER COMPRESSOR BLEED  COSTBL      1.0000  LB/SEC
+   FAN BLEED                  FANBL       0.0000  LB/SEC
+   ADDITIONAL TAKEOFF BLEED   TKOFBL      0.0000  LB/SEC
+   TURBINE COOLING (FROM HPC) WCOOL      -0.0001  FRACTION (OR T41 R)
+   CUSTOMER POWER EXTRACTION  HPEXT       200.00  HP
+   FUEL HEATING VALUE         FHV        18500.0  BTU/LB
+   TECHNOLOGY AVAILABILITY    YEAR         1985.  YEAR
+   FLAG TO DO BOATTAIL DRAG   BOAT             F
+   DELTA TEMPERATURE          DTCE          0.00  DEG C
+   DTCE VARIES TO ZERO AT     ATC         10000.  FT
+   FLAG TO DO SPILLAGE DRAG   SPILL            F
+   FLAG TO DO LIP DRAG        LIP              F
+
+ USED TO DEFINE MACH-ALTITUDE ARRAY POINTS
+   MAXIMUM MACH NUMBER        XMMAX       0.8000
+   MAXIMUM ALTITUDE           AMAX       40000.0  FT
+   INCREMENT IN MACH NUMBER   XMINC       0.2000
+   INCREMENT IN ALTITUDE      AINC        5000.0  FT
+   MINIMUM DYNAMIC PRESSURE   QMIN        150.00  PSF
+   MAXIMUM DYNAMIC PRESSURE   QMAX       1200.00  PSF
+
+ ENGINE CYCLE OPTIMIZATION CRUISE CONDITION
+   MACH NUMBER                XMDES       0.8000
+   ALTITUDE                   XADES      40000.0  FT
+
+ ENGINE CYCLE BEHAVIORAL CONSTRAINTS
+   MAX COMPRESR DISCHARGE TMP CDTMAX  99999.0000  R
+   MAX COMPRESR DISCHARGE PRS CDPMAX  99999.0000  PSI
+   MAXIMUM JET VELOCITY       VJMAX   99999.0000  FT/SEC
+   MINIMUM SPECIFIC THRUST    STMIN       1.0000  LB/LB/SEC
+   MAXIMUM BYPASS/CORE AREA   ARMAX   99999.0000
+
+   SEA LEVEL STATIC MAXIMUM THRUST       43700.0  LB
+     (NEW BASELINE ENGINE THRUST - OVERRIDES THRSO)
+
+# REVISED PROPULSION SYSTEM DATA
+   BASELINE ENGINE THRUST     THRSO      43700.0  LBF
+   BASELINE ENGINE WEIGHT     WENG        8051.6  LBF
+   BASELINE INLET WEIGHT      WINL           0.0  LBF
+   BASELINE NOZZLE WEIGHT     WNOZ           0.0  LBF
+   BASELINE NACELLE LENGTH    XNAC         14.63  FT
+   BASELINE NACELLE DIAMETER  DNAC          8.36  FT
+
+
+
+# NAMELIST $MISSIN
+  PERFORMANCE CONTROLS AND FACTORS AND MISSION SEGMENT DEFINITION
+
+
+   DESCRIPTION                NAME         VALUE  DIMENSIONS
+
+   ENDURANCE MISSION SWITCH   INDR             0
+   OVERALL FUEL FLOW FACTOR   FACT        1.0000
+   CDO FACTOR                 FCDO        1.0000
+   CDI FACTOR                 FCDI        1.0000
+   SUBSONIC CD FACTOR         FCDSUB      1.0000
+   SUPERSONIC CD FACTOR       FCDSUP      1.0000
+   ENGINE SCALING SWITCH      ISKAL            1
+   OWE FACTOR                 OWFACT      1.0000
+   PRINT FLAG                 IFLAG            2
+   DETAILED MISSION PRINT     MSUMPT           0
+   TEMPERATURE DEVIATION      DTC            0.0  DEG C
+   CALC RAMP WT OR RANGE      IRW              1
+   RANGE TOLERANCE            RTOL        0.0010  N MI
+   ATA TRAFFIC ALLOWANCE      IATA             1
+   TAIL WIND VELOCITY         TLWIND        0.00  KTS
+   WEIGHT INCREMENT           DWT             1.  LBF
+
+ GROUND OPERATIONS AND TAKEOFF INPUT
+   TAKEOFF TIME               TAKOTM         0.4  MIN
+   TAXI-OUT TIME              TAXOTM        10.0  MIN
+   APPROACH TIME              APPRTM         0.0  MIN
+   APPROACH FUEL FLOW FACTOR  APPFFF        2.00
+   TAXI-IN TIME               TAXITM        10.0  MIN
+
+   TAKEOFF POWER SETTING      ITTFF            1
+   TAXI FUEL FLOWS WILL BE FROM THE ENGINE DECK
+
+ INPUT FOR  1 CLIMB SCHEDULES                (1)
+   MINIMUM CLIMB MACH NUMBER  CLMMIN      0.3000
+   MAXIMUM CLIMB MACH NUMBER  CLMMAX      0.0000
+   MINIMUM CLIMB ALTITUDE, FT CLAMIN          0.
+   MAXIMUM CLIMB ALTITUDE, FT CLAMAX          0.
+   NUMBER OF CLIMB STEPS      NINCL           31
+   CLIMB OPTIMIZATION FACTOR  FWF        -1.0000
+   FOLLOWING CRUISE SEGMENT   NCRCL            1
+   DRAG COEFFICIENT INCREMENT CLDCD      0.00000
+   NO. OF POWER SETTINGS      IPPCL            1
+   STORE DRAG DURING CLIMB    ISTCL            0
+   MAX CLIMB POWER SETTING    MAXCL            1
+   FAA CLIMB ENFORCED         IFAACL           1
+   FAA DESCENT ENFORCED       IFAADE           1
+   MINIMUM CLIMB RATE SWITCH  NODIVE           0
+   MINIMUM CLIMB RATE         DIVLIM          0.  FT/MIN
+   Q LIMIT IN CLIMB           QLIM           0.0  PSF
+   MAXIMUM RATE OF DESCENT    RDLIM     -99999.0  FT/MIN
+
+ INPUT FOR  1 CRUISE SCHEDULES               (1)
+   CRUISE OPTION SWITCH       IOC              1
+   CRUISE OPT FUEL FACTOR     FFUEL        1.000
+   CRUISE OPT NOX FACTOR      FNOX         0.000
+   MAXIMUM MACH NUMBER        CRMACH      0.0000
+   MAXIMUM ALTITUDE, FT       CRALT          -1.
+   DRAG COEFFICIENT INCREMENT CRDCD      0.00000
+   STORE DRAG DURING CRUISE   ISTCR            0
+   LONG RANGE CRUISE FACTOR   FLRCR        1.000
+   MINIMUM MACH NUMBER        CRMMIN      0.0000
+   MAXIMUM LIFT COEFFICIENT   CRCLMX      0.0000
+   ENGINE FEATHERING ALLOWED  IFEATH           0
+   ENGINE FRACTION REMAINING  FEATHF      0.5000
+   CD INCREASE FOR FEATHERING CDFETH     0.00000
+   MIN CRUISE ALTITUDE, FT    HPMIN        1000.
+   INCREMENT IN CRUISE WT.    DCWT           1.0  LBF
+   RATE OF CLIMB CEILING      RCIN         100.0  FT/MIN
+
+ INPUT FOR DESCENT SCHEDULE
+   DESCENT OPTION SWITCH      IVS              1
+   DESCENT LIFT COEFF.        DECL        0.8000
+   MINIMUM DESCENT MACH NO.   DEMMIN      0.3000
+   MAXIMUM DESCENT MACH NO.   DEMMAX      0.0000
+   MINIMUM DESCENT ALTITUDE   DEAMIN          0.  FT
+   MAXIMUM DESCENT ALTITUDE   DEAMAX          0.  FT
+   NUMBER OF DESCENT STEPS    NINDE           31
+   DRAG COEFFICIENT INCREMENT DEDCD      0.00000
+   STORE DRAG DURING DESCENT  ISTDE            0
+
+ RESERVE SEGMENT INPUT
+   RESERVE CALC. OR CONST     IRS              2
+   RESERVE FUEL               RESRFU       0.050  LBM
+   FRACTION OF TRIP FUEL      RESTRP       0.000
+   RESERVE ALTERNATE ENERGY   RESRPW       0.000
+   FRACTION OF TRIP ENERGY    RPWTRP       0.000
+   MISSED APPROACH TIME       TIMMAP         0.0  MIN
+   RANGE TO ALTERNATE AIRPORT ALTRAN         0.0  N MI
+   RESERVE CLIMB SCHEDULE     NCLRES           1
+   RESERVE CRUISE SCHEDULE    NCRRES           1
+   START RESERVE MACH NUMBER  SREMCH      0.3000
+   END RESERVE MACH NUMBER    EREMCH      0.3000
+   START RESERVE ALTITUDE     SREALT          0.  FT
+   END RESERVE ALTITUDE       EREALT          0.  FT
+   RESERVE HOLDING TIME       HOLDTM         0.0  MIN
+   HOLD CRUISE SCHEDULE       NCRHOL           1
+   HOLD POSITION SWITCH       IHOPOS           1
+   CRUISE ONLY SWITCH         ICRON            0
+   2ND RES HOLD TIME OR FRAC  THOLD        0.050  MIN
+   THOLD CRUISE SCHEDULE      NCRTH            1
+
+
+
+# MISSION SEQUENCE DEFINITION
+
+     START          MACH NUMBER = 0.3000          ALTITUDE =        0. FT
+
+  1. CLIMB          USE CLIMB SCHEDULE  1
+
+  2. CRUISE         USE CRUISE SCHEDULE 1         END CRUISE DISTANCE =     0.0 N MI
+
+  3. DESCENT
+
+  4. END            MACH NUMBER = 0.3000          ALTITUDE =        0. FT
+
+
+#TITLE, BEGIN OUTPUT OF RESULTS
+
+ SUBSONIC TRANSPORT EXAMPLE PROBLEM WITH COSTS AND RERUN                         
+
+ FINAL ANALYSIS                 
+
+# AERODYNAMIC DATA
+
+ MACH NUMBER       ALTITUDE     REFERENCE AREA     TECHNOLOGY LEVEL
+     0.80         40000. FT      2032.08 SQ FT           1.50
+
+   COMPONENT              SWET      LENGTH    FINENESS     FORM       RN       CF         CDF
+                          SQ FT       FT        RATIO     FACTOR   MILLIONS
+ WING                   3327.12      15.94     0.1100      1.425     24.4    0.00243    0.00567
+ HORIZONTAL TAIL         569.66       9.25     0.1100      1.425     14.2    0.00264    0.00106
+ VERTICAL TAIL           698.97      13.08     0.1100      1.425     20.0    0.00250    0.00123
+ FUSELAGE               6365.85     151.43     8.9709      1.134    232.0    0.00176    0.00624
+ NACELLE                 332.97      14.43     1.7500      2.798     22.1    0.00247    0.00113
+ NACELLE                 332.97      14.43     1.7500      2.798     22.1    0.00247    0.00113
+ MISCELLANEOUS                                                                          0.00099
+
+  TOTAL                11627.53                                              0.00305    0.01744
+
+       CHANGE IN DRAG COEFFICIENT FROM CRUISE ALTITUDE
+ ALTITUDE                                 MACH NUMBER
+             0.200    0.300    0.400    0.500    0.600    0.700    0.750    0.800    0.825    0.850    0.875    0.900
+       0.  -0.00418 -0.00380 -0.00356 -0.00337 -0.00322 -0.00309 -0.00304 -0.00298 -0.00296 -0.00293 -0.00291 -0.00288
+    5000.  -0.00379 -0.00345 -0.00322 -0.00306 -0.00292 -0.00280 -0.00275 -0.00270 -0.00268 -0.00266 -0.00263 -0.00261
+   10000.  -0.00338 -0.00307 -0.00287 -0.00272 -0.00260 -0.00250 -0.00245 -0.00240 -0.00238 -0.00236 -0.00234 -0.00232
+   15000.  -0.00294 -0.00267 -0.00249 -0.00236 -0.00226 -0.00217 -0.00213 -0.00209 -0.00207 -0.00205 -0.00203 -0.00202
+   20000.  -0.00247 -0.00224 -0.00209 -0.00198 -0.00189 -0.00182 -0.00178 -0.00175 -0.00173 -0.00172 -0.00170 -0.00169
+   25000.  -0.00196 -0.00178 -0.00166 -0.00157 -0.00150 -0.00144 -0.00141 -0.00139 -0.00137 -0.00136 -0.00135 -0.00134
+   30000.  -0.00141 -0.00128 -0.00119 -0.00113 -0.00108 -0.00103 -0.00101 -0.00100 -0.00099 -0.00098 -0.00097 -0.00096
+   35000.  -0.00082 -0.00074 -0.00069 -0.00065 -0.00062 -0.00060 -0.00058 -0.00057 -0.00057 -0.00056 -0.00056 -0.00055
+   40000.   0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000
+   45000.   0.00092  0.00083  0.00078  0.00073  0.00070  0.00067  0.00066  0.00064  0.00064  0.00063  0.00063  0.00062
+   50000.   0.00191  0.00172  0.00160  0.00151  0.00143  0.00137  0.00135  0.00132  0.00131  0.00130  0.00129  0.00128
+   55000.   0.00295  0.00266  0.00247  0.00233  0.00221  0.00212  0.00208  0.00204  0.00202  0.00200  0.00199  0.00197
+   60000.   0.00406  0.00365  0.00339  0.00320  0.00304  0.00291  0.00285  0.00280  0.00277  0.00275  0.00272  0.00270
+
+           DRAG POLARS     ALTITUDE = 40000. FT
+ MACH                                                  CL
+         0.050   0.100   0.150   0.200   0.250   0.300   0.350   0.400   0.450   0.500   0.550   0.600   0.650   0.700   0.750
+ 0.200  0.02335 0.02339 0.02380 0.02458 0.02573 0.02717 0.02892 0.03067 0.03345 0.03657 0.04042 0.04473 0.04948 0.05577 0.06324
+ 0.300  0.02183 0.02186 0.02227 0.02305 0.02420 0.02564 0.02739 0.02913 0.03192 0.03504 0.03890 0.04320 0.04796 0.05424 0.06171
+ 0.400  0.02077 0.02081 0.02122 0.02200 0.02315 0.02459 0.02634 0.02808 0.03087 0.03399 0.03784 0.04215 0.04690 0.05319 0.06066
+ 0.500  0.01995 0.01999 0.02040 0.02118 0.02233 0.02376 0.02552 0.02728 0.03005 0.03317 0.03702 0.04133 0.04608 0.05236 0.05984
+ 0.600  0.01931 0.01935 0.01976 0.02054 0.02169 0.02313 0.02488 0.02669 0.02941 0.03253 0.03639 0.04069 0.04545 0.05173 0.05920
+ 0.700  0.01922 0.01923 0.01963 0.02042 0.02159 0.02304 0.02478 0.02663 0.02929 0.03240 0.03626 0.04057 0.04532 0.05160 0.05907
+ 0.750  0.01927 0.01924 0.01962 0.02042 0.02164 0.02309 0.02482 0.02668 0.02927 0.03239 0.03625 0.04055 0.04531 0.05159 0.05906
+ 0.800  0.01956 0.01945 0.01981 0.02064 0.02193 0.02339 0.02513 0.02705 0.02954 0.03266 0.03664 0.04097 0.04565 0.05187 0.05928
+ 0.825  0.02006 0.01983 0.02015 0.02101 0.02242 0.02391 0.02563 0.02762 0.03056 0.03408 0.03844 0.04299 0.04785 0.05383 0.06066
+ 0.850  0.02130 0.02091 0.02117 0.02210 0.02368 0.02530 0.02713 0.02939 0.03306 0.03689 0.04172 0.04680 0.05193 0.05792 0.06450
+ 0.875  0.02412 0.02325 0.02336 0.02446 0.02654 0.02876 0.03136 0.03577 0.04033 0.04530 0.05057 0.05597 0.06166 0.06740 0.07326
+ 0.900  0.03691 0.03444 0.03384 0.03518 0.03842 0.04339 0.05012 0.05586 0.05960 0.06585 0.07308 0.07878 0.08335 0.08952 0.09643
+
+  DESIGN MACH NUMBER = 0.829, DESIGN CL = 0.451
+
+       MACH               CDF                 CDC               BUFFET CL
+
+      0.200             0.02271             0.00000               1.178
+      0.300             0.02118             0.00000               1.132
+      0.400             0.02013             0.00000               1.055
+      0.500             0.01930             0.00000               0.955
+      0.600             0.01861             0.00006               0.855
+      0.700             0.01800             0.00054               0.751
+      0.750             0.01771             0.00081               0.686
+      0.800             0.01744             0.00128               0.605
+      0.825             0.01731             0.00175               0.559
+      0.850             0.01717             0.00286               0.503
+      0.875             0.01704             0.00513               0.440
+      0.900             0.01692             0.01578               0.373
+
+        CL                CDI
+
+      0.050             0.00010
+      0.100             0.00040
+      0.150             0.00090
+      0.200             0.00159
+      0.250             0.00249
+      0.300             0.00358
+      0.350             0.00487
+      0.400             0.00637
+      0.450             0.00806
+      0.500             0.00995
+      0.550             0.01204
+      0.600             0.01432
+      0.650             0.01681
+      0.700             0.01950
+      0.750             0.02238
+
+           PRESSURE DRAG COEFFICIENTS...CDP
+ MACH                                                  CL
+         0.050   0.100   0.150   0.200   0.250   0.300   0.350   0.400   0.450   0.500   0.550   0.600   0.650   0.700   0.750
+ 0.200  0.00055 0.00029 0.00020 0.00028 0.00054 0.00088 0.00134 0.00160 0.00268 0.00392 0.00568 0.00770 0.00997 0.01356 0.01815
+ 0.300  0.00055 0.00029 0.00020 0.00028 0.00054 0.00088 0.00134 0.00159 0.00268 0.00392 0.00568 0.00770 0.00997 0.01356 0.01815
+ 0.400  0.00055 0.00029 0.00020 0.00028 0.00054 0.00088 0.00134 0.00159 0.00268 0.00392 0.00568 0.00770 0.00997 0.01356 0.01815
+ 0.500  0.00055 0.00029 0.00020 0.00028 0.00054 0.00088 0.00134 0.00161 0.00268 0.00392 0.00568 0.00770 0.00997 0.01356 0.01815
+ 0.600  0.00055 0.00029 0.00020 0.00028 0.00054 0.00088 0.00134 0.00165 0.00268 0.00392 0.00568 0.00770 0.00997 0.01356 0.01815
+ 0.700  0.00058 0.00029 0.00020 0.00029 0.00057 0.00092 0.00136 0.00172 0.00269 0.00392 0.00568 0.00770 0.00997 0.01356 0.01815
+ 0.750  0.00064 0.00031 0.00020 0.00030 0.00063 0.00098 0.00141 0.00178 0.00269 0.00392 0.00568 0.00770 0.00997 0.01356 0.01815
+ 0.800  0.00074 0.00033 0.00020 0.00032 0.00072 0.00109 0.00153 0.00196 0.00276 0.00399 0.00588 0.00793 0.01012 0.01365 0.01818
+ 0.825  0.00090 0.00037 0.00019 0.00036 0.00088 0.00128 0.00170 0.00220 0.00345 0.00508 0.00735 0.00961 0.01198 0.01527 0.01923
+ 0.850  0.00117 0.00048 0.00025 0.00047 0.00117 0.00168 0.00222 0.00299 0.00497 0.00691 0.00965 0.01244 0.01509 0.01839 0.02209
+ 0.875  0.00184 0.00068 0.00029 0.00070 0.00188 0.00301 0.00431 0.00723 0.01010 0.01318 0.01636 0.01947 0.02267 0.02573 0.02870
+ 0.900  0.00411 0.00134 0.00025 0.00089 0.00324 0.00712 0.01255 0.01680 0.01885 0.02320 0.02835 0.03176 0.03384 0.03733 0.04135
+
+
+# CRUISE OPTIMIZATION RESULTS
+
+
+ SUMMARY DATA FOR CRUISE SCHEDULE  1
+
+    WEIGHT  ALTITUDE        THRUST          FUEL     SFC    MACH  VELOCITY SPECIFIC  RATE OF    CL      L/D   ENGINES    NOX
+                      AVAILABLE REQUIRED    FLOW           NUMBER            RANGE    CLIMB                  OPERATING   RATE
+
+   168000.    40000.    12549.   10978.    6880.   0.6267  0.8000    458.9  0.06669    434.4  0.4694   15.30     2.0     0.00
+   170000.    40000.    12549.   11102.    6952.   0.6262  0.8000    458.9  0.06600    395.6  0.4750   15.31     2.0     0.00
+   172000.    39940.    12590.   11226.    7027.   0.6259  0.8000    458.9  0.06530    368.5  0.4792   15.32     2.0     0.00
+   174000.    39742.    12725.   11347.    7103.   0.6260  0.8000    458.9  0.06460    368.2  0.4802   15.34     2.0     0.00
+   176000.    39545.    12861.   11467.    7179.   0.6261  0.8000    458.9  0.06392    367.9  0.4812   15.35     2.0     0.00
+   178000.    39347.    12996.   11588.    7255.   0.6261  0.8000    458.9  0.06324    367.6  0.4820   15.36     2.0     0.00
+   180000.    39149.    13131.   11709.    7332.   0.6262  0.8000    458.9  0.06259    367.3  0.4829   15.37     2.0     0.00
+   182000.    38951.    13267.   11829.    7408.   0.6262  0.8000    458.9  0.06194    367.0  0.4836   15.39     2.0     0.00
+   184000.    38754.    13402.   11950.    7484.   0.6263  0.8000    458.9  0.06131    366.7  0.4843   15.40     2.0     0.00
+   186000.    38556.    13538.   12071.    7560.   0.6263  0.8000    458.9  0.06069    366.5  0.4850   15.41     2.0     0.00
+   188000.    38355.    13675.   12191.    7637.   0.6264  0.8000    458.9  0.06009    366.6  0.4855   15.42     2.0     0.00
+   190000.    38154.    13812.   12311.    7713.   0.6265  0.8000    458.9  0.05949    367.0  0.4860   15.43     2.0     0.00
+   192000.    37925.    13969.   12430.    7789.   0.6266  0.8000    458.9  0.05891    372.5  0.4857   15.45     2.0     0.00
+   194000.    37698.    14125.   12549.    7865.   0.6267  0.8000    458.9  0.05834    377.3  0.4855   15.46     2.0     0.00
+   196000.    37474.    14278.   12668.    7941.   0.6268  0.8000    458.9  0.05778    381.7  0.4853   15.47     2.0     0.00
+   198000.    37252.    14430.   12787.    8017.   0.6269  0.8000    458.9  0.05724    385.5  0.4850   15.48     2.0     0.00
+   200000.    37033.    14580.   12906.    8093.   0.6270  0.8000    458.9  0.05670    388.9  0.4848   15.50     2.0     0.00
+   202000.    36816.    14728.   13025.    8168.   0.6271  0.8000    458.9  0.05617    391.8  0.4846   15.51     2.0     0.00
+   204000.    35424.    15681.   13124.    8266.   0.6299  0.8000    460.4  0.05569    584.4  0.4579   15.54     2.0     0.00
+   206000.    35213.    15826.   13243.    8342.   0.6299  0.8000    460.8  0.05524    585.0  0.4578   15.56     2.0     0.00
+   208000.    35003.    15969.   13363.    8418.   0.6300  0.8000    461.3  0.05479    585.4  0.4576   15.57     2.0     0.00
+   210000.    35000.    15971.   13480.    8487.   0.6296  0.8000    461.3  0.05435    554.2  0.4620   15.58     2.0     0.00
+   212000.    35000.    15971.   13599.    8556.   0.6292  0.8000    461.3  0.05391    522.7  0.4664   15.59     2.0     0.00
+   214000.    35000.    15971.   13721.    8627.   0.6288  0.8000    461.3  0.05346    491.2  0.4708   15.60     2.0     0.00
+   216000.    35000.    15971.   13844.    8700.   0.6284  0.8000    461.3  0.05302    459.9  0.4752   15.60     2.0     0.00
+   218000.    35000.    15971.   13971.    8774.   0.6280  0.8000    461.3  0.05257    428.7  0.4796   15.60     2.0     0.00
+   220000.    35000.    15971.   14099.    8849.   0.6276  0.8000    461.3  0.05213    397.6  0.4840   15.60     2.0     0.00
+   222000.    35000.    15971.   14229.    8925.   0.6272  0.8000    461.3  0.05168    366.5  0.4884   15.60     2.0     0.00
+   224000.    34853.    16096.   14352.    9009.   0.6277  0.8000    461.6  0.05123    363.9  0.4893   15.61     2.0     0.00
+   226000.    34691.    16233.   14475.    9095.   0.6283  0.8000    461.9  0.05079    364.0  0.4899   15.61     2.0     0.00
+
+
+ RANGE AND TIME SUMMARY FOR CRUISE SCHEDULES  1 THROUGH  1
+
+    WEIGHT     RANGE - 1- TIME
+   (POUNDS)    (N.MI.)    (HR) 
+   226000.        0.0     0.00
+   224750.       63.7     0.14
+   223500.      127.7     0.28
+   222250.      192.0     0.42
+   221000.      256.7     0.56
+   219750.      321.8     0.70
+   218500.      387.2     0.84
+   217250.      452.9     0.98
+   216000.      519.0     1.12
+   214750.      585.5     1.27
+   213500.      652.3     1.41
+   212250.      719.4     1.56
+   211000.      786.9     1.71
+   209750.      854.7     1.85
+   208500.      922.9     2.00
+   207250.      991.4     2.15
+   206000.     1060.3     2.30
+   204750.     1129.5     2.45
+   203500.     1199.1     2.60
+   202250.     1269.1     2.75
+   201000.     1339.4     2.91
+   199750.     1410.2     3.06
+   198500.     1481.3     3.21
+   197250.     1552.9     3.37
+   196000.     1624.9     3.53
+   194750.     1697.4     3.69
+   193500.     1770.3     3.84
+   192250.     1843.6     4.00
+   191000.     1917.4     4.17
+   189750.     1991.6     4.33
+   188500.     2066.3     4.49
+   187250.     2141.4     4.65
+   186000.     2217.1     4.82
+   184750.     2293.2     4.98
+   183500.     2369.8     5.15
+   182250.     2446.8     5.32
+   181000.     2524.4     5.49
+   179750.     2602.5     5.66
+   178500.     2681.1     5.83
+   177250.     2760.2     6.00
+   176000.     2839.8     6.18
+   174750.     2920.0     6.35
+   173500.     3000.7     6.53
+   172250.     3081.9     6.70
+   171000.     3163.7     6.88
+   169750.     3246.1     7.06
+   168500.     3328.9     7.24
+
+ * ITERATION  1 -- RANGE =    2500.000  FOR GROSS WEIGHT =    223528.87  ENERGY: USED =         0.00  CAPACITY =         0.00
+
+
+# OUTPUT FROM THE WEIGHTS MODULE
+
+   DESCRIPTION                               VALUE  DIMENSIONS
+
+   WING BENDING FACTOR                     10.3601
+   ENGINE INERTIA RELIEF FACTOR           0.940000
+
+   WING WEIGHT BREAKDOWN
+        TERM 1                              9948.7  LB
+        TERM 2                             10102.8  LB
+        TERM 3                              3206.1  LB
+
+   WING SPAN                                127.50  FT
+   WING GLOVE AREA                            0.00  SQ FT
+
+   HORIZONTAL TAIL AREA                     342.20  SQ FT
+      MODIFIED VOLUME COEFFICIENT         1.600000
+   VERTICAL TAIL AREA                       342.20  SQ FT
+      MODIFIED VOLUME COEFFICIENT         0.200000
+
+   NACELLE LENGTH                            14.43  FT
+   NACELLE DIAMETER                           8.24  FT
+
+   LENGTH OF MAIN GEAR                      132.96  IN
+   LENGTH OF NOSE GEAR                       93.07  IN
+
+   MAXIMUM LANDING WEIGHT                 201176.0  LB
+
+   WING FUEL CAPACITY                      68221.8  LB
+   FUSELAGE FUEL CAPACITY                      0.0  LB
+   AUXILIARY TANK CAPACITY                     0.0  LB
+      TOTAL FUEL CAPACITY                  68221.8  LB
+      EXCESS FUEL CAPACITY                 15660.0  LB
+
+    MASS AND BALANCE SUMMARY                  PERCENT WREF       POUNDS     PERCENT LREF  HORI CG-INCHES
+         WING                                     10.40         23258.            0.0            0.0
+         HORIZONTAL TAIL                           0.73          1640.            0.0            0.0
+         VERTICAL TAIL                             0.63          1414.            0.0            0.0
+         VERTICAL FIN                              0.00             0.            0.0            0.0
+         CANARD                                    0.00             0.            0.0            0.0
+         FUSELAGE                                 13.89         31048.            0.0            0.0
+         LANDING GEAR                              5.22         11672.            0.0            0.0
+         NACELLE (AIR INDUCTION)                   1.23          2756.            0.0            0.0
+    STRUCTURE TOTAL                            (  32.12)     (  71788.)        (  0.0)       (   0.0)
+         ENGINES                                   6.97         15583.            0.0            0.0
+         THRUST REVERSERS                          0.00             0.            0.0           86.6
+         MISCELLANEOUS SYSTEMS                     0.32           706.            0.0            0.0
+         FUEL SYSTEM-TANKS AND PLUMBING            0.38           850.            0.0            0.0
+    PROPULSION TOTAL                           (   7.67)     (  17139.)        (  0.0)       (   0.0)
+         SURFACE CONTROLS                          1.13          2518.            0.0            0.0
+         AUXILIARY POWER                           0.54          1200.            0.0            0.0
+         INSTRUMENTS                               0.32           722.            0.0            0.0
+         HYDRAULICS                                0.76          1704.            0.0            0.0
+         ELECTRICAL                                1.05          2343.            0.0            0.0
+         AVIONICS                                  0.96          2151.            0.0            0.0
+         FURNISHINGS AND EQUIPMENT                 9.09         20322.            0.0            0.0
+         AIR CONDITIONING                          1.03          2292.            0.0            0.0
+         ANTI-ICING                                0.11           238.            0.0            0.0
+    SYSTEMS AND EQUIPMENT TOTAL                (  14.98)     (  33489.)        (  0.0)       (   0.0)
+
+    WEIGHT EMPTY                                  54.77        122416.            0.0            0.0
+
+         CREW AND BAGGAGE-FLIGHT, 3                0.30           675.            0.0            0.0
+                         -CABIN,  7                0.51          1130.            0.0            0.0
+         UNUSABLE FUEL                             0.26           589.            0.0            0.0
+         ENGINE OIL                                0.07           167.            0.0            0.0
+         PASSENGER SERVICE                         1.53          3415.            0.0            0.0
+         CARGO CONTAINERS                          0.70          1575.            0.0            0.0
+
+    OPERATING WEIGHT                              58.14        129967.            0.0            0.0
+
+         PASSENGERS,     200                      14.76         33000.            0.0            0.0
+         PASSENGER BAGGAGE                         3.58          8000.            0.0            0.0
+         CARGO                                     0.00             0.            0.0            0.0
+
+    ZERO FUEL WEIGHT                              76.49        170967.            0.0            0.0
+
+         MISSION FUEL                             23.51         52562.            0.0            0.0
+
+    RAMP (GROSS) WEIGHT                          100.00        223529.            0.0            0.0
+
+
+# NONCRUISE SEGMENT RESULTS
+
+
+ CLIMB PROFILE DATA FOR SEGMENT  1
+                                                      - - INCREMENTAL- -          - - - CUMULATIVE - - -
+   WEIGHT   ENERGY    ALT    MACH    VEL     RCI  PC  TIME  DIST    FUEL     Q     TIME    DIST     FUEL    CL   L/D   THRUST  /TMAX
+
+  222897.    1743.      0.  0.300   198.4   4130.  1  0.00   0.0     0.0   133.3   0.00     0.0      0.0  0.823 11.60   65019. 1.000
+  222372.    6375.   3333.  0.401   262.1   4981.  1  1.02   3.9   525.1   210.7   1.02     3.9    525.1  0.519 16.20   55456. 1.000
+  222009.   10015.   6667.  0.426   275.0   4526.  1  0.77   3.4   362.7   209.7   1.78     7.2    887.8  0.521 16.17   49808. 1.000
+  221642.   13690.  10000.  0.452   288.7   3979.  1  0.86   4.0   367.3   208.4   2.65    11.3   1255.1  0.523 16.13   43908. 1.000
+  221520.   14962.  10000.  0.524   334.8   4611.  1  0.30   1.5   121.9   280.3   2.94    12.8   1377.0  0.389 16.18   43815. 1.000
+  221405.   16235.  10000.  0.588   375.3   4941.  1  0.27   1.6   115.4   352.2   3.21    14.4   1492.4  0.309 14.81   43733. 1.000
+  221290.   17507.  10613.  0.620   394.6   4875.  1  0.26   1.7   114.5   382.0   3.47    16.0   1606.9  0.285 14.20   42576. 1.000
+  221174.   18780.  11711.  0.630   399.6   4641.  1  0.27   1.8   115.6   378.3   3.74    17.8   1722.5  0.288 14.24   40904. 1.000
+  221057.   20052.  12780.  0.642   405.3   4429.  1  0.28   1.9   117.0   376.1   4.02    19.7   1839.5  0.289 14.23   39384. 1.000
+  220939.   21325.  13820.  0.654   411.7   4240.  1  0.29   2.0   118.6   375.3   4.31    21.7   1958.1  0.290 14.20   38031. 1.000
+  220819.   22597.  14832.  0.668   418.8   4077.  1  0.31   2.1   120.2   375.9   4.62    23.8   2078.3  0.289 14.13   36855. 1.000
+  220697.   23870.  15752.  0.686   428.2   3934.  1  0.32   2.2   121.9   381.3   4.93    26.0   2200.2  0.285 13.95   35846. 1.000
+  220573.   25143.  16824.  0.697   433.5   3728.  1  0.33   2.4   124.1   377.2   5.27    28.4   2324.3  0.288 13.96   34531. 1.000
+  220446.   26415.  17799.  0.712   441.2   3547.  1  0.35   2.5   126.7   378.2   5.62    30.9   2451.0  0.287 13.87   33392. 1.000
+  220316.   27688.  18846.  0.724   446.9   3336.  1  0.37   2.7   129.7   374.8   5.99    33.7   2580.8  0.289 13.88   32115. 1.000
+  220183.   28960.  19875.  0.737   453.0   3124.  1  0.39   2.9   133.3   372.0   6.38    36.6   2714.1  0.291 13.87   30867. 1.000
+  220046.   30233.  21085.  0.743   454.6   2894.  1  0.42   3.2   137.2   359.5   6.80    39.8   2851.3  0.301 14.07   29470. 1.000
+  219904.   31505.  22276.  0.750   456.6   2666.  1  0.46   3.5   141.6   348.1   7.26    43.3   2992.9  0.311 14.25   28119. 1.000
+  219757.   32778.  23393.  0.760   460.4   2447.  1  0.50   3.8   147.0   340.6   7.76    47.1   3140.0  0.318 14.32   26879. 1.000
+  219603.   34050.  24632.  0.765   461.3   2195.  1  0.55   4.2   153.9   327.3   8.31    51.3   3293.8  0.330 14.53   25437. 1.000
+  219441.   35323.  25904.  0.769   461.3   1968.  1  0.61   4.7   162.0   313.0   8.92    56.0   3455.9  0.345 14.76   24118. 1.000
+  219270.   36595.  27177.  0.773   461.3   1753.  1  0.68   5.3   171.3   299.1   9.60    61.2   3627.2  0.361 14.98   22868. 1.000
+  219087.   37868.  28449.  0.777   461.3   1534.  1  0.77   5.9   183.0   285.6  10.38    67.2   3810.2  0.377 15.20   21615. 1.000
+  218888.   39141.  29722.  0.782   461.3   1311.  1  0.89   6.9   198.7   272.7  11.27    74.1   4009.0  0.395 15.40   20359. 1.000
+  218668.   40413.  30994.  0.786   461.3   1108.  1  1.05   8.1   219.9   260.2  12.32    82.1   4228.9  0.414 15.54   19258. 1.000
+  218419.   41686.  32267.  0.790   461.3    902.  1  1.27   9.7   249.5   248.1  13.59    91.9   4478.3  0.433 15.62   18207. 1.000
+  218122.   42958.  33539.  0.795   461.3    689.  1  1.60  12.3   296.5   236.5  15.19   104.2   4774.8  0.454 15.64   17163. 1.000
+  217740.   44231.  34812.  0.799   461.3    467.  1  2.20  16.9   382.5   225.3  17.39   121.1   5157.3  0.476 15.61   16124. 1.000
+  217670.   44419.  35000.  0.800   461.3    434.  1  0.42   3.2    69.8   223.7  17.81   124.3   5227.1  0.479 15.60   15971. 1.000
+
+
+ DESCENT PROFILE DATA FOR SEGMENT  3
+                                                      - - INCREMENTAL- -          - - - CUMULATIVE - - -
+   WEIGHT   ENERGY    ALT    MACH    VEL     RCI  PC  TIME  DIST    FUEL     Q     TIME    DIST     FUEL    CL   L/D   THRUST  /TMAX
+
+  175682.    1743.      0.  0.300   198.4  -1364.  0  0.00   0.0     0.0   133.3   0.00     0.0      0.0  0.648 14.74       0. 0.000
+  175864.    6375.   3870.  0.364   237.9  -1493.  0 -3.24  11.8  -181.9   170.8  -3.24    11.8   -181.9  0.507 16.13       0. 0.000
+  175991.   10015.   7272.  0.386   248.9  -1570.  0 -2.38   9.6  -127.5   168.6  -5.62    21.4   -309.4  0.514 16.05       0. 0.000
+  176102.   13690.  10691.  0.409   260.3  -1652.  0 -2.28   9.7  -110.9   165.7  -7.90    31.1   -420.3  0.523 15.95       0. 0.000
+  176137.   14962.  11814.  0.421   266.7  -1688.  0 -0.76   3.3   -34.6   167.9  -8.66    34.4   -454.9  0.516 16.00       0. 0.000
+  176170.   16235.  12952.  0.431   272.3  -1722.  0 -0.75   3.3   -32.9   168.8  -9.41    37.7   -487.7  0.514 16.01       0. 0.000
+  176201.   17507.  14068.  0.443   278.7  -1760.  0 -0.73   3.4   -31.2   170.6 -10.14    41.1   -518.9  0.508 16.04       0. 0.000
+  176231.   18780.  15218.  0.453   283.6  -1793.  0 -0.72   3.4   -29.5   170.2 -10.85    44.4   -548.5  0.509 16.02       0. 0.000
+  176258.   20052.  16348.  0.464   289.3  -1828.  0 -0.70   3.4   -27.9   170.6 -11.56    47.8   -576.4  0.508 16.02       0. 0.000
+  176285.   21325.  17456.  0.476   295.6  -1867.  0 -0.69   3.4   -26.5   171.8 -12.25    51.1   -602.9  0.505 16.04       0. 0.000
+  176310.   22597.  18601.  0.486   300.4  -1900.  0 -0.68   3.4   -25.0   170.8 -12.92    54.5   -627.9  0.508 16.01       0. 0.000
+  176333.   23870.  19723.  0.498   306.1  -1937.  0 -0.66   3.3   -23.6   170.7 -13.59    57.8   -651.5  0.508 16.00       0. 0.000
+  176356.   25143.  20847.  0.509   311.5  -1974.  0 -0.65   3.3   -22.3   170.2 -14.24    61.2   -673.7  0.510 15.98       0. 0.000
+  176377.   26415.  21972.  0.520   316.8  -2011.  0 -0.64   3.3   -21.1   169.4 -14.87    64.5   -694.9  0.512 15.96       0. 0.000
+  176397.   27688.  23089.  0.531   322.3  -2048.  0 -0.63   3.3   -20.1   168.7 -15.50    67.9   -714.9  0.515 15.93       0. 0.000
+  176416.   28960.  24202.  0.543   327.8  -2087.  0 -0.62   3.3   -19.1   167.9 -16.12    71.2   -734.0  0.517 15.91       0. 0.000
+  176434.   30233.  25330.  0.554   332.8  -2125.  0 -0.60   3.3   -18.1   166.2 -16.72    74.5   -752.1  0.522 15.86       0. 0.000
+  176451.   31505.  26446.  0.565   338.1  -2164.  0 -0.59   3.3   -17.3   164.9 -17.31    77.8   -769.5  0.527 15.82       0. 0.000
+  176468.   32778.  27550.  0.577   343.6  -2206.  0 -0.58   3.3   -16.7   163.8 -17.90    81.1   -786.2  0.530 15.78       0. 0.000
+  176484.   34050.  28692.  0.587   347.9  -2246.  0 -0.57   3.3   -16.1   161.1 -18.47    84.4   -802.3  0.539 15.69       0. 0.000
+  176500.   35323.  29728.  0.602   355.5  -2292.  0 -0.56   3.3   -15.7   161.9 -19.03    87.7   -818.0  0.536 15.70       0. 0.000
+  176515.   36595.  30760.  0.618   363.1  -2342.  0 -0.55   3.3   -15.2   162.6 -19.58    91.0   -833.2  0.534 15.70       0. 0.000
+  176530.   37868.  31736.  0.636   372.2  -2397.  0 -0.54   3.3   -14.4   164.8 -20.12    94.3   -847.6  0.527 15.73       0. 0.000
+  176543.   39141.  32660.  0.657   382.6  -2458.  0 -0.52   3.3   -13.8   168.2 -20.64    97.6   -861.3  0.516 15.76       0. 0.000
+  176556.   40413.  33654.  0.674   390.7  -2515.  0 -0.51   3.3   -13.1   169.0 -21.15   100.9   -874.4  0.514 15.73       0. 0.000
+  176569.   41686.  34597.  0.693   400.1  -2579.  0 -0.50   3.3   -12.4   171.0 -21.65   104.2   -886.8  0.508 15.71       0. 0.000
+  176581.   42958.  35553.  0.711   409.0  -2642.  0 -0.49   3.3   -11.8   172.2 -22.14   107.4   -898.6  0.505 15.68       0. 0.000
+  176592.   44231.  36476.  0.730   418.5  -2710.  0 -0.48   3.3   -11.3   173.5 -22.62   110.7   -909.9  0.501 15.64       0. 0.000
+  176603.   45503.  37364.  0.748   428.8  -2784.  0 -0.46   3.3   -10.8   174.5 -23.08   114.0   -920.7  0.498 15.60       0. 0.000
+  176613.   46776.  38249.  0.765   438.9  -2863.  0 -0.45   3.3   -10.4   175.2 -23.53   117.2   -931.1  0.496 15.52       0. 0.000
+  176623.   48048.  39127.  0.783   448.9  -2946.  0 -0.44   3.2   -10.0   175.8 -23.97   120.5   -941.1  0.495 15.43       0. 0.000
+  176629.   48803.  39482.  0.800   458.9  -3027.  0 -0.25   1.9    -5.8   180.5 -24.22   122.4   -946.9  0.481 15.35       0. 0.000
+
+ * ITERATION  2 -- RANGE =    2500.000  FOR GROSS WEIGHT =    223528.88  ENERGY: USED =         0.00  CAPACITY =         0.00
+
+
+# SIZING AND PERFORMANCE RESULTS
+
+  CONFIGURATION DATA AFTER RESIZING (IF ANY)
+
+     OPERATING WEIGHT EMPTY    129967.1 LB
+     PAYLOAD                    41000.0 LB
+     MAXIMUM FUEL               52561.8 LB
+     GROSS WEIGHT              223528.9 LB
+
+     REFERENCE WING AREA        2032.08 SQ FT
+     WING LOADING                110.00 LB/SQ FT
+
+     THRUST PER ENGINE          42470.5 LB
+     ENGINE SCALE FACTOR         0.9719
+     THRUST-WEIGHT RATIO         0.3800
+
+
+                              * * *  M I S S I O N   S U M M A R Y  * * *
+
+            INITIAL      FUEL(LB)      TIME(MIN)     DIST (N MI)   MACH NUMBER    ALTITUDE(FT)     ALTERNATE FUEL   NOX EMISS(LB)
+ SEGMENT     WT(LB)   SEGMT   TOTAL  SEGMT  TOTAL   SEGMT   TOTAL  START   END    START    END     SEGMT    TOTAL   SEGMT   TOTAL
+
+ TAXI OUT   223529.    421.    421.   10.0   10.0                                                    0.0      0.0     0.0     0.0
+ TAKE OFF   223108.    211.    632.    0.4   10.4                         0.300              0.      0.0      0.0     0.0     0.0
+
+ CLIMB      222897.   5227.   5859.   17.8   28.2   124.3   124.3  0.300  0.800      0.  35000.      0.0      0.0     0.0     0.0
+ CRUISE     217670.  41041.  46900.  309.3  337.5  2368.9  2493.2  0.800  0.800  35000.  39482.      0.0      0.0     0.0     0.0
+ DESCENT    176629.    947.  47847.   24.2  361.7   122.4  2615.6  0.800  0.300  39482.      0.      0.0      0.0     0.0     0.0
+
+  (THOLD              2087.           17.6               * INCLUDED IN RESERVES *                    0.0 )
+
+ RESERVES   175682.   4715.  52562.                                                                  0.0      0.0
+ TAXI IN               421.           10.0  371.7                                                    0.0              0.0     0.0
+ ZERO FUEL  170967.
+
+     DESIGN RANGE   2615.6
+     FLIGHT TIME     351.3
+
+     BLOCK TIME =   6.19 HOURS
+     BLOCK FUEL =   48268.2 POUNDS
+     TOTAL NITROGEN OXIDES EMISSIONS =      0.00 POUNDS
+
+     ATA TRAFFIC ALLOWANCE =   115.6 NAUTICAL MILES
+        AIR MANEUVER =  45.9
+        AIRPORT TRAFFIC ALLOWANCE = 17.4
+        AIRWAY DISTANCE FACTOR =  52.3
+
+     ATA RANGE =   2500.0 NAUTICAL MILES
+
+# COST ANALYSIS RESULTS
+
+ DATA FROM AERO AND MISSION ANALYSIS MODULES
+
+      GROSS WEIGHT                        223529. POUNDS
+      DESIGN MACH NUMBER                   0.8000
+      CRUISE VELOCITY                       528.0 MPH
+      MAX DYNAMIC PRESSURE                  368.0 PSF
+      RANGE                                2876.9 MILES
+      BLOCK TIME                             6.19 HOURS
+      BLOCK FUEL                           48268. POUNDS
+
+
+#  AIRFRAME COSTS 
+
+      AIRFRAME WEIGHTS AND ACQUISITION COSTS (MILLIONS OF DOLLARS)
+
+            COMPONENT OR SYSTEM                 WEIGHT          COST
+
+            WING                                23258.         2.857
+            TAIL                                 3055.         0.635
+            FUSELAGE                            31048.         4.244
+            LANDING GEAR                        11672.         1.085
+            NACELLE                              2756.         0.857
+
+      STRUCTURE TOTAL                           71788.         9.678
+
+            THRUST REVERSER                         0.         0.000
+            MISC SYSTEMS                          706.         0.151
+            FUEL SYSTEM                           850.         0.071
+
+      PROPULSION TOTAL *                         1556.         0.222
+
+            SURFACE CONTROLS                     2518.         0.696
+            AUX POWER UNIT                       1200.         0.393
+            INSTRUMENTS                           722.         0.881
+            HYDRAULICS                           1364.         0.100
+            ELECTRICAL                           2343.         0.562
+            AVIONICS                             2151.         2.624
+            FURNISHINGS & EQUIP                 20322.         2.795
+            AIR CONDITIONING                     2292.         0.723
+            ANTI-ICING                            238.         0.074
+            PNEUMATIC                             341.         0.069
+
+      SYS & EQUIP TOTAL                         33489.         8.917
+
+      FINAL ASSEMBLY AND DELIVERY                              4.704
+
+   WEIGHT EMPTY *                              106833.        23.522
+
+ * LESS BARE ENGINES
+
+  (AERON. MANUF. PLANNING REPORT WEIGHT         72659.)
+
+
+ TOTAL AIRFRAME COST =     23.522 (MILLIONS OF DOLLARS)
+
+ AIRFRAME R D T AND E COSTS (MILLIONS OF DOLLARS)
+
+      ENGINEERING DEVELOPMENT COST                            57.761
+      DEVELOPMENT TOOLING COST                                50.295
+      DEVELOPMENT MANUFACTURING COST                          46.227
+      DEVELOPMENT MATERIALS                                   13.346
+      DEVELOPMENT SUPPORT                                     23.703
+      FLIGHT TEST OPERATIONS                                  25.865
+
+ TOTAL AIRFRAME R&D COST =           217.195 (MILLIONS OF DOLLARS)
+
+ AIRFRAME R&D COST PER AIRCRAFT =      2.172 (MILLIONS OF DOLLARS)
+
+
+
+#  ENGINE COSTS
+
+ ENGINE DEVELOPMENT COSTS (MILLIONS OF DOLLARS)
+
+      TO MODEL QUALIFICATION TESTS                             7.982
+
+   FLIGHT TEST ENGINES -
+      RECURRING DEVELOPMENT                                   16.311
+      PRODUCTION                                               2.415
+      SPARES - RECURRING DEVELOPMENT AND PRODUCTION            9.363
+
+ TOTAL ENGINE DEVELOPMENT                                     36.070
+
+
+
+ ENGINE PRODUCTION COSTS (MILLIONS OF DOLLARS)
+
+      FOR  100. AIRCRAFT AND   260.0 ENGINES INCLUDING SPARES
+
+   CUMULATIVE AVERAGE COST PER AIRCRAFT ( 2 ENGINES)
+      ENGINE PRODUCTION                                        0.822
+      RECURRING DEVELOPMENT                                    1.002
+   TOTAL                                                       1.823
+
+   COST FOR LAST SHIPSET
+      ENGINE PRODUCTION                                        0.717
+      RECURRING DEVELOPMENT                                    0.351
+   TOTAL                                                       1.069
+
+#  DIRECT OPERATING COST
+   (DOLLARS/DEPARTURE)
+
+      AIRFRAME MAINTENANCE ITEMS
+
+         CATEGORY                   ATA CODE      MATERIAL     LABOR
+
+         AIRFRAME INSPECT. & MISC.     99           15.53      95.85
+         AIR CONDITIONING              21           16.81      18.48
+         AUTOPILOT                     22            4.27       9.30
+         COMMUNICATIONS                23            5.94      15.19
+         ELECTRICAL POWER              24           21.59      16.41
+         EQUIPMENT & FURNISHINGS       25           35.03      71.99
+         FIRE PROTECTION               26            0.80       0.70
+         FLIGHT CONTROLS               27           19.78      31.34
+         FUEL                          28            4.59       9.05
+         HYDRAULIC POWER               29           26.54      18.47
+         ICE & RAIN PROTECTION         30            1.82       2.54
+         INSTRUMENTS                   31            1.44       3.44
+         LANDING GEAR                  32           68.41      34.57
+         LIGHTING                      33            8.01      13.23
+         NAVIGATION                    34           16.19      28.06
+         OXYGEN                        35            3.73       4.25
+         PNEUMATICS                    36            3.78       1.19
+         WATER/WASTE                   38            3.39       2.79
+         AIRBORNE AUXILIARY POWER      49           24.89      11.13
+         STRUCTURES                    50            0.00      15.88
+         DOORS                         52            7.79       9.35
+         FUSELAGE                      53            2.31      11.94
+         NACELLES                      54            1.26       3.04
+         STABILIZERS                   55            1.47       3.28
+         WINDOWS                       56           25.64       3.83
+         WINGS                         57            4.26      11.60
+
+      TOTAL AIRFRAME MAINTENANCE                   325.26     446.91
+
+      PROPULSION SYSTEM MAINT. PER ENGINE          157.94     142.52
+
+      MATERIAL AND DIRECT LABOR SUBTOTALS          641.14     731.96
+
+      MAINTENANCE DIRECT LABOR BURDEN                        1463.92
+
+   TOTAL MAINTENANCE PER DEPARTURE                           2837.02
+
+ REMAINING DIRECT OPERATING COST ELEMENTS
+
+   DEPRECIATION                                              5041.44
+   INSURANCE                                                  521.38
+   AIRCRAFT SERVICING                                         220.36
+   FLIGHT CREW OF 3                                          2728.81
+   FUEL COST AT 0.50 DOLLARS/GALLON                          3580.72
+
+
+ DIRECT OPERATING COSTS
+        - DOLLARS PER DEPARTURE                             14929.73
+        - DOLLARS PER BLOCK HOUR                             2410.06
+        - DOLLARS PER AVAILABLE SEAT PER TRIP                  74.65
+        - CENTS PER AVAILABLE SEAT MILE                         2.59
+
+ FOR A LIFE OF 14. YEARS, WITH  491.4 DEPARTURES PER YEAR
+ LIFETIME DIRECT OPERATING COSTS =  102.717 (MILLIONS OF DOLLARS)
+
+
+#  INDIRECT OPERATING COST
+   (DOLLARS/DEPARTURE)
+
+  GROUP   EXPENSE ITEMS                                        COST
+
+    A     GROUND PROPERTY AND EQUIPMENT AND A/C HANDLING      972.37
+    B     CABIN CREW EXPENSES                                2114.44
+    C     PASSENGER SERVICE (FOOD AND BEVERAGE)              1274.73
+    D     PASS. SERVICE SUPPORT, COMMISSIONS, ADS, ETC.      4290.87
+    E     AIRCRAFT CONTROL                                     64.97
+    F     PASSENGER HANDLING, RESERV., SALES, ETC.           1370.28
+    GB    BAGGAGE HANDLING                                    374.73
+    GC    CARGO HANDLING                                        0.00
+    H     FREIGHT SALES, ADS, AND PUBLICITY                     0.00
+    J     GENERAL AND ADMINISTRATIVE                          952.08
+
+ TOTAL INDIRECT OPERATING COST (DOLLARS/DEPARTURE)          11414.48
+
+
+#  COST ELEMENT SUMMARY
+  (MILLIONS OF DOLLARS PER AIRPLANE)
+
+      AIRFRAME RESEARCH AND DEVELOPMENT                        2.172
+      AIRFRAME PRODUCTION                                     23.522
+      ENGINE RESEARCH AND DEVELOPMENT                          0.277
+      ENGINE PRODUCTION                                        1.823
+
+   MANUFACTURING COST                                         27.794
+
+      AIRFRAME SPARES                                          2.352
+      ENGINE SPARES                                            0.630
+
+   MANUFACTURING COST WITH SPARES                             30.777
+
+      MANUFACTURERS PROFIT                                     4.617
+
+   TOTAL ACQUISITION COST (PRICE)                             35.393
+
+   DIRECT OPERATING COSTS   ($  14930./TRIP)                 102.717
+
+   INDIRECT OPERATING COSTS ($  11414./TRIP)                  78.532
+
+ TOTAL LIFE CYCLE COST FOR 14. YEARS                         181.250
+
+ FOR AN ROI OF  7.000 PERCENT, FARE =   281.96 DOLLARS/PASS
+                                   OR  0.09801 DOLLARS/PASS/MILE
+
+ RETURN ON INVESTMENT =  7.839 PERCENT FOR A FARE OF   0.10000 DOLLARS/PASS/MILE
+
+#OBJ/VAR/CONSTR SUMMARY
+
+      FUEL  RANGE  VAPP FAROFF FARLDG   AMFOR   SSFOR       GW     AR    THRUST     SW    TR  SWEEP   TCA   VCMN    CH    W/S   T/W
+   52561.8 2500.0 128.3  5485.  5965.   6517.  15310.   223528.9  8.000 42470.5  2032.1 0.270 32.00 0.1100 0.800  40000. 110.0 0.380
+ DESIGN - TIT    OPR    FPR    BPR    TTR    BLA  (SLS)ST   VJET  (CRUISE)  MACH    ALT  THRUST   SFC   OVEFF   CDT    CDP
+        2660.0 29.500 1.6700  4.138 1.0000  20.00    34.0 1608.1            0.80  40000.  6456. 0.6235 0.3107 1285.6 117.18
+ FO=  0.525618E+05,OBJ=  0.525618E+05,PEN=  0.319575E+02,G= -1.000000 -0.144352 -0.216490 -0.147857 -0.153443 -0.360481 -0.297934
+
+
+# NAMELIST $RERUN
+  REANALYZE A SIZED OR OPTIMIZED CONFIGURATION FOR AN ALTERNATE MISSION
+
+   DESCRIPTION                NAME         VALUE  DIMENSIONS
+
+   DESIGN RANGE               DESRNG      2000.0  N MI
+   DETAILED TAKEOFF           ITAKOF           0
+   DETAILED LANDING           ILAND            0
+   TAKEOFF PROFILE FOR NOISE  NOPRO            0
+   NOISE CALCULATION SWITCH   NOISE            0
+   COST CALCULATION SWITCH    ICOST            1
+   WING LOADING REQUIRED      WSR           0.00
+   THRUST/WEIGHT REQUIRED     TWR        0.00000
+   LANDING WEIGHT CONTROL     MLDWT            0
+
+
+
+# NAMELIST $MISSIN
+  PERFORMANCE CONTROLS AND FACTORS AND MISSION SEGMENT DEFINITION
+
+
+   DESCRIPTION                NAME         VALUE  DIMENSIONS
+
+   ENDURANCE MISSION SWITCH   INDR             0
+   OVERALL FUEL FLOW FACTOR   FACT        1.0000
+   CDO FACTOR                 FCDO        1.0000
+   CDI FACTOR                 FCDI        1.0000
+   SUBSONIC CD FACTOR         FCDSUB      1.0000
+   SUPERSONIC CD FACTOR       FCDSUP      1.0000
+   ENGINE SCALING SWITCH      ISKAL            1
+   OWE FACTOR                 OWFACT      1.0000
+   PRINT FLAG                 IFLAG            0
+   DETAILED MISSION PRINT     MSUMPT           0
+   TEMPERATURE DEVIATION      DTC            0.0  DEG C
+   CALC RAMP WT OR RANGE      IRW              1
+   RANGE TOLERANCE            RTOL        0.0010  N MI
+   ATA TRAFFIC ALLOWANCE      IATA             1
+   TAIL WIND VELOCITY         TLWIND        0.00  KTS
+   WEIGHT INCREMENT           DWT             1.  LBF
+
+ INPUT WEIGHTS
+   GROSS WT. BEFORE TAXI OUT  RAMPWT    223528.9  LBF
+   OPERATING WEIGHT EMPTY     DOWE      129967.1  LBF
+   PAYLOAD WEIGHT             PAYLOD     41000.0  LBF
+   TOTAL USABLE FUEL WEIGHT   FUEMAX     52561.8  LBF
+
+ GROUND OPERATIONS AND TAKEOFF INPUT
+   TAKEOFF TIME               TAKOTM         0.4  MIN
+   TAXI-OUT TIME              TAXOTM        10.0  MIN
+   APPROACH TIME              APPRTM         0.0  MIN
+   APPROACH FUEL FLOW FACTOR  APPFFF        2.00
+   TAXI-IN TIME               TAXITM        10.0  MIN
+
+   TAKEOFF POWER SETTING      ITTFF            1
+   TAXI FUEL FLOWS WILL BE FROM THE ENGINE DECK
+
+ INPUT FOR  1 CLIMB SCHEDULES                (1)
+   MINIMUM CLIMB MACH NUMBER  CLMMIN      0.3000
+   MAXIMUM CLIMB MACH NUMBER  CLMMAX      0.0000
+   MINIMUM CLIMB ALTITUDE, FT CLAMIN          0.
+   MAXIMUM CLIMB ALTITUDE, FT CLAMAX          0.
+   NUMBER OF CLIMB STEPS      NINCL           31
+   CLIMB OPTIMIZATION FACTOR  FWF        -1.0000
+   FOLLOWING CRUISE SEGMENT   NCRCL            1
+   DRAG COEFFICIENT INCREMENT CLDCD      0.00000
+   NO. OF POWER SETTINGS      IPPCL            1
+   STORE DRAG DURING CLIMB    ISTCL            0
+   MAX CLIMB POWER SETTING    MAXCL            1
+   FAA CLIMB ENFORCED         IFAACL           1
+   FAA DESCENT ENFORCED       IFAADE           1
+   MINIMUM CLIMB RATE SWITCH  NODIVE           0
+   MINIMUM CLIMB RATE         DIVLIM          0.  FT/MIN
+   Q LIMIT IN CLIMB           QLIM           0.0  PSF
+   MAXIMUM RATE OF DESCENT    RDLIM     -99999.0  FT/MIN
+
+ INPUT FOR  1 CRUISE SCHEDULES               (1)
+   CRUISE OPTION SWITCH       IOC              1
+   CRUISE OPT FUEL FACTOR     FFUEL        1.000
+   CRUISE OPT NOX FACTOR      FNOX         0.000
+   MAXIMUM MACH NUMBER        CRMACH      0.0000
+   MAXIMUM ALTITUDE, FT       CRALT          -1.
+   DRAG COEFFICIENT INCREMENT CRDCD      0.00000
+   STORE DRAG DURING CRUISE   ISTCR            0
+   LONG RANGE CRUISE FACTOR   FLRCR        1.000
+   MINIMUM MACH NUMBER        CRMMIN      0.0000
+   MAXIMUM LIFT COEFFICIENT   CRCLMX      0.0000
+   ENGINE FEATHERING ALLOWED  IFEATH           0
+   ENGINE FRACTION REMAINING  FEATHF      0.5000
+   CD INCREASE FOR FEATHERING CDFETH     0.00000
+   MIN CRUISE ALTITUDE, FT    HPMIN        1000.
+   INCREMENT IN CRUISE WT.    DCWT         125.0  LBF
+   RATE OF CLIMB CEILING      RCIN         100.0  FT/MIN
+
+ INPUT FOR DESCENT SCHEDULE
+   DESCENT OPTION SWITCH      IVS              1
+   DESCENT LIFT COEFF.        DECL        0.8000
+   MINIMUM DESCENT MACH NO.   DEMMIN      0.3000
+   MAXIMUM DESCENT MACH NO.   DEMMAX      0.0000
+   MINIMUM DESCENT ALTITUDE   DEAMIN          0.  FT
+   MAXIMUM DESCENT ALTITUDE   DEAMAX          0.  FT
+   NUMBER OF DESCENT STEPS    NINDE           31
+   DRAG COEFFICIENT INCREMENT DEDCD      0.00000
+   STORE DRAG DURING DESCENT  ISTDE            0
+
+ RESERVE SEGMENT INPUT
+   RESERVE CALC. OR CONST     IRS              2
+   RESERVE FUEL               RESRFU       0.050  LBM
+   FRACTION OF TRIP FUEL      RESTRP       0.000
+   RESERVE ALTERNATE ENERGY   RESRPW       0.000
+   FRACTION OF TRIP ENERGY    RPWTRP       0.000
+   MISSED APPROACH TIME       TIMMAP         0.0  MIN
+   RANGE TO ALTERNATE AIRPORT ALTRAN         0.0  N MI
+   RESERVE CLIMB SCHEDULE     NCLRES           1
+   RESERVE CRUISE SCHEDULE    NCRRES           1
+   START RESERVE MACH NUMBER  SREMCH      0.3000
+   END RESERVE MACH NUMBER    EREMCH      0.3000
+   START RESERVE ALTITUDE     SREALT          0.  FT
+   END RESERVE ALTITUDE       EREALT          0.  FT
+   RESERVE HOLDING TIME       HOLDTM         0.0  MIN
+   HOLD CRUISE SCHEDULE       NCRHOL           1
+   HOLD POSITION SWITCH       IHOPOS           1
+   CRUISE ONLY SWITCH         ICRON            0
+   2ND RES HOLD TIME OR FRAC  THOLD        0.050  MIN
+   THOLD CRUISE SCHEDULE      NCRTH            1
+
+
+
+# MISSION SEQUENCE DEFINITION
+
+     START          MACH NUMBER = 0.3000          ALTITUDE =        0. FT
+
+  1. CLIMB          USE CLIMB SCHEDULE  1
+
+  2. CRUISE         USE CRUISE SCHEDULE 1         END CRUISE DISTANCE =     0.0 N MI
+
+  3. DESCENT
+
+  4. END            MACH NUMBER = 0.3000          ALTITUDE =        0. FT
+
+
+#TITLE, BEGIN OUTPUT OF RESULTS
+
+ SUBSONIC TRANSPORT EXAMPLE PROBLEM WITH COSTS AND RERUN                         
+
+# AERODYNAMIC DATA
+
+ MACH NUMBER       ALTITUDE     REFERENCE AREA     TECHNOLOGY LEVEL
+     0.80         40000. FT      2032.08 SQ FT           1.50
+
+   COMPONENT              SWET      LENGTH    FINENESS     FORM       RN       CF         CDF
+                          SQ FT       FT        RATIO     FACTOR   MILLIONS
+ WING                   3327.12      15.94     0.1100      1.425     24.4    0.00243    0.00567
+ HORIZONTAL TAIL         569.66       9.25     0.1100      1.425     14.2    0.00264    0.00106
+ VERTICAL TAIL           698.97      13.08     0.1100      1.425     20.0    0.00250    0.00123
+ FUSELAGE               6365.85     151.43     8.9709      1.134    232.0    0.00176    0.00624
+ NACELLE                 332.97      14.43     1.7500      2.798     22.1    0.00247    0.00113
+ NACELLE                 332.97      14.43     1.7500      2.798     22.1    0.00247    0.00113
+ MISCELLANEOUS                                                                          0.00099
+
+  TOTAL                11627.53                                              0.00305    0.01744
+
+       CHANGE IN DRAG COEFFICIENT FROM CRUISE ALTITUDE
+ ALTITUDE                                 MACH NUMBER
+             0.200    0.300    0.400    0.500    0.600    0.700    0.750    0.800    0.825    0.850    0.875    0.900
+       0.  -0.00418 -0.00380 -0.00356 -0.00337 -0.00322 -0.00309 -0.00304 -0.00298 -0.00296 -0.00293 -0.00291 -0.00288
+    5000.  -0.00379 -0.00345 -0.00322 -0.00306 -0.00292 -0.00280 -0.00275 -0.00270 -0.00268 -0.00266 -0.00263 -0.00261
+   10000.  -0.00338 -0.00307 -0.00287 -0.00272 -0.00260 -0.00250 -0.00245 -0.00240 -0.00238 -0.00236 -0.00234 -0.00232
+   15000.  -0.00294 -0.00267 -0.00249 -0.00236 -0.00226 -0.00217 -0.00213 -0.00209 -0.00207 -0.00205 -0.00203 -0.00202
+   20000.  -0.00247 -0.00224 -0.00209 -0.00198 -0.00189 -0.00182 -0.00178 -0.00175 -0.00173 -0.00172 -0.00170 -0.00169
+   25000.  -0.00196 -0.00178 -0.00166 -0.00157 -0.00150 -0.00144 -0.00141 -0.00139 -0.00137 -0.00136 -0.00135 -0.00134
+   30000.  -0.00141 -0.00128 -0.00119 -0.00113 -0.00108 -0.00103 -0.00101 -0.00100 -0.00099 -0.00098 -0.00097 -0.00096
+   35000.  -0.00082 -0.00074 -0.00069 -0.00065 -0.00062 -0.00060 -0.00058 -0.00057 -0.00057 -0.00056 -0.00056 -0.00055
+   40000.   0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000
+   45000.   0.00092  0.00083  0.00078  0.00073  0.00070  0.00067  0.00066  0.00064  0.00064  0.00063  0.00063  0.00062
+   50000.   0.00191  0.00172  0.00160  0.00151  0.00143  0.00137  0.00135  0.00132  0.00131  0.00130  0.00129  0.00128
+   55000.   0.00295  0.00266  0.00247  0.00233  0.00221  0.00212  0.00208  0.00204  0.00202  0.00200  0.00199  0.00197
+   60000.   0.00406  0.00365  0.00339  0.00320  0.00304  0.00291  0.00285  0.00280  0.00277  0.00275  0.00272  0.00270
+
+           DRAG POLARS     ALTITUDE = 40000. FT
+ MACH                                                  CL
+         0.050   0.100   0.150   0.200   0.250   0.300   0.350   0.400   0.450   0.500   0.550   0.600   0.650   0.700   0.750
+ 0.200  0.02335 0.02339 0.02380 0.02458 0.02573 0.02717 0.02892 0.03067 0.03345 0.03657 0.04042 0.04473 0.04948 0.05577 0.06324
+ 0.300  0.02183 0.02186 0.02227 0.02305 0.02420 0.02564 0.02739 0.02913 0.03192 0.03504 0.03890 0.04320 0.04796 0.05424 0.06171
+ 0.400  0.02077 0.02081 0.02122 0.02200 0.02315 0.02459 0.02634 0.02808 0.03087 0.03399 0.03784 0.04215 0.04690 0.05319 0.06066
+ 0.500  0.01995 0.01999 0.02040 0.02118 0.02233 0.02376 0.02552 0.02728 0.03005 0.03317 0.03702 0.04133 0.04608 0.05236 0.05984
+ 0.600  0.01931 0.01935 0.01976 0.02054 0.02169 0.02313 0.02488 0.02669 0.02941 0.03253 0.03639 0.04069 0.04545 0.05173 0.05920
+ 0.700  0.01922 0.01923 0.01963 0.02042 0.02159 0.02304 0.02478 0.02663 0.02929 0.03240 0.03626 0.04057 0.04532 0.05160 0.05907
+ 0.750  0.01927 0.01924 0.01962 0.02042 0.02164 0.02309 0.02482 0.02668 0.02927 0.03239 0.03625 0.04055 0.04531 0.05159 0.05906
+ 0.800  0.01956 0.01945 0.01981 0.02064 0.02193 0.02339 0.02513 0.02705 0.02954 0.03266 0.03664 0.04097 0.04565 0.05187 0.05928
+ 0.825  0.02006 0.01983 0.02015 0.02101 0.02242 0.02391 0.02563 0.02762 0.03056 0.03408 0.03844 0.04299 0.04785 0.05383 0.06066
+ 0.850  0.02130 0.02091 0.02117 0.02210 0.02368 0.02530 0.02713 0.02939 0.03306 0.03689 0.04172 0.04680 0.05193 0.05792 0.06450
+ 0.875  0.02412 0.02325 0.02336 0.02446 0.02654 0.02876 0.03136 0.03577 0.04033 0.04530 0.05057 0.05597 0.06166 0.06740 0.07326
+ 0.900  0.03691 0.03444 0.03384 0.03518 0.03842 0.04339 0.05012 0.05586 0.05960 0.06585 0.07308 0.07878 0.08335 0.08952 0.09643
+
+  DESIGN MACH NUMBER = 0.829, DESIGN CL = 0.451
+
+       MACH               CDF                 CDC               BUFFET CL
+
+      0.200             0.02271             0.00000               1.178
+      0.300             0.02118             0.00000               1.132
+      0.400             0.02013             0.00000               1.055
+      0.500             0.01930             0.00000               0.955
+      0.600             0.01861             0.00006               0.855
+      0.700             0.01800             0.00054               0.751
+      0.750             0.01771             0.00081               0.686
+      0.800             0.01744             0.00128               0.605
+      0.825             0.01731             0.00175               0.559
+      0.850             0.01717             0.00286               0.503
+      0.875             0.01704             0.00513               0.440
+      0.900             0.01692             0.01578               0.373
+
+        CL                CDI
+
+      0.050             0.00010
+      0.100             0.00040
+      0.150             0.00090
+      0.200             0.00159
+      0.250             0.00249
+      0.300             0.00358
+      0.350             0.00487
+      0.400             0.00637
+      0.450             0.00806
+      0.500             0.00995
+      0.550             0.01204
+      0.600             0.01432
+      0.650             0.01681
+      0.700             0.01950
+      0.750             0.02238
+
+           PRESSURE DRAG COEFFICIENTS...CDP
+ MACH                                                  CL
+         0.050   0.100   0.150   0.200   0.250   0.300   0.350   0.400   0.450   0.500   0.550   0.600   0.650   0.700   0.750
+ 0.200  0.00055 0.00029 0.00020 0.00028 0.00054 0.00088 0.00134 0.00160 0.00268 0.00392 0.00568 0.00770 0.00997 0.01356 0.01815
+ 0.300  0.00055 0.00029 0.00020 0.00028 0.00054 0.00088 0.00134 0.00159 0.00268 0.00392 0.00568 0.00770 0.00997 0.01356 0.01815
+ 0.400  0.00055 0.00029 0.00020 0.00028 0.00054 0.00088 0.00134 0.00159 0.00268 0.00392 0.00568 0.00770 0.00997 0.01356 0.01815
+ 0.500  0.00055 0.00029 0.00020 0.00028 0.00054 0.00088 0.00134 0.00161 0.00268 0.00392 0.00568 0.00770 0.00997 0.01356 0.01815
+ 0.600  0.00055 0.00029 0.00020 0.00028 0.00054 0.00088 0.00134 0.00165 0.00268 0.00392 0.00568 0.00770 0.00997 0.01356 0.01815
+ 0.700  0.00058 0.00029 0.00020 0.00029 0.00057 0.00092 0.00136 0.00172 0.00269 0.00392 0.00568 0.00770 0.00997 0.01356 0.01815
+ 0.750  0.00064 0.00031 0.00020 0.00030 0.00063 0.00098 0.00141 0.00178 0.00269 0.00392 0.00568 0.00770 0.00997 0.01356 0.01815
+ 0.800  0.00074 0.00033 0.00020 0.00032 0.00072 0.00109 0.00153 0.00196 0.00276 0.00399 0.00588 0.00793 0.01012 0.01365 0.01818
+ 0.825  0.00090 0.00037 0.00019 0.00036 0.00088 0.00128 0.00170 0.00220 0.00345 0.00508 0.00735 0.00961 0.01198 0.01527 0.01923
+ 0.850  0.00117 0.00048 0.00025 0.00047 0.00117 0.00168 0.00222 0.00299 0.00497 0.00691 0.00965 0.01244 0.01509 0.01839 0.02209
+ 0.875  0.00184 0.00068 0.00029 0.00070 0.00188 0.00301 0.00431 0.00723 0.01010 0.01318 0.01636 0.01947 0.02267 0.02573 0.02870
+ 0.900  0.00411 0.00134 0.00025 0.00089 0.00324 0.00712 0.01255 0.01680 0.01885 0.02320 0.02835 0.03176 0.03384 0.03733 0.04135
+
+ * ITERATION  1 -- RANGE =    2528.666  FOR GROSS WEIGHT =    223528.88  ENERGY: USED =         0.00  CAPACITY =         0.00
+
+ * ITERATION  2 -- RANGE =    1994.246  FOR GROSS WEIGHT =    212539.82  ENERGY: USED =         0.00  CAPACITY =         0.00
+
+ * ITERATION  3 -- RANGE =    1998.606  FOR GROSS WEIGHT =    212658.14  ENERGY: USED =         0.00  CAPACITY =         0.00
+
+ * ITERATION  4 -- RANGE =    2000.501  FOR GROSS WEIGHT =    212695.98  ENERGY: USED =         0.00  CAPACITY =         0.00
+
+ * ITERATION  5 -- RANGE =    2000.011  FOR GROSS WEIGHT =    212685.98  ENERGY: USED =         0.00  CAPACITY =         0.00
+
+ * ITERATION  6 -- RANGE =    1999.998  FOR GROSS WEIGHT =    212685.75  ENERGY: USED =         0.00  CAPACITY =         0.00
+
+ * ITERATION  7 -- RANGE =    2000.000  FOR GROSS WEIGHT =    212685.79  ENERGY: USED =         0.00  CAPACITY =         0.00
+
+ * ITERATION  8 -- RANGE =    2000.000  FOR GROSS WEIGHT =    212685.79  ENERGY: USED =         0.00  CAPACITY =         0.00
+
+
+# SIZING AND PERFORMANCE RESULTS
+
+  CONFIGURATION DATA AFTER RESIZING (IF ANY)
+
+     OPERATING WEIGHT EMPTY    129967.1 LB
+     PAYLOAD                    41000.0 LB
+     MAXIMUM FUEL               41718.7 LB
+     GROSS WEIGHT              212685.8 LB
+
+     REFERENCE WING AREA        2032.08 SQ FT
+     WING LOADING                104.66 LB/SQ FT
+
+     THRUST PER ENGINE          42470.5 LB
+     ENGINE SCALE FACTOR         0.9719
+     THRUST-WEIGHT RATIO         0.3994
+
+
+                              * * *  M I S S I O N   S U M M A R Y  * * *
+
+            INITIAL      FUEL(LB)      TIME(MIN)     DIST (N MI)   MACH NUMBER    ALTITUDE(FT)     ALTERNATE FUEL   NOX EMISS(LB)
+ SEGMENT     WT(LB)   SEGMT   TOTAL  SEGMT  TOTAL   SEGMT   TOTAL  START   END    START    END     SEGMT    TOTAL   SEGMT   TOTAL
+
+ TAXI OUT   212686.    421.    421.   10.0   10.0                                                    0.0      0.0     0.0     0.0
+ TAKE OFF   212264.    211.    632.    0.4   10.4                         0.300              0.      0.0      0.0     0.0     0.0
+
+ CLIMB      212054.   4742.   5374.   16.0   26.4   110.8   110.8  0.300  0.800      0.  35075.      0.0      0.0     0.0     0.0
+ CRUISE     207311.  31626.  37000.  244.6  271.0  1871.9  1982.7  0.800  0.800  35075.  39576.      0.0      0.0     0.0     0.0
+ DESCENT    175686.    948.  37948.   24.3  295.3   122.7  2105.4  0.800  0.300  39576.      0.      0.0      0.0     0.0     0.0
+
+  (THOLD              1685.           14.2               * INCLUDED IN RESERVES *                    0.0 )
+
+ RESERVES   174738.   3771.  41719.                                                                  0.0      0.0
+ TAXI IN               421.           10.0  305.3                                                    0.0              0.0     0.0
+ ZERO FUEL  170967.
+
+     DESIGN RANGE   2105.4
+     FLIGHT TIME     284.9
+
+     BLOCK TIME =   5.09 HOURS
+     BLOCK FUEL =   38369.5 POUNDS
+     TOTAL NITROGEN OXIDES EMISSIONS =      0.00 POUNDS
+
+     ATA TRAFFIC ALLOWANCE =   105.4 NAUTICAL MILES
+        AIR MANEUVER =  45.9
+        AIRPORT TRAFFIC ALLOWANCE = 17.4
+        AIRWAY DISTANCE FACTOR =  42.1
+
+     ATA RANGE =   2000.0 NAUTICAL MILES
+
+# COST ANALYSIS RESULTS
+
+ DATA FROM AERO AND MISSION ANALYSIS MODULES
+
+      GROSS WEIGHT                        212686. POUNDS
+      DESIGN MACH NUMBER                   0.8000
+      CRUISE VELOCITY                       528.0 MPH
+      MAX DYNAMIC PRESSURE                  368.0 PSF
+      RANGE                                2301.6 MILES
+      BLOCK TIME                             5.09 HOURS
+      BLOCK FUEL                           38369. POUNDS
+
+
+#  AIRFRAME COSTS 
+
+      AIRFRAME WEIGHTS AND ACQUISITION COSTS (MILLIONS OF DOLLARS)
+
+            COMPONENT OR SYSTEM                 WEIGHT          COST
+
+            WING                                23258.         2.857
+            TAIL                                 3055.         0.635
+            FUSELAGE                            31048.         4.244
+            LANDING GEAR                        11672.         1.085
+            NACELLE                              2756.         0.857
+
+      STRUCTURE TOTAL                           71788.         9.678
+
+            THRUST REVERSER                         0.         0.000
+            MISC SYSTEMS                          706.         0.151
+            FUEL SYSTEM                           850.         0.071
+
+      PROPULSION TOTAL *                         1556.         0.222
+
+            SURFACE CONTROLS                     2518.         0.696
+            AUX POWER UNIT                       1200.         0.393
+            INSTRUMENTS                           722.         0.881
+            HYDRAULICS                           1364.         0.100
+            ELECTRICAL                           2343.         0.562
+            AVIONICS                             2151.         2.624
+            FURNISHINGS & EQUIP                 20322.         2.795
+            AIR CONDITIONING                     2292.         0.723
+            ANTI-ICING                            238.         0.074
+            PNEUMATIC                             341.         0.069
+
+      SYS & EQUIP TOTAL                         33489.         8.917
+
+      FINAL ASSEMBLY AND DELIVERY                              4.704
+
+   WEIGHT EMPTY *                              106833.        23.522
+
+ * LESS BARE ENGINES
+
+  (AERON. MANUF. PLANNING REPORT WEIGHT         72659.)
+
+
+ TOTAL AIRFRAME COST =     23.522 (MILLIONS OF DOLLARS)
+
+ AIRFRAME R D T AND E COSTS (MILLIONS OF DOLLARS)
+
+      ENGINEERING DEVELOPMENT COST                            57.761
+      DEVELOPMENT TOOLING COST                                50.295
+      DEVELOPMENT MANUFACTURING COST                          46.227
+      DEVELOPMENT MATERIALS                                   13.346
+      DEVELOPMENT SUPPORT                                     23.703
+      FLIGHT TEST OPERATIONS                                  25.865
+
+ TOTAL AIRFRAME R&D COST =           217.195 (MILLIONS OF DOLLARS)
+
+ AIRFRAME R&D COST PER AIRCRAFT =      2.172 (MILLIONS OF DOLLARS)
+
+
+
+#  ENGINE COSTS
+
+ ENGINE DEVELOPMENT COSTS (MILLIONS OF DOLLARS)
+
+      TO MODEL QUALIFICATION TESTS                             7.982
+
+   FLIGHT TEST ENGINES -
+      RECURRING DEVELOPMENT                                   16.311
+      PRODUCTION                                               2.415
+      SPARES - RECURRING DEVELOPMENT AND PRODUCTION            9.363
+
+ TOTAL ENGINE DEVELOPMENT                                     36.070
+
+
+
+ ENGINE PRODUCTION COSTS (MILLIONS OF DOLLARS)
+
+      FOR  100. AIRCRAFT AND   260.0 ENGINES INCLUDING SPARES
+
+   CUMULATIVE AVERAGE COST PER AIRCRAFT ( 2 ENGINES)
+      ENGINE PRODUCTION                                        0.822
+      RECURRING DEVELOPMENT                                    1.002
+   TOTAL                                                       1.823
+
+   COST FOR LAST SHIPSET
+      ENGINE PRODUCTION                                        0.717
+      RECURRING DEVELOPMENT                                    0.351
+   TOTAL                                                       1.069
+
+#  DIRECT OPERATING COST
+   (DOLLARS/DEPARTURE)
+
+      AIRFRAME MAINTENANCE ITEMS
+
+         CATEGORY                   ATA CODE      MATERIAL     LABOR
+
+         AIRFRAME INSPECT. & MISC.     99           12.75      78.74
+         AIR CONDITIONING              21           14.12      15.52
+         AUTOPILOT                     22            3.59       7.80
+         COMMUNICATIONS                23            4.96      12.69
+         ELECTRICAL POWER              24           17.94      13.64
+         EQUIPMENT & FURNISHINGS       25           30.08      61.82
+         FIRE PROTECTION               26            0.70       0.62
+         FLIGHT CONTROLS               27           16.36      26.05
+         FUEL                          28            3.78       7.45
+         HYDRAULIC POWER               29           22.11      15.39
+         ICE & RAIN PROTECTION         30            1.48       2.13
+         INSTRUMENTS                   31            1.20       2.87
+         LANDING GEAR                  32           59.03      30.09
+         LIGHTING                      33            6.65      10.97
+         NAVIGATION                    34           13.51      23.42
+         OXYGEN                        35            3.14       3.58
+         PNEUMATICS                    36            3.32       1.04
+         WATER/WASTE                   38            2.94       2.42
+         AIRBORNE AUXILIARY POWER      49           24.68      11.04
+         STRUCTURES                    50            0.00      13.04
+         DOORS                         52            6.59       7.90
+         FUSELAGE                      53            1.95      10.11
+         NACELLES                      54            1.04       2.52
+         STABILIZERS                   55            1.25       2.78
+         WINDOWS                       56           21.24       3.17
+         WINGS                         57            3.61       9.83
+
+      TOTAL AIRFRAME MAINTENANCE                   278.01     376.64
+
+      PROPULSION SYSTEM MAINT. PER ENGINE          136.71     123.06
+
+      MATERIAL AND DIRECT LABOR SUBTOTALS          551.43     622.75
+
+      MAINTENANCE DIRECT LABOR BURDEN                        1245.51
+
+   TOTAL MAINTENANCE PER DEPARTURE                           2419.70
+
+ REMAINING DIRECT OPERATING COST ELEMENTS
+
+   DEPRECIATION                                              4186.56
+   INSURANCE                                                  432.97
+   AIRCRAFT SERVICING                                         220.36
+   FLIGHT CREW OF 3                                          2237.70
+   FUEL COST AT 0.50 DOLLARS/GALLON                          2846.40
+
+
+ DIRECT OPERATING COSTS
+        - DOLLARS PER DEPARTURE                             12343.69
+        - DOLLARS PER BLOCK HOUR                             2425.63
+        - DOLLARS PER AVAILABLE SEAT PER TRIP                  61.72
+        - CENTS PER AVAILABLE SEAT MILE                         2.68
+
+ FOR A LIFE OF 14. YEARS, WITH  591.8 DEPARTURES PER YEAR
+ LIFETIME DIRECT OPERATING COSTS =  102.267 (MILLIONS OF DOLLARS)
+
+
+#  INDIRECT OPERATING COST
+   (DOLLARS/DEPARTURE)
+
+  GROUP   EXPENSE ITEMS                                        COST
+
+    A     GROUND PROPERTY AND EQUIPMENT AND A/C HANDLING      925.21
+    B     CABIN CREW EXPENSES                                1736.97
+    C     PASSENGER SERVICE (FOOD AND BEVERAGE)              1102.71
+    D     PASS. SERVICE SUPPORT, COMMISSIONS, ADS, ETC.      3432.69
+    E     AIRCRAFT CONTROL                                     64.97
+    F     PASSENGER HANDLING, RESERV., SALES, ETC.           1370.28
+    GB    BAGGAGE HANDLING                                    374.73
+    GC    CARGO HANDLING                                        0.00
+    H     FREIGHT SALES, ADS, AND PUBLICITY                     0.00
+    J     GENERAL AND ADMINISTRATIVE                          819.69
+
+ TOTAL INDIRECT OPERATING COST (DOLLARS/DEPARTURE)           9827.25
+
+
+#  COST ELEMENT SUMMARY
+  (MILLIONS OF DOLLARS PER AIRPLANE)
+
+      AIRFRAME RESEARCH AND DEVELOPMENT                        2.172
+      AIRFRAME PRODUCTION                                     23.522
+      ENGINE RESEARCH AND DEVELOPMENT                          0.277
+      ENGINE PRODUCTION                                        1.823
+
+   MANUFACTURING COST                                         27.794
+
+      AIRFRAME SPARES                                          2.352
+      ENGINE SPARES                                            0.630
+
+   MANUFACTURING COST WITH SPARES                             30.777
+
+      MANUFACTURERS PROFIT                                     4.617
+
+   TOTAL ACQUISITION COST (PRICE)                             35.393
+
+   DIRECT OPERATING COSTS   ($  12344./TRIP)                 102.267
+
+   INDIRECT OPERATING COSTS ($   9827./TRIP)                  81.418
+
+ TOTAL LIFE CYCLE COST FOR 14. YEARS                         183.685
+
+ FOR AN ROI OF  7.000 PERCENT, FARE =   236.82 DOLLARS/PASS
+                                   OR  0.10290 DOLLARS/PASS/MILE
+
+ RETURN ON INVESTMENT =  5.793 PERCENT FOR A FARE OF   0.10000 DOLLARS/PASS/MILE
+
+#OBJ/VAR/CONSTR SUMMARY
+
+      FUEL  RANGE  VAPP FAROFF FARLDG   AMFOR   SSFOR       GW     AR    THRUST     SW    TR  SWEEP   TCA   VCMN    CH    W/S   T/W
+   41718.7 2000.0 125.2  5060.  5797.   8318.  16665.   212685.8  8.000 42470.5  2032.1 0.270 32.00 0.1100 0.800  40000. 104.7 0.399
+ DESIGN - TIT    OPR    FPR    BPR    TTR    BLA  (SLS)ST   VJET  (CRUISE)  MACH    ALT  THRUST   SFC   OVEFF   CDT    CDP
+        2660.0 29.500 1.6700  4.138 1.0000  20.00    34.0 1608.1            0.80  40000.  6456. 0.6235 0.3107 1285.6 117.18
+ FO=  0.417187E+05,OBJ=  0.417187E+05,PEN=  0.274838E+02,G= -1.000000 -0.165363 -0.277210 -0.171869 -0.195854 -0.392392 -0.297934

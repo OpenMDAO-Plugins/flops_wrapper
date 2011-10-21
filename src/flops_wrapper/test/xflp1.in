@@ -1,0 +1,70 @@
+SUBSONIC TRANSPORT EXAMPLE PROBLEM WITH COSTS AND RERUN
+Run a full analysis including costs
+ $OPTION
+  IOPT=1, IANAL=3, ICOST=1,
+ $END
+Tails are specified with volume coefficients and default parameters
+ $WTIN
+  NEW=2, NPF=20, NPT=180,
+  THRSO=40000.,
+ $END 
+Let Flops size the fuselage, but force it to be a widebody
+ $FUSEIN
+  NTABR=7, NFABR=6,
+ $END 
+Maintain constant wing loading, thrust/weight ratio, and
+modified tail volume coefficients.
+ $CONFIN
+  GW=230000.0, DESRNG=2500.,
+  AR=8., WSR=110., TWR=.38,
+  TCA=.11, TR=0.27, SWEEP=32.,
+  HTVC=1.6, VTVC=0.2,
+  VCMN=0.8, CH=40000., 
+ $END 
+Moderate technology wing
+ $AERIN
+  AITEK=1.5, FLTO=7000., 
+ $END 
+Calculate both fare required for a given return on
+investment and return on investment for a given fare
+ $COSTIN
+  NPOD=2, ROI=7., FARE=0.10,
+ $END 
+Generate engine deck in cycle analysis module and
+extrapolate to get consistent flight idle data
+ $ENGDIN
+  IDLE=1, IGENEN=1, MAXCR=1, NGPRT=0,
+ $END 
+Generate a separate flow turbofan with two compressor
+components and let the optimum bypass ratio be computed
+ $ENGINE
+  IENG=2, IPRINT=0,
+  OPRDES=29.5, FPRDES=1.67, TETDES=2660.0,
+ $END
+Size aircraft for specified range, fly minimum fuel-to-climb,
+optimum altitude for cruise Mach, and max L/D descent
+ $MISSIN
+  IFLAG=2, IRW=1,
+  TAXOTM=10., TAKOTM=0.4, TAXITM=10.,
+  ITTFF=1, FWF=-1., RESRFU=0.05, THOLD=.05,
+ $END
+START
+CLIMB
+CRUISE
+DESCENT
+END
+Rerun sized aircraft for shorter range with existing
+weights, wing, and engine (lower case for XFlops)
+ $RERUN
+  mywts=1, desrng=2000., wsr=0., twr=0.,
+ $END
+Use same mission except for design range above
+Turn off detailed segment output
+ $MISSIN
+  IFLAG=0,
+ $END
+START
+CLIMB
+CRUISE
+DESCENT
+END

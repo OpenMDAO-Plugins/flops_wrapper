@@ -1,0 +1,5 @@
+
+
+graft src/flops_wrapper/sphinx_build/html
+recursive-include src/flops_wrapper/test *
+

@@ -1,0 +1,730 @@
+SUPERSONIC TRANSPORT EXAMPLE PROBLEM WITH NOISE AND INERTIA
+&OPTION
+  
+  ! Program Control, Execution, Analysis and Plot Option Data
+  ianal = 3
+  icost = 0
+  ifite = 0
+  iland = 1
+  ineng = 0
+  iopt = 2
+  itakof = 1
+  mprint = 1
+  noise = 1
+  nopro = 1
+  
+  ! Plot files for XFLOPS Graphical Interface Postprocessor (MSMPLOT)
+  ixfl = 0
+  
+  ! Takeoff and Climb Profile File for Noise Calculations (NPROF)
+  npfile = 0
+  
+  ! Drag Polar Plot File (POLPLOT)
+  ipolp = 0
+  polalt = 0.0
+  
+  ! Engine Performance Data Plot File (THRPLOT)
+  ipltth = 0
+  
+  ! Design History Plot File (HISPLOT)
+  iplths = 0
+  
+  ! Plotfile Names
+/
+&WTIN
+  
+  ! Geometric, Weight, Balance and Inertia Data
+  cgrefl = 0.0
+  cgrefx = 0.0
+  dgw = 1.0
+  hydpr = 5000.0
+  ialtwt = 0
+  mywts = 0
+  nwref = 33
+  ulf = 3.75
+  vmmo = 0.0
+  wpaint = 0.0
+  
+  ! Special Option for Operating Weight Empty Calculations
+  ispowe = 0
+  spwcon = 38584.0
+  spwgw = 0.104087
+  spwsw = 9.5
+  spwth = 2.2344
+  
+  ! Wing Data
+  dih = 0.0
+  faert = 0.0
+  fcomp = 0.5
+  flapr = 0.22
+  fstrt = 0.0
+  glov = 0.0
+  span = 0.0
+  varswp = 0.0
+  
+  ! Detailed Wing Data
+  netaw = 4
+  etaw = 0.0, 0.23, 0.58, 1.0
+  chd = 2.3, 1.38, 0.3, 0.08
+  toc = 0.035, 0.035, 0.024, 0.024
+  swl = 0.0, 0.0, 20.0
+  etae = 0.27, 0.46
+  pctl = 1.0
+  arref = 0.0
+  tcref = 0.0
+  nstd = 50
+  pdist = 2.0
+  
+  ! Tails, Fins, Canards
+  
+  ! Horizontal Tail Data
+  sht = 700.0
+  swpht = 40.0
+  arht = 2.1
+  trht = 0.25
+  tcht = 0.025
+  hht = -100.0
+  
+  ! Vertical Tail Data
+  nvert = 1
+  svt = 410.0
+  swpvt = 50.0
+  arvt = 0.75
+  trvt = 0.3
+  tcvt = 0.025
+  
+  ! Fuselage Data
+  df = 14.0
+  nfuse = 1
+  wf = 15.0
+  xl = 320.0
+  xlp = 216.0
+  
+  ! Landing Gear Data
+  carbas = 0.0
+  dldwt = 0.0
+  mldwt = 0
+  wldg = 0.0
+  xmlg = 180.0
+  xnlg = 170.0
+  
+  ! Propulsion System Data
+  dnac = 6.18
+  eexp = 1.05
+  einl = 1.0
+  enoz = 1.0
+  nef = 0
+  new = 4
+  thrso = 53048.0
+  weng = 17546.0
+  winl = 0.0
+  wnoz = 0.0
+  wpmisc = 0.0
+  xnac = 30.36
+  
+  ! Fuel System Data
+  ntank = 17
+  fulwmx = 345000.0
+  fulden = 1.0
+  fulfmx = 100000.0
+  ifufu = 0
+  fulaux = 0.0
+  
+  ! Crew and Payload Data
+  bpp = -1.0
+  cargf = 0.0
+  cargof = 0.0
+  cargow = 0.0
+  nflcr = 3
+  ngalc = 2
+  npb = 0
+  npf = 0
+  npt = 292
+  nstu = 9
+  wppass = 165.0
+  
+  ! Override Parameters
+  ewmarg = 0.0
+  frcan = 1.0
+  frfin = 1.0
+  frfu = 0.9
+  frht = 0.9
+  frlgm = 1.0
+  frlgn = 1.0
+  frna = 0.0
+  frsc = 1.0
+  frvt = 0.9
+  frwi = 1.0
+  frwi1 = 1.0
+  frwi2 = 1.0
+  frwi3 = 1.0
+  frwi4 = 1.0
+  wac = 1.0
+  wai = 1.0
+  wapu = 0.0
+  warm = 0.0
+  wauxt = 1.0
+  wavonc = 1.0
+  wcon = 0.0
+  welec = 1.0
+  wflcrb = 1.0
+  wfsys = 1.0
+  wfurn = 1.0
+  whyd = 1.0
+  win = 1.0
+  woil = 1.0
+  wpmsc = 0.0
+  wsrv = 1.0
+  wstuab = 1.0
+  wthr = 0.0
+  wuf = 1.0
+  
+  ! Center of Gravity (C.G.) Data
+  cgacon = 0.0
+  cgais = 0.0
+  cgammo = 0.0
+  cgap = 3360.0
+  cgarm = 0.0
+  cgav = 600.0
+  cgaxg = 0.0
+  cgaxt = 0.0
+  cgcan = 0.0
+  cgcf = 1639.0
+  cgcr = 480.0
+  cgcw = 0.0
+  cgea = 2436.0
+  cgef = 2436.0
+  cgf = 1757.0
+  cgfin = 0.0
+  cgfwf = 1781.0
+  cght = 0.0
+  cglgm = 2004.0
+  cglgn = 660.0
+  cgmis = 0.0
+  cgp = 1639.0
+  cgvt = 3259.0
+  cgw = 2014.0
+  cgzwf = 3048.0
+  
+  ! Inertia Data
+  inrtia = 1
+  zht = 0.0
+  zvt = 190.932
+  zfin = 1.452
+  yfin = 83.04000000000001
+  zef = 190.932
+  yef = 0.0
+  zea = 190.932
+  yea = 0.0
+  zbw = 28.56
+  zap = 38.088
+  zrvt = 0.0
+  ymlg = 0.0
+  yfuse = 0.0
+  yvert = 83.04000000000001
+  swtff = 0.0
+  tcr = 0.0
+  tct = 0.0
+  incpay = 0
+  itank = 20
+  tx = 1054.08, 1218.6, 1383.12, 1549.92, 1935.84, 2316.6, 2493.48, 2414.4, 2583.96, 1054.08, 1218.6, 1383.12, 1549.92, 1935.84, 2316.6, 2493.48, 2414.4, 2583.96, 2601.24, 2811.6
+  ty = 103.8, 109.56, 115.68, 122.64, 136.8, 174.36, 178.44, 423.84, 426.6, -103.8, -109.56, -115.68, -122.64, -136.8, -174.36, -178.44, -423.84, -426.6, 0.0, 0.0
+  tz = 134.172, 125.892, 117.372, 108.612, 87.852, 71.532, 62.892, 96.852, 89.532, 134.172, 125.892, 117.372, 108.612, 87.852, 71.532, 62.892, 96.852, 89.532, 45.012, 40.452
+  nfcon = 1
+  tf(1,1) = 6518.206,  8927.008,  11832.498,  15316.363,  47383.964,  33540.16,  23296.188,  12691.916,  8129.828,  6518.206,  8927.008,  11832.498,  15316.363,  47383.964,  33540.16,  23296.188,  12691.916,  8129.828,  43800.421,  27423.096, 
+/
+&CONFIN
+  desrng = 5000.0
+  fixful = 0.0
+  fixspn = 0.0
+  htvc = 0.0
+  pglov = 0.0
+  twr = 0.0
+  vtvc = 0.0
+  wsr = 0.0
+  
+  ! Objective Function Definition
+  oarea = 0.0
+  ofc = 0.0
+  off = 0.0
+  ofg = 1.0
+  ofh = 0.0
+  ofm = 0.0
+  ofnf = 0.0
+  ofnfom = 0.0
+  ofnox = 0.0
+  ofns = 0.0
+  ofr = 0.0
+  osfc = 0.0
+  
+  ! Design Variables
+  gw = 706000.0
+  ar = 2.4
+  thrust = 46200.0
+  sw = 7100.0
+  tr = 0.08
+  sweep = 60.0
+  tca = 0.03
+  vcmn = 2.4
+  ch = 70000.0
+/
+&AERIN
+  
+  ! Externally Computed Aerodynamics
+  myaero = 2
+  iwave = 0
+  itpaer = 2
+  ibo = 0
+  clapp = 0.0
+  clldm = 0.83
+  cltom = 1.0
+  dratio = 1.0
+  elodma = 0.0
+  elodss = 0.0
+  flldg = 11000.0
+  flto = 11000.0
+  thrma = 0.0
+  throff = 0.0
+  thrss = 0.0
+  vappr = 155.0
+  wratio = 0.0
+/
+&ENGDIN
+  
+  ! Engine Deck Control, Scaling and Usage Data
+  ngprt = 0
+  igenen = 0
+  extfac = 1.0
+  fffsub = 1.0
+  fffsup = 1.0
+  idle = 1
+  noneg = 0
+  fidmin = 0.065
+  fidmax = 0.07000000000000001
+  ixtrap = 1
+  ifill = 2
+  maxcr = 1
+  nox = 1
+  boost = 0.0
+  igeo = 0
+  dffac = 0.0
+  fffac = 0.0
+  eifile = ''
+/
+ 0.00       0.0        53048.0       2.0   52696.9            1.4
+ 0.00    1000.0        51366.4       1.9   50994.8            1.4
+ 0.00   10000.0        37997.2       1.4   37491.6            1.0
+ 0.20       0.0        55769.0    4102.4   54745.4            1.5
+ 0.20    1000.0        54000.5    3956.3   52979.7            1.4
+ 0.20   10000.0        39936.1    2821.6   38963.2            1.0
+ 0.30       0.0        58486.8    6383.8   56787.8            1.6
+ 0.30     689.0        57203.0    6226.4   55522.5            1.5
+ 0.30     689.0        53129.4    6226.4   48205.6            1.4
+ 0.30     689.0        49383.1    6226.4   41941.9            1.3
+ 0.30     689.0        45932.9    6226.4   37315.0            1.2
+ 0.30     689.0        42749.5    6179.2   33703.6            1.1
+ 0.30     689.0        39617.3    5963.5   30682.1            0.9
+ 0.30     689.0        38172.4    5858.5   29325.4            0.9
+ 0.30   10000.0        41874.8    4390.5   40435.1            1.1
+ 0.40       0.0        64476.4    8930.9   59568.6            1.7
+ 0.40    5000.0        54731.2    7430.8   50456.9            1.4
+ 0.40   10000.0        46156.4    6141.8   42442.4            1.1
+ 0.40   15000.0        38660.0    5041.1   35441.9            0.9
+ 0.60       0.0        74349.9   15019.4   66684.1            2.0
+ 0.60    5000.0        63116.2   12496.8   56544.6            1.7
+ 0.60   10000.0        53226.8   10328.2   47608.9            1.4
+ 0.60   20000.0        37064.5    6904.1   32996.5            0.9
+ 0.90   20000.0        48490.5   13192.2   42114.8            1.4
+ 0.90   30000.0        32757.9    8532.4   28335.6            0.9
+ 0.90   35000.0        26554.3    6765.8   22903.4            0.7
+ 0.90   35000.0        24907.8    6765.8   20160.1            0.6
+ 0.90   35000.0        23392.9    6765.8   17783.5            0.6
+ 0.90   35000.0        22001.4    6765.8   15766.5            0.5
+ 0.90   35000.0        20721.5    6765.8   14043.8            0.5
+ 0.90   35000.0        19547.6    6765.8   12744.7            0.5
+ 0.90   35000.0        18186.3    6616.9   11625.0            0.4
+ 0.90   35000.0        16816.6    6392.8   10624.6            0.4
+ 0.90   40000.0        20988.1    5326.4   18109.1            0.6
+ 1.10   10000.0        85031.1   29485.3   73420.5            2.9
+ 1.10   20000.0        59488.8   19710.4   51371.3            1.9
+ 1.10   25000.0        49159.0   15920.0   42416.7            1.5
+ 1.10   30000.0        40271.8   12744.1   34695.8            1.2
+ 1.10   40000.0        25837.2    7954.0   22222.9            0.8
+ 1.20   15000.0        81585.2   29448.0   68500.6            2.8
+ 1.20   25000.0        56220.2   19375.9   47252.6            1.8
+ 1.20   35000.0        37369.5   12295.1   31366.2            1.1
+ 1.20   40000.0        29548.0    9678.8   24817.0            1.0
+ 1.40   20000.0        84057.6   33687.8   68194.2            3.2
+ 1.40   35000.0        46307.0   17278.1   37746.6            1.6
+ 1.40   45000.0        28800.2   10706.0   23521.0            1.3
+ 1.60   25000.0        83555.9   37014.9   66297.9            3.5
+ 1.60   35000.0        55806.4   23511.3   44520.4            2.1
+ 1.60   40000.0        44112.9   18509.0   35250.9            1.9
+ 1.60   50000.0        27285.5   11469.5   21844.0            1.6
+ 1.62   25000.0        87204.6   37983.6   67557.5            3.6
+ 1.62   35000.0        58166.0   24127.3   45365.2            2.1
+ 1.62   40000.0        46017.0   18994.1   35936.4            1.9
+ 1.62   50000.0        28464.9   11770.1   22268.7            1.6
+ 1.80   25000.0       112717.9   52456.8   81514.8            4.7
+ 1.80   35000.0        75131.7   33318.2   54991.2            2.8
+ 1.80   45000.0        46756.2   20648.0   34303.8            2.3
+ 1.80   55000.0        28928.7   12797.9   21261.8            1.9
+ 2.00   35000.0        94278.3   44922.0   65366.1            3.8
+ 2.00   40000.0        74598.2   35363.3   51839.0            3.4
+ 2.00   45000.0        58691.9   27836.1   40805.6            3.1
+ 2.00   55000.0        36325.7   17253.2   25291.8            2.6
+ 2.20   35000.0       118795.2   60127.5   77646.1            5.3
+ 2.20   40000.0        93984.7   47325.8   61613.1            4.7
+ 2.20   50000.0        58190.2   29326.4   38182.9            3.9
+ 2.20   55000.0        45784.4   23089.5   30062.2            3.6
+ 2.20   65000.0        28337.7   14317.7   18641.4            3.0
+ 2.40   40000.0       117091.1   62410.1   74828.0            6.5
+ 2.40   50000.0        72503.9   38673.7   46638.0            5.4
+ 2.40   60000.0        44894.4   23976.0   28913.0            4.6
+ 2.40   60000.0        43162.3   23976.0   26104.0            4.2
+ 2.40   60000.0        41573.6   23976.0   23771.0            3.9
+ 2.40   60000.0        40116.6   23976.0   21708.0            3.6
+ 2.40   60000.0        37757.3   23157.5   19964.0            3.3
+ 2.40   60000.0        35550.9   22389.6   18371.0            3.0
+ 2.40   60000.0        33465.3   21649.6   16918.0            2.7
+ 2.40   60000.0        32485.5   21291.9   16261.0            2.6
+ 2.40   60000.0        31539.1   20962.6   15621.0            2.5
+ 2.40   70000.0        27221.1   14661.2   17487.0            3.8
+ 2.40   80000.0        16073.0    8819.8   10405.0            3.1
+ 9.00
+Reserve fuel as a fraction of max usable fuel is adjusted to give
+the reported reserve fuel weight of 44119 for baseline airplane.
+
+&MISSIN
+  
+  ! Performance Controls and Factors and Mission Segment Definition
+  indr = 0
+  fact = 1.0
+  fleak = 0.0
+  fcdo = 1.0
+  fcdi = 1.0
+  fcdsub = 1.0
+  fcdsup = 1.0
+  iskal = 1
+  owfact = 1.0
+  iflag = 2
+  msumpt = 1
+  dtc = 0.0
+  irw = 1
+  rtol = 0.001
+  nhold = 0
+  iata = 0
+  tlwind = 0.0
+  dwt = 1.0
+  idoq = 0
+  npcon = 0
+  mywts = 0
+  
+  ! Ground Operations and Takeoff and Approach Allowances
+  appfff = 2.0
+  apprtm = 0.0
+  faprfl = 0.0
+  ftkofl = 0.0
+  ftxifl = 0.0
+  ftxofl = 0.0
+  ittff = 0
+  takoff = 60854.0
+  takotm = 0.8
+  taxitm = 5.0
+  taxotm = 10.0
+  txfufl = 4868.0
+  
+  ! Climb Schedule Definition
+  nclimb = 1
+  clmmin = 0.3
+  clmmax = 0.0
+  clamin = 0.0
+  clamax = 0.0
+  nincl = 31
+  fwf = -1.0
+  ncrcl = 1
+  cldcd = 0.0
+  ippcl = 1
+  maxcl = 1
+  keasvc = 0
+  ifaacl = 1
+  ifaade = -1
+  nodive = 1
+  divlim = 0.0
+  qlim = 1000.0
+  spdlim = 0.0
+  
+  ! Cruise Schedule Definition
+
+  ncruse = 3
+  ioc = 1, 1, 6
+  crmach = 2.4, 0.9, 0.6
+  cralt = -1.0
+  crdcd = 0.0
+  flrcr = 1.0
+  crmmin = 0.5, 0.6, 0.6
+  crclmx = 1.0, 1.0, 1.0
+  hpmin = 1000.0
+  ffuel = 1.0
+  fnox = 0.0
+  ifeath = 0
+  feathf = 0.5
+  cdfeth = 0.0
+  dcwt = 1.0
+  rcin = 500.0
+  
+  ! Descent Schedule Definition
+  ivs = 1
+  decl = 0.06
+  demmin = 0.3
+  demmax = 0.0
+  deamin = 0.0
+  deamax = 0.0
+  ninde = 31
+  dedcd = 0.0
+  rdlim = -99999.0
+  keasvd = 0
+  altran = 260.0
+  erealt = -1.0
+  eremch = -1.0
+  holdtm = 30.0
+  icron = 0
+  ihopos = 1
+  irs = 1
+  nclres = 1
+  ncrhol = 3
+  ncrres = 2
+  ncrth = 1
+  resrfu = 0.025
+  restrp = 0.0
+  srealt = -1.0
+  sremch = -1.0
+  thold = 0.0
+  timmap = 0.26
+/
+START
+CLIMB    1
+CRUISE   1
+DESCENT
+END
+  9  10
+     0.3     0.5   0.716     0.9    0.95     1.1     1.5     2.0     2.4
+ 0.00000 0.03333 0.06667 0.10000 0.13333 0.16667 0.20000 0.23333 0.26667 0.30000
+ 0.00000 -.00005 0.00029 0.00116 0.00259 0.00461 0.00712 0.01027 0.01401 0.01829
+ 0.00000 -.00002 0.00034 0.00125 0.00274 0.00479 0.00735 0.01069 0.01478 0.01956
+ 0.00000 -.00002 0.00032 0.00123 0.00272 0.00476 0.00733 0.01076 0.01506 0.02016
+ 0.00000 -.00002 0.00032 0.00121 0.00269 0.00473 0.00729 0.01075 0.01515 0.02034
+ 0.00000 -.00003 0.00031 0.00121 0.00270 0.00475 0.00728 0.01075 0.01514 0.02034
+ 0.00000 0.00022 0.00076 0.00160 0.00304 0.00490 0.00723 0.01005 0.01340 0.01744
+ 0.00000 -.00017 0.00041 0.00153 0.00347 0.00609 0.00942 0.01385 0.01877 0.02369
+ 0.00000 -.00030 0.00044 0.00205 0.00473 0.00849 0.01317 0.01939 0.02621 0.03279
+ 0.00000 -.00009 0.00091 0.00297 0.00622 0.01074 0.01673 0.02292 0.02992 0.03652
+ 11   9
+      0.   6666.  15800.  30000.  31000.  32700.  40000.  47500.  55000.  60000.
+  70000.
+     0.3     0.5   0.716     0.9    0.95     1.1     1.5     2.0     2.4
+
+&ASCLIN
+    ! Scaling Data for Lift Independent Drag
+  sref = 7100.0
+  tref = 46200.0
+  awetn = 0.3208
+  eltot = 320.0
+  voltot = 34386.0
+  awett = 3.681
+  awetw = 1.696
+  elw = 132.6
+  volw = 9186.0
+  form = 1.0409
+  cdwav = 0.0, 0.0, 0.0, 0.0, 0.0001, 0.00554, 0.00368, 0.00284, 0.00237
+  dcdnac = 0.0, 0.0, 0.0, 0.0, 0.0, -5e-05, -6e-05, 1e-05, 2e-05
+/
+&TOLIN
+  apa = 0.0
+  dtct = 0.0
+  whgt = 16.0
+  alprun = -1.4
+  tinc = -1.4
+  rollmu = 0.025
+  brakmu = 0.3
+  cdgear = 0.0114
+  cdeout = 0.0
+  clspol = 0.0
+  cdspol = 0.0
+  incgef = 1
+  argef = 1.0
+  itime = 0
+  
+  ! Thrust Reverser
+  inthrv = -1
+  rvfact = 0.0
+  tirvrs = 5.0
+  revcut = -1000.0
+  clrev = 0.0
+  cdrev = 0.0
+  
+  ! Integration Intervals  (Default values will provide a precision of +/-.25 ft)
+  deldfl = 10.0
+  delhap = 10.0
+  deltcl = 0.2
+  deltrn = 0.25
+  deltro = 0.2
+  delvto = 4.0
+  
+  ! Takeoff Data
+  cdmto = 0.0196
+  fcdmto = 0.9
+  almxto = 15.0
+  alpto = -2.2, 0.333, 2.055, 4.85, 6.168, 8.701000000000001, 10.286, 11.889, 13.625, 15.5
+  clto = -0.11709, 0.008460000000000001, 0.09363, 0.2317, 0.29708, 0.43321, 0.5220900000000001, 0.61554, 0.71845, 0.82862
+  cdto = 0.01856, 0.008750000000000001, 0.008160000000000001, 0.01495, 0.02034, 0.04024, 0.06059, 0.08755, 0.12397, 0.17109
+  inthto = 2
+  alprot = 11.0
+  vrotat = 1.05
+  vangl = 2.0
+  thfact = 1.0
+  ftocl = 1.0
+  ftocd = 1.0
+  igobs = 0
+  tdelg = 0.0
+  tigear = 10.0
+  ibal = 1
+  itxout = 0
+  
+  ! Aborted Takeoff Data
+  pilott = 1.0
+  tispa = 0.0
+  tibra = 0.0
+  tirva = 0.0
+  ispol = 1
+  irev = 1
+  
+  ! Landing Data
+  cdmld = 0.0295
+  fcdmld = 0.9
+  almxld = 11.0
+  obsld = 50.0
+  alpld = 0.4, 2.624, 4.277, 5.65, 7.876, 8.750999999999999, 10.71, 11.693, 14.0, 15.444
+  clld = 0.00371, 0.11276, 0.19388, 0.26124, 0.37591, 0.42504, 0.53731, 0.59711, 0.73775, 0.82421
+  cdld = 0.02316, 0.01813, 0.01931, 0.02336, 0.03476, 0.0417, 0.06333, 0.07864, 0.12386, 0.15841
+  inthld = 2
+  aprhgt = 100.0
+  aprang = -3.0
+  fldcl = 1.0
+  fldcd = 1.0
+  tdsink = 0.0
+  noflar = 0
+  tispol = 2.0
+  ticut = 3.0
+  tibrak = 4.0
+  acclim = 16.0
+/
+&PROIN
+  npol = 1
+  dflap = 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0
+  ntime = 0
+  ipcmax = 1
+  txf = -1.0
+  alpmin = 0.0
+  gamlim = 0.0
+/
+&SEGIN
+  key = 'ROTATE'
+  nflap = 1
+/
+&SEGIN
+  key = 'LIFTOFF'
+/
+&SEGIN
+  key = 'OBSTACLE'
+/
+&SEGIN
+  key = 'CHANGE'
+  hstop = 689.0
+/
+&SEGIN
+  key = 'CUTBACK'
+/
+&SEGIN
+  key = 'LAST'
+  dstop = 35000.0
+/
+&NOISIN
+  
+  ! Data for Noise Calculations
+  ! Noise regulation control
+  iepn = 0
+  depnt = 0.0
+  depns = 0.0
+  depnl = 0.0
+  itrade = 0
+  
+  ! Noise sources to be included
+  ijet = 2
+  
+  ! Noise Propagation Corrections
+  isupp = 0
+  idop = 0
+  ignd = 2
+  iatm = 1
+  iega = 1
+  ishld = 1
+  deldb = 30.0
+  heng = 6.7
+  filbw = 1.0
+  tdi = 0.5
+  rh = 70.0
+  
+  ! Observer Locations
+  nob = 8
+  xo = 21325.0, 10000.0, 12000.0, 14000.0, 16000.0, 18000.0, 20000.0, 22000.0
+  yo = 0.0, 1476.0, 1476.0, 1476.0, 1476.0, 1476.0, 1476.0, 1476.0
+  zo = 5.0
+  ndprt = 0
+  ifoot = 0
+  igeom = 0
+  icorr = 0
+  tcorxp = 1.0
+  
+  ! Engine Noise Parameters
+  nparam = 7
+  aac = 7.65, 7.73, 7.88, 7.74, 7.6, 7.67, 7.76
+  aepp = 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0
+  amsa9 = 7.65, 7.73, 7.88, 7.74, 7.6, 7.67, 7.76
+  amsp9 = 2.984, 3.065, 3.243, 3.566, 3.946, 4.279, 4.641
+  amstt3 = 1559.0, 1586.0, 1643.0, 1742.0, 1876.0, 2052.0, 2251.0
+  atc = 1559.0, 1586.0, 1643.0, 1742.0, 1876.0, 2052.0, 2251.0
+  avc = 1900.0, 2000.0, 2100.0, 2200.0, 2300.0, 2400.0, 2500.0
+  
+  ! Jet Noise Input Data
+  inoz = 0
+  iplug = 0
+  islot = 0
+  iaz = 0
+  dbaz = 0.0
+  ejdop = 1.0
+  zmdc = 1.0
+  gammac = 1.36
+  gasrc = 53.38
+  annht = 0.0
+  zmdf = 1.0
+  gammap = -1.0
+  gasrf = 53.35
+  annhtf = 0.0
+  dhf = 0.0
+  zl2 = 0.0
+  ifwd = 1
+  ishock = 1
+  
+  ! Shielding Effects Data
+  cfuse = 10.0
+  cwing = 10.0
+  iuotw = 0
+  sfuse = 6.0
+  smx = 90.0
+  swide = 60.0
+  swing = 10.0
+  
+  ! Ground Reflection Effects Data
+  itone = 0
+/

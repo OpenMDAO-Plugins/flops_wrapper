@@ -1,0 +1,836 @@
+
+#TITLE, BEGIN INPUT DATA ECHO
+
+ WEIGHT TEST CASE - TRANSONIC FIGHTER - 3 WING AREAS BY 2 THRUSTS                
+
+
+
+# NAMELIST $OPTION
+  PROGRAM CONTROL, EXECUTION, ANALYSIS AND PLOT OPTION DATA
+
+   DESCRIPTION                NAME         VALUE  DIMENSIONS
+
+   TYPE OF PROBLEM            IOPT             2
+   ANALYSIS OPTION            IANAL            1
+   MAIN ENGINE DECK SWITCH    INENG            0
+   DETAILED TAKEOFF SWITCH    ITAKOF           0
+   DETAILED LANDING SWITCH    ILAND            0
+   COST CALCULATION SWITCH    ICOST            0
+   TRANSPORT/FIGHTER/GEN AV   IFITE            1
+   TAKEOFF PROFILE FOR NOISE  NOPRO            0
+   PROFILE OUTPUT FILE SWITCH NPFILE           0
+   NOISE CALCULATIONS SWITCH  NOISE            0
+   MASTER PRINT CONTROL       MPRINT           1
+   XFLOPS DATA PLOT SWITCH    IXFL             0
+   AERO POLAR PLOT SWITCH     IPOLP            0
+   THRUST DATA PLOT SWITCH    IPLTTH           0
+   HISTORY DATA PLOT SWITCH   IPLTHS           0
+   EXCESS POWER PLOT SWITCH   IPLTPS           0
+
+
+
+# NAMELIST $WTIN
+  GEOMETRIC, WEIGHT, BALANCE AND INERTIA DATA
+
+   DESCRIPTION                NAME         VALUE  DIMENSIONS
+
+   MAX OPER MACH NUMBER       VMMO        0.0000
+   ULTIMATE LOAD FACTOR       ULF         9.7500
+   REF WEIGHT NUMBER          NWREF           39
+   CG REFERENCE LENGTH        CGREFL       743.9  IN
+   X FOR START OF CGREFL      CGREFX         0.0  IN
+   SWITCH TO COMPUTE WEIGHTS  MYWTS            0
+   DESIGN GROSS WT. (RATIO)   DGW      49548.000
+   HYDRAULIC SYSTEM PRESSURE  HYDPR        3000.
+
+ WING DATA
+   DIHEDRAL(POSITIVE)         DIH          0.000  DEG
+   GLOVE AND BAT AREA         GLOV         18.00  SQ FT
+   SPAN                       SPAN         64.10  FT
+   CONTROL SURFACE AREA RATIO FLAPR       0.3500
+   FRACTION OF COMPOSITES     FCOMP       0.0000
+   AEROELASTIC TAILORING FACT FAERT       0.0000
+   STRUT BRACING FACTOR       FSTRT       0.0000
+   VARIABLE SWEEP FACTOR      VARSWP      1.0000
+
+ HORIZONTAL TAIL DATA
+   AREA                       SHT         140.00  SQ FT
+   1/4 CHORD SWEEP ANGLE      SWPHT        15.00  DEG
+   ASPECT RATIO               ARHT          3.76
+   TAPER RATIO                TRHT        0.2640
+   T/C                        TCHT        0.1244
+   LOCATION ON VERTICAL TAIL  HHT         0.0000
+
+ VERTICAL TAIL DATA
+   NUMBER OF VERTICAL TAILS   NVERT            2
+   AREA                       SVT          68.40  SQ FT
+   1/4 CHORD SWEEP ANGLE      SWPVT        42.50  DEG
+   ASPECT RATIO               ARVT        1.0560
+   TAPER RATIO                TRVT        0.3570
+   T/C                        TCVT        0.1244
+
+ FUSELAGE DATA
+   NUMBER OF FUSELAGES        NFUSE            1
+   TOTAL LENGTH               XL           61.99  FT       
+   MAXIMUM WIDTH              WF           16.50  FT       
+   MAXIMUM DEPTH              DF            5.00  FT       
+   CARGO AIRCRAFT FACTOR      CARGF       0.0000
+   PASSENGER COMPART LENGTH   XLP           0.00  FT       
+
+ LANDING GEAR DATA
+   LENGTH OF MAIN GEAR        XMLG         86.80  IN
+   LENGTH OF NOSE GEAR        XNLG         59.00  IN
+   DESIGN LANDING WEIGHT      WLDG       51830.0  LBF
+   SET WLDG TO END OF DESCENT MLDWT            0
+     DELTA WEIGHT FOR MLDWT=1 DLDWT          0.0  LBF
+   CARRIER BASED AIRCRAFT     CARBAS        1.00
+
+ PROPULSION SYSTEM DATA
+   NUMBER OF ENGINES ON WING  NEW              0
+   NUMBER OF ENGINES ON FUSE  NEF              2
+   BASELINE ENGINE THRUST     THRSO          0.0  LBF
+   BASELINE ENGINE WEIGHT     WENG        4200.0  LBF
+   WEIGHT SCALING PARAMETER   EEXP       1.15000
+   BASELINE INLET WEIGHT      WINL           0.0  LBF
+   INLET WT SCALING EXPONENT  EINL       1.00000
+   BASELINE NOZZLE WEIGHT     WNOZ           0.0  LBF
+   NOZZLE WT SCALING EXPONENT ENOZ       1.00000
+   BASELINE NACELLE LENGTH    XNAC          0.00  FT
+   BASELINE NACELLE DIAMETER  DNAC          0.00  FT
+   FUEL CAPACITY OF WING      FULWMX      6651.0  LBM
+   FUEL DENSITY RATIO         FULDEN     1.00000
+     (FUEL CAPACITY FACTOR    FWMAX       12.861)
+   FUEL CAPACITY OF FUSELAGE  FULFMX      9549.0  LBM
+   ADJUST FUSE FUEL CAPACITY  IFUFU            0
+   AUXIL TANK FUEL CAPACITY   FULAUX      3800.0  LBM
+   NUMBER OF FUEL TANKS       NTANK           12
+   ADDED MISC PROP SYSTEM WT  WPMISC       0.000  LBF
+
+ CREW AND PAYLOAD DATA
+   FLIGHT CREW                NFLCR            2
+   EXTERNAL STORES - WING     CARGOW      8936.0  LBF
+   EXT STORES - FUSELAGE      CARGOF         0.0  LBF
+
+ OVERRIDE PARAMETERS FOR WEIGHTS
+   WING - TOTAL               FRWI        1.0000
+     WING WEIGHT FIRST  TERM  FRWI1       1.0000
+     WING WEIGHT SECOND TERM  FRWI2       1.0000
+     WING WEIGHT THIRD  TERM  FRWI3       1.0000
+     WING WEIGHT FOURTH TERM  FRWI4       1.0000
+   HORIZONTAL TAIL            FRHT        1.0000
+   VERTICAL TAIL              FRVT        1.0000
+   WING VERTICAL FIN          FRFIN       1.0000
+   CANARD                     FRCAN       1.0000
+   FUSELAGE                   FRFU        1.0000
+   NOSE LANDING GEAR          FRLGN       1.0000
+   MAIN LANDING GEAR          FRLGM       1.0000
+   NACELLES - TOTAL   OR      FRNA        1.0000
+      AIR INDUCTION SYSTEM           
+   THRUST REVERSERS - TOTAL   WTHR        0.0000
+   MISC PROPULSION SYSTEMS    WPMSC       1.0000
+   FUEL SYSTEM                WFSYS       1.0000
+   SURFACE CONTROLS           FRSC        1.0000
+   AUXILIARY POWER UNIT       WAPU        0.0000
+   INSTRUMENT GROUP           WIN         1.0000
+   HYDRAULICS GROUP           WHYD        1.0000
+   ELECTRICAL GROUP           WELEC       1.0000
+   AVIONICS GROUP             WAVONC      1.2500
+   ARMAMENT GROUP             WARM      136.0000
+   FURNISHINGS GROUP          WFURN       1.0000
+   AIR CONDITIONING GROUP     WAC         1.0000
+   ANTI-ICING GROUP  OR       WAI       228.0000
+      AUXILIARY GEAR                 
+   UNUSABLE FUEL              WUF         1.0000
+   ENGINE OIL                 WOIL        1.0000
+   PASSENGER SERVICE OR AMMO  WSRV      157.0000
+     AND NONFIXED WEAPONS            
+   CARGO AND BAGGAGE CONTAIN. WCON      175.0000
+     OR MISCELL. USEFUL LOAD         
+   AUXILIARY FUEL TANKS       WAUXT       1.0000
+   FLIGHT CREW AND BAGGAGE    WFLCRB      1.0000
+   CABIN CREW AND BAGGAGE     WSTUAB      1.0000
+
+ HORIZONTAL CENTER OF GRAVITY DATA
+   WING                       CGW            0.0  IN
+   HORIZONTAL TAIL            CGHT           0.0  IN
+   VERTICAL TAIL              CGVT           0.0  IN
+   WING VERTICAL FINS         CGFIN          0.0  IN
+   CANARD                     CGCAN          0.0  IN
+   FUSELAGE                   CGF            0.0  IN
+   NOSE LANDING GEAR          CGLGN          0.0  IN
+   MAIN LANDING GEAR          CGLGM          0.0  IN
+   TWO FORWARD ENGINES        CGEF           0.0  IN
+   ONE OR TWO AFT ENGINES     CGEA           0.0  IN
+   AUXILIARY POWER UNIT       CGAP           0.0  IN
+   AVIONICS GROUP             CGAV           0.0  IN
+   ARMAMENT GROUP             CGARM          0.0  IN
+   FLIGHT CREW                CGCR           0.0  IN
+   PASSENGERS                 CGP            0.0  IN
+   CARGO/EXT STORES IN WING   CGCW           0.0  IN
+   CARGO/EXT STORES IN FUSE   CGCF           0.0  IN
+   FUSELAGE FUEL              CGZWF          0.0  IN
+   WING FUEL                  CGFWF          0.0  IN
+   AIR INDUCTION SYSTEM       CGN            0.0  IN
+   AIR CONDITIONING           CGAC           0.0  IN
+   AUXILIARY GEAR             CGAI           0.0  IN
+   AUXILIARY TANKS            CGAUT          0.0  IN
+   AMMO AND NONFIXED GUNS     CGAMMO         0.0  IN
+   MISCELLANEOUS USEFUL LOAD  CGMIS          0.0  IN
+   SYSTEM WT FOR ALT ENGINES  CGPOW          0.0  IN
+   ALTERNATE ENGINES          CGALTE         0.0  IN
+   ALTERNATE ENERGY STORAGE   CGBAT          0.0  IN
+
+
+
+# NAMELIST $CONFIN
+  GEOMETRIC RATIOS, OBJECTIVE FUNCTION FACTORS, AND DESIGN VARIABLES
+
+   DESCRIPTION                NAME         VALUE  DIMENSIONS
+
+   DESIGN RANGE               DESRNG         0.0  N MI
+   WING LOADING REQUIRED      WSR           0.00
+   THRUST/WEIGHT REQUIRED     TWR        0.00000
+   GLOVE/WING AREA REQUIRED   PGLOV      0.00000
+   HORIZ TAIL VOLUME COEF     HTVC      0.000000       
+   VERT TAIL VOLUME COEF      VTVC      0.000000       
+   COST CALCULATION SWITCH    ICOST            0
+
+ FUNCTION TO BE OPTIMIZED - OBJ =  0.0000*(RAMP WEIGHT) +  1.0000*FUEL +  0.0000*MACH*(L/D) +
+                                   0.0000*RANGE +  0.0000*COST +  0.0000*(NOX EMISSIONS) +
+                                   0.0000*(SIDELINE NOISE) +  0.0000*(FLYOVER NOISE) +
+                                   0.0000*(NOISE FIGURE OF MERIT) +  0.0000*(NOISE FOOTPRINT AREA) +
+                                   0.0000*(HOLD TIME FOR SEGMENT NHOLD)
+
+
+ DESIGN VARIABLE DATA
+
+   VARIABLE                  NAME       VALUE  ACTIVITY  LOWER BOUND  UPPER BOUND  SCALE FACTOR
+
+    - CONFIGURATION VARIABLES -    
+   RAMP WEIGHT, LBF          GW        70759.0    0.            0.0          0.0       0.00000
+   WING ASPECT RATIO         AR         7.5115    0.         0.0000       0.0000       0.00000
+   THRUST PER ENGINE, LBF    THRUST    20900.0    2.      20900.000    21400.000       0.00000
+   REF WING AREA, SQ FT      SW          565.0    3.          540.0        590.0       0.00000
+   WING TAPER RATIO          TR        0.26400    0.        0.00000      0.00000       0.00000
+   WING 1/4 CHORD SWEEP, DEG SWEEP       15.00    0.           0.00         0.00       0.00000
+   WING T/C                  TCA       0.12440    0.        0.00000      0.00000       0.00000
+
+    - MISSION VARIABLES -          
+   CRUISE MACH NUMBER        VCMN      2.50000    0.        0.00000      0.00000       0.00000
+   MAX CRUISE ALTITUDE, FT   CH            0.0    0.            0.0          0.0       0.00000
+
+    - PROPULSION SYSTEM VARIABLES -
+   TURBINE INLET TEMP (R)    ETIT         0.00    0.           0.00         0.00       0.00000
+   OVERALL PRESSURE RATIO    EOPR        0.000    0.          0.000        0.000       0.00000
+   FAN PRESSURE RATIO        EFPR       0.0000    0.         0.0000       0.0000       0.00000
+   BYPASS RATIO              EBPR       0.0000    0.         0.0000       0.0000       0.00000
+   THROTTLE RATIO            ETTR      0.00000    0.        0.00000      0.00000       0.00000
+   PROPELLER BLADE ANGLE     EBLA      0.00000    0.        0.00000      0.00000       0.00000
+
+    - NOISE ABATEMENT VARIABLES -
+   TAKEOFF THRUST FACTOR     VARTH     0.00000    0.        0.00000      0.00000       0.00000
+   ROTATION VELOCITY         ROTVEL       0.00    0.           0.00         0.00          0.00
+   THRUST FRACTION AFTER           
+     PROGRAMMED LAPSE RATE   PLR       0.00000    0.        0.00000      0.00000       0.00000
+
+
+
+# NAMELIST $AERIN
+  AERODYNAMIC OPTIONS AND APPROXIMATE TAKEOFF AND LANDING DATA
+
+   DESCRIPTION                NAME         VALUE  DIMENSIONS
+
+   AERODYNAMIC INPUT METHOD   MYAERO           0
+   WAVE DRAG INPUT SWITCH     IWAVE            0
+   WAVE DRAG FACTOR           FWAVE       1.0000
+   LINEAR/PARABOLIC INTERP    ITPAER           2
+   AERO MATRIX FORMAT SWITCH  IBO              0
+   MAX CAMBER AT 70 PERCENT          
+    SEMISPAN                  CAM           0.00 PERCENT CHORD
+   AIRCRAFT BASE AREA         SBASE          0.0  SQ FT
+   WING TECHNOLOGY            AITEK          1.0
+   MODIFY EDET DATA           MODARO           0
+   FIXED DESIGN CL            FCLDES     -1.0000
+   FIXED DESIGN MACH NUMBER   FMDES      -1.0000
+   TURBULENT/LAMINAR FLOW     XLLAM          0.0
+   AERO EFFICIENCY FACTOR     E           1.0000
+
+ OVERRIDE PARAMETERS FOR WETTED AREAS
+   WING WETTED AREA           SWETW       1.0000
+   HOR. TAIL WETTED AREA      SWETH       1.0000
+   VERT. TAIL WETTED AREA     SWETV       1.0000
+   FUSELAGE WETTED AREA       SWETF       1.0000
+   NACELLE WETTED AREA        SWETN       1.0000
+   CANARD WETTED AREA         SWETC       1.0000
+
+ TAKEOFF AND LANDING DATA
+   RATIO OF MAX. LANDING WT.         
+         TO MAX. TAKEOFF WT.  WRATIO      0.7325
+   MAX. LANDING VELOCITY      VAPPR     150.0000  KTS
+   MAX. TAKEOFF FIELD LENGTH  FLTO       12000.0  FT
+   MAX. LANDING FIELD LENGTH  FLLDG      12000.0  FT
+   MAX. CL TAKEOFF CONFIG.    CLTOM       2.0000
+   MAX. CL LANDING CONFIG.    CLLDM       3.0000
+   APPROACH CL                CLAPP       0.0000
+   AIR DENSITY RATIO          DRATIO      1.0000
+   L/D RATIO 2ND SEG. CLIMB   ELODSS      0.0000
+   L/D RATIO MISSED APPROACH  ELODMA      0.0000
+   THRUST PER ENGINE TAKEOFF  THROFF      0.0000
+   THRUST PER ENGINE 2ND             
+    SEG. CLIMB                THRSS          0.0  LBF
+   THRUST PER ENGINE MISSED          
+    APPROACH                  THRMA          0.0  LBF
+
+
+#TITLE, BEGIN OUTPUT OF RESULTS
+
+ WEIGHT TEST CASE - TRANSONIC FIGHTER - 3 WING AREAS BY 2 THRUSTS                
+
+
+# OUTPUT FROM THE WEIGHTS MODULE
+
+   DESCRIPTION                               VALUE  DIMENSIONS
+
+   WING BENDING FACTOR                      6.9921
+   ENGINE INERTIA RELIEF FACTOR           1.000000
+
+   WING WEIGHT BREAKDOWN
+        TERM 1                              1264.0  LB
+        TERM 2                              2949.8  LB
+        TERM 3                              1520.4  LB
+
+   WING SPAN                                 62.62  FT
+   WING GLOVE AREA                           18.00  SQ FT
+
+   HORIZONTAL TAIL AREA                     140.00  SQ FT
+      MODIFIED VOLUME COEFFICIENT         1.895498
+   VERTICAL TAIL AREA                        68.40  SQ FT
+      MODIFIED VOLUME COEFFICIENT         0.123289
+
+   NACELLE LENGTH                             0.00  FT
+   NACELLE DIAMETER                           0.00  FT
+
+   LENGTH OF MAIN GEAR                       86.80  IN
+   LENGTH OF NOSE GEAR                       59.00  IN
+
+   MAXIMUM LANDING WEIGHT                  51830.0  LB
+
+   WING FUEL CAPACITY                       6219.2  LB
+   FUSELAGE FUEL CAPACITY                   9549.0  LB
+   AUXILIARY TANK CAPACITY                  3800.0  LB
+      TOTAL FUEL CAPACITY                  19568.2  LB
+      EXCESS FUEL CAPACITY                 -1224.1  LB
+
+   * * * INSUFFICIENT FUEL CAPACITY * * *
+
+    MASS AND BALANCE SUMMARY                  PERCENT WREF       POUNDS     PERCENT LREF  HORI CG-INCHES
+         WING                                      8.10          5734.            0.0            0.0
+         HORIZONTAL TAIL                           1.17           831.            0.0            0.0
+         VERTICAL TAIL                             0.92           651.            0.0            0.0
+         VERTICAL FIN                              0.00             0.            0.0            0.0
+         CANARD                                    0.00             0.            0.0            0.0
+         FUSELAGE                                 13.53          9575.            0.0            0.0
+         LANDING GEAR                              3.89          2755.            0.0            0.0
+         NACELLE (AIR INDUCTION)                   2.72          1923.            0.0            0.0
+    STRUCTURE TOTAL                            (  30.34)     (  21469.)        (  0.0)       (   0.0)
+         ENGINES                                  11.87          8400.            0.0            0.0
+         THRUST REVERSERS                          0.00             0.            0.0            0.0
+         MISCELLANEOUS SYSTEMS                     0.50           355.            0.0            0.0
+         FUEL SYSTEM-TANKS AND PLUMBING            1.68          1187.            0.0            0.0
+    PROPULSION TOTAL                           (  14.05)     (   9942.)        (  0.0)       (   0.0)
+         SURFACE CONTROLS                          2.16          1529.            0.0            0.0
+         AUXILIARY POWER                           0.00             0.            0.0            0.0
+         INSTRUMENTS                               0.25           176.            0.0            0.0
+         HYDRAULICS                                1.14           806.            0.0            0.0
+         ELECTRICAL                                1.12           795.            0.0            0.0
+         AVIONICS                                  4.30          3041.            0.0            0.0
+         ARMAMENT                                  0.19           136.            0.0            0.0
+         FURNISHINGS AND EQUIPMENT                 0.90           636.            0.0            0.0
+         AIR CONDITIONING                          1.01           716.            0.0            0.0
+         AUXILIARY GEAR                            0.32           228.            0.0            0.0
+    SYSTEMS AND EQUIPMENT TOTAL                (  11.39)     (   8062.)        (  0.0)       (   0.0)
+
+    WEIGHT EMPTY                                  55.79         39474.            0.0            0.0
+
+         CREW AND BAGGAGE-FLIGHT, 2                0.51           360.            0.0            0.0
+         UNUSABLE FUEL                             0.27           190.            0.0            0.0
+         ENGINE OIL                                0.15           105.            0.0            0.0
+         AMMUNITION, ETC.                          0.22           157.            0.0            0.0
+         MISCELLANEOUS                             0.25           175.            0.0            0.0
+
+    OPERATING WEIGHT                              57.18         40461.            0.0            0.0
+
+         AUXILIARY TANKS                           0.81           570.            0.0            0.0
+         EXTERNAL STORES                          12.63          8936.            0.0            0.0
+
+    ZERO FUEL WEIGHT                              70.62         49967.            0.0            0.0
+
+         MISSION FUEL                             29.38         20792.            0.0            0.0
+
+    RAMP (GROSS) WEIGHT                          100.00         70759.            0.0            0.0
+
+#OBJ/VAR/CONSTR SUMMARY
+
+      FUEL  RANGE  VAPP FAROFF FARLDG   AMFOR   SSFOR       GW     AR    THRUST     SW    TR  SWEEP   TCA   VCMN    CH    W/S   T/W
+   20792.3    0.0 126.4  4720.  5859.  11551.  12041.    70759.0  7.512 20900.0   540.0 0.264 15.00 0.1244 2.500      0. 131.0 0.591
+
+
+#TITLE, BEGIN OUTPUT OF RESULTS
+
+ WEIGHT TEST CASE - TRANSONIC FIGHTER - 3 WING AREAS BY 2 THRUSTS                
+
+
+# OUTPUT FROM THE WEIGHTS MODULE
+
+   DESCRIPTION                               VALUE  DIMENSIONS
+
+   WING BENDING FACTOR                      6.9921
+   ENGINE INERTIA RELIEF FACTOR           1.000000
+
+   WING WEIGHT BREAKDOWN
+        TERM 1                              1264.0  LB
+        TERM 2                              2949.8  LB
+        TERM 3                              1520.4  LB
+
+   WING SPAN                                 62.62  FT
+   WING GLOVE AREA                           18.00  SQ FT
+
+   HORIZONTAL TAIL AREA                     140.00  SQ FT
+      MODIFIED VOLUME COEFFICIENT         1.895498
+   VERTICAL TAIL AREA                        68.40  SQ FT
+      MODIFIED VOLUME COEFFICIENT         0.123289
+
+   NACELLE LENGTH                             0.00  FT
+   NACELLE DIAMETER                           0.00  FT
+
+   LENGTH OF MAIN GEAR                       86.80  IN
+   LENGTH OF NOSE GEAR                       59.00  IN
+
+   MAXIMUM LANDING WEIGHT                  51830.0  LB
+
+   WING FUEL CAPACITY                       6219.2  LB
+   FUSELAGE FUEL CAPACITY                   9549.0  LB
+   AUXILIARY TANK CAPACITY                  3800.0  LB
+      TOTAL FUEL CAPACITY                  19568.2  LB
+      EXCESS FUEL CAPACITY                  -964.8  LB
+
+   * * * INSUFFICIENT FUEL CAPACITY * * *
+
+    MASS AND BALANCE SUMMARY                  PERCENT WREF       POUNDS     PERCENT LREF  HORI CG-INCHES
+         WING                                      8.10          5734.            0.0            0.0
+         HORIZONTAL TAIL                           1.17           831.            0.0            0.0
+         VERTICAL TAIL                             0.92           651.            0.0            0.0
+         VERTICAL FIN                              0.00             0.            0.0            0.0
+         CANARD                                    0.00             0.            0.0            0.0
+         FUSELAGE                                 13.53          9575.            0.0            0.0
+         LANDING GEAR                              3.89          2755.            0.0            0.0
+         NACELLE (AIR INDUCTION)                   2.73          1933.            0.0            0.0
+    STRUCTURE TOTAL                            (  30.36)     (  21479.)        (  0.0)       (   0.0)
+         ENGINES                                  12.20          8632.            0.0            0.0
+         THRUST REVERSERS                          0.00             0.            0.0            0.0
+         MISCELLANEOUS SYSTEMS                     0.51           363.            0.0            0.0
+         FUEL SYSTEM-TANKS AND PLUMBING            1.68          1187.            0.0            0.0
+    PROPULSION TOTAL                           (  14.39)     (  10182.)        (  0.0)       (   0.0)
+         SURFACE CONTROLS                          2.16          1529.            0.0            0.0
+         AUXILIARY POWER                           0.00             0.            0.0            0.0
+         INSTRUMENTS                               0.25           176.            0.0            0.0
+         HYDRAULICS                                1.14           806.            0.0            0.0
+         ELECTRICAL                                1.12           795.            0.0            0.0
+         AVIONICS                                  4.30          3041.            0.0            0.0
+         ARMAMENT                                  0.19           136.            0.0            0.0
+         FURNISHINGS AND EQUIPMENT                 0.90           636.            0.0            0.0
+         AIR CONDITIONING                          1.02           723.            0.0            0.0
+         AUXILIARY GEAR                            0.32           228.            0.0            0.0
+    SYSTEMS AND EQUIPMENT TOTAL                (  11.40)     (   8069.)        (  0.0)       (   0.0)
+
+    WEIGHT EMPTY                                  56.15         39730.            0.0            0.0
+
+         CREW AND BAGGAGE-FLIGHT, 2                0.51           360.            0.0            0.0
+         UNUSABLE FUEL                             0.27           191.            0.0            0.0
+         ENGINE OIL                                0.15           107.            0.0            0.0
+         AMMUNITION, ETC.                          0.22           157.            0.0            0.0
+         MISCELLANEOUS                             0.25           175.            0.0            0.0
+
+    OPERATING WEIGHT                              57.55         40720.            0.0            0.0
+
+         AUXILIARY TANKS                           0.81           570.            0.0            0.0
+         EXTERNAL STORES                          12.63          8936.            0.0            0.0
+
+    ZERO FUEL WEIGHT                              70.98         50226.            0.0            0.0
+
+         MISSION FUEL                             29.02         20533.            0.0            0.0
+
+    RAMP (GROSS) WEIGHT                          100.00         70759.            0.0            0.0
+
+#OBJ/VAR/CONSTR SUMMARY
+
+      FUEL  RANGE  VAPP FAROFF FARLDG   AMFOR   SSFOR       GW     AR    THRUST     SW    TR  SWEEP   TCA   VCMN    CH    W/S   T/W
+   20533.0    0.0 126.4  4650.  5859.  12066.  12550.    70759.0  7.512 21400.0   540.0 0.264 15.00 0.1244 2.500      0. 131.0 0.605
+
+
+#TITLE, BEGIN OUTPUT OF RESULTS
+
+ WEIGHT TEST CASE - TRANSONIC FIGHTER - 3 WING AREAS BY 2 THRUSTS                
+
+
+# OUTPUT FROM THE WEIGHTS MODULE
+
+   DESCRIPTION                               VALUE  DIMENSIONS
+
+   WING BENDING FACTOR                      7.0027
+   ENGINE INERTIA RELIEF FACTOR           1.000000
+
+   WING WEIGHT BREAKDOWN
+        TERM 1                              1290.0  LB
+        TERM 2                              3037.9  LB
+        TERM 3                              1605.3  LB
+
+   WING SPAN                                 64.10  FT
+   WING GLOVE AREA                           18.00  SQ FT
+
+   HORIZONTAL TAIL AREA                     140.00  SQ FT
+      MODIFIED VOLUME COEFFICIENT         1.771093
+   VERTICAL TAIL AREA                        68.40  SQ FT
+      MODIFIED VOLUME COEFFICIENT         0.115197
+
+   NACELLE LENGTH                             0.00  FT
+   NACELLE DIAMETER                           0.00  FT
+
+   LENGTH OF MAIN GEAR                       86.80  IN
+   LENGTH OF NOSE GEAR                       59.00  IN
+
+   MAXIMUM LANDING WEIGHT                  51830.0  LB
+
+   WING FUEL CAPACITY                       6651.0  LB
+   FUSELAGE FUEL CAPACITY                   9549.0  LB
+   AUXILIARY TANK CAPACITY                  3800.0  LB
+      TOTAL FUEL CAPACITY                  20000.0  LB
+      EXCESS FUEL CAPACITY                  -543.0  LB
+
+   * * * INSUFFICIENT FUEL CAPACITY * * *
+
+    MASS AND BALANCE SUMMARY                  PERCENT WREF       POUNDS     PERCENT LREF  HORI CG-INCHES
+         WING                                      8.39          5933.            0.0            0.0
+         HORIZONTAL TAIL                           1.17           831.            0.0            0.0
+         VERTICAL TAIL                             0.92           651.            0.0            0.0
+         VERTICAL FIN                              0.00             0.            0.0            0.0
+         CANARD                                    0.00             0.            0.0            0.0
+         FUSELAGE                                 13.53          9575.            0.0            0.0
+         LANDING GEAR                              3.89          2755.            0.0            0.0
+         NACELLE (AIR INDUCTION)                   2.72          1923.            0.0            0.0
+    STRUCTURE TOTAL                            (  30.62)     (  21668.)        (  0.0)       (   0.0)
+         ENGINES                                  11.87          8400.            0.0            0.0
+         THRUST REVERSERS                          0.00             0.            0.0            0.0
+         MISCELLANEOUS SYSTEMS                     0.50           355.            0.0            0.0
+         FUEL SYSTEM-TANKS AND PLUMBING            1.69          1193.            0.0            0.0
+    PROPULSION TOTAL                           (  14.06)     (   9948.)        (  0.0)       (   0.0)
+         SURFACE CONTROLS                          2.21          1561.            0.0            0.0
+         AUXILIARY POWER                           0.00             0.            0.0            0.0
+         INSTRUMENTS                               0.25           176.            0.0            0.0
+         HYDRAULICS                                1.15           811.            0.0            0.0
+         ELECTRICAL                                1.13           803.            0.0            0.0
+         AVIONICS                                  4.30          3041.            0.0            0.0
+         ARMAMENT                                  0.19           136.            0.0            0.0
+         FURNISHINGS AND EQUIPMENT                 0.90           636.            0.0            0.0
+         AIR CONDITIONING                          1.01           716.            0.0            0.0
+         AUXILIARY GEAR                            0.32           228.            0.0            0.0
+    SYSTEMS AND EQUIPMENT TOTAL                (  11.46)     (   8106.)        (  0.0)       (   0.0)
+
+    WEIGHT EMPTY                                  56.14         39722.            0.0            0.0
+
+         CREW AND BAGGAGE-FLIGHT, 2                0.51           360.            0.0            0.0
+         UNUSABLE FUEL                             0.27           191.            0.0            0.0
+         ENGINE OIL                                0.15           105.            0.0            0.0
+         AMMUNITION, ETC.                          0.22           157.            0.0            0.0
+         MISCELLANEOUS                             0.25           175.            0.0            0.0
+
+    OPERATING WEIGHT                              57.53         40710.            0.0            0.0
+
+         AUXILIARY TANKS                           0.81           570.            0.0            0.0
+         EXTERNAL STORES                          12.63          8936.            0.0            0.0
+
+    ZERO FUEL WEIGHT                              70.97         50216.            0.0            0.0
+
+         MISSION FUEL                             29.03         20543.            0.0            0.0
+
+    RAMP (GROSS) WEIGHT                          100.00         70759.            0.0            0.0
+
+#OBJ/VAR/CONSTR SUMMARY
+
+      FUEL  RANGE  VAPP FAROFF FARLDG   AMFOR   SSFOR       GW     AR    THRUST     SW    TR  SWEEP   TCA   VCMN    CH    W/S   T/W
+   20543.0    0.0 123.5  4551.  5711.  11551.  12041.    70759.0  7.512 20900.0   565.0 0.264 15.00 0.1244 2.500      0. 125.2 0.591
+
+
+#TITLE, BEGIN OUTPUT OF RESULTS
+
+ WEIGHT TEST CASE - TRANSONIC FIGHTER - 3 WING AREAS BY 2 THRUSTS                
+
+
+# OUTPUT FROM THE WEIGHTS MODULE
+
+   DESCRIPTION                               VALUE  DIMENSIONS
+
+   WING BENDING FACTOR                      7.0027
+   ENGINE INERTIA RELIEF FACTOR           1.000000
+
+   WING WEIGHT BREAKDOWN
+        TERM 1                              1290.0  LB
+        TERM 2                              3037.9  LB
+        TERM 3                              1605.3  LB
+
+   WING SPAN                                 64.10  FT
+   WING GLOVE AREA                           18.00  SQ FT
+
+   HORIZONTAL TAIL AREA                     140.00  SQ FT
+      MODIFIED VOLUME COEFFICIENT         1.771093
+   VERTICAL TAIL AREA                        68.40  SQ FT
+      MODIFIED VOLUME COEFFICIENT         0.115197
+
+   NACELLE LENGTH                             0.00  FT
+   NACELLE DIAMETER                           0.00  FT
+
+   LENGTH OF MAIN GEAR                       86.80  IN
+   LENGTH OF NOSE GEAR                       59.00  IN
+
+   MAXIMUM LANDING WEIGHT                  51830.0  LB
+
+   WING FUEL CAPACITY                       6651.0  LB
+   FUSELAGE FUEL CAPACITY                   9549.0  LB
+   AUXILIARY TANK CAPACITY                  3800.0  LB
+      TOTAL FUEL CAPACITY                  20000.0  LB
+      EXCESS FUEL CAPACITY                  -283.7  LB
+
+   * * * INSUFFICIENT FUEL CAPACITY * * *
+
+    MASS AND BALANCE SUMMARY                  PERCENT WREF       POUNDS     PERCENT LREF  HORI CG-INCHES
+         WING                                      8.39          5933.            0.0            0.0
+         HORIZONTAL TAIL                           1.17           831.            0.0            0.0
+         VERTICAL TAIL                             0.92           651.            0.0            0.0
+         VERTICAL FIN                              0.00             0.            0.0            0.0
+         CANARD                                    0.00             0.            0.0            0.0
+         FUSELAGE                                 13.53          9575.            0.0            0.0
+         LANDING GEAR                              3.89          2755.            0.0            0.0
+         NACELLE (AIR INDUCTION)                   2.73          1933.            0.0            0.0
+    STRUCTURE TOTAL                            (  30.64)     (  21678.)        (  0.0)       (   0.0)
+         ENGINES                                  12.20          8632.            0.0            0.0
+         THRUST REVERSERS                          0.00             0.            0.0            0.0
+         MISCELLANEOUS SYSTEMS                     0.51           363.            0.0            0.0
+         FUEL SYSTEM-TANKS AND PLUMBING            1.69          1193.            0.0            0.0
+    PROPULSION TOTAL                           (  14.40)     (  10187.)        (  0.0)       (   0.0)
+         SURFACE CONTROLS                          2.21          1561.            0.0            0.0
+         AUXILIARY POWER                           0.00             0.            0.0            0.0
+         INSTRUMENTS                               0.25           176.            0.0            0.0
+         HYDRAULICS                                1.15           811.            0.0            0.0
+         ELECTRICAL                                1.13           803.            0.0            0.0
+         AVIONICS                                  4.30          3041.            0.0            0.0
+         ARMAMENT                                  0.19           136.            0.0            0.0
+         FURNISHINGS AND EQUIPMENT                 0.90           636.            0.0            0.0
+         AIR CONDITIONING                          1.02           723.            0.0            0.0
+         AUXILIARY GEAR                            0.32           228.            0.0            0.0
+    SYSTEMS AND EQUIPMENT TOTAL                (  11.47)     (   8113.)        (  0.0)       (   0.0)
+
+    WEIGHT EMPTY                                  56.50         39979.            0.0            0.0
+
+         CREW AND BAGGAGE-FLIGHT, 2                0.51           360.            0.0            0.0
+         UNUSABLE FUEL                             0.27           192.            0.0            0.0
+         ENGINE OIL                                0.15           107.            0.0            0.0
+         AMMUNITION, ETC.                          0.22           157.            0.0            0.0
+         MISCELLANEOUS                             0.25           175.            0.0            0.0
+
+    OPERATING WEIGHT                              57.90         40969.            0.0            0.0
+
+         AUXILIARY TANKS                           0.81           570.            0.0            0.0
+         EXTERNAL STORES                          12.63          8936.            0.0            0.0
+
+    ZERO FUEL WEIGHT                              71.33         50475.            0.0            0.0
+
+         MISSION FUEL                             28.67         20284.            0.0            0.0
+
+    RAMP (GROSS) WEIGHT                          100.00         70759.            0.0            0.0
+
+#OBJ/VAR/CONSTR SUMMARY
+
+      FUEL  RANGE  VAPP FAROFF FARLDG   AMFOR   SSFOR       GW     AR    THRUST     SW    TR  SWEEP   TCA   VCMN    CH    W/S   T/W
+   20283.7    0.0 123.5  4484.  5711.  12066.  12550.    70759.0  7.512 21400.0   565.0 0.264 15.00 0.1244 2.500      0. 125.2 0.605
+
+
+#TITLE, BEGIN OUTPUT OF RESULTS
+
+ WEIGHT TEST CASE - TRANSONIC FIGHTER - 3 WING AREAS BY 2 THRUSTS                
+
+
+# OUTPUT FROM THE WEIGHTS MODULE
+
+   DESCRIPTION                               VALUE  DIMENSIONS
+
+   WING BENDING FACTOR                      7.0125
+   ENGINE INERTIA RELIEF FACTOR           1.000000
+
+   WING WEIGHT BREAKDOWN
+        TERM 1                              1315.0  LB
+        TERM 2                              3124.6  LB
+        TERM 3                              1690.9  LB
+
+   WING SPAN                                 65.55  FT
+   WING GLOVE AREA                           18.00  SQ FT
+
+   HORIZONTAL TAIL AREA                     140.00  SQ FT
+      MODIFIED VOLUME COEFFICIENT         1.659725
+   VERTICAL TAIL AREA                        68.40  SQ FT
+      MODIFIED VOLUME COEFFICIENT         0.107953
+
+   NACELLE LENGTH                             0.00  FT
+   NACELLE DIAMETER                           0.00  FT
+
+   LENGTH OF MAIN GEAR                       86.80  IN
+   LENGTH OF NOSE GEAR                       59.00  IN
+
+   MAXIMUM LANDING WEIGHT                  51830.0  LB
+
+   WING FUEL CAPACITY                       7092.3  LB
+   FUSELAGE FUEL CAPACITY                   9549.0  LB
+   AUXILIARY TANK CAPACITY                  3800.0  LB
+      TOTAL FUEL CAPACITY                  20441.3  LB
+      EXCESS FUEL CAPACITY                   145.1  LB
+
+    MASS AND BALANCE SUMMARY                  PERCENT WREF       POUNDS     PERCENT LREF  HORI CG-INCHES
+         WING                                      8.66          6131.            0.0            0.0
+         HORIZONTAL TAIL                           1.17           831.            0.0            0.0
+         VERTICAL TAIL                             0.92           651.            0.0            0.0
+         VERTICAL FIN                              0.00             0.            0.0            0.0
+         CANARD                                    0.00             0.            0.0            0.0
+         FUSELAGE                                 13.53          9575.            0.0            0.0
+         LANDING GEAR                              3.89          2755.            0.0            0.0
+         NACELLE (AIR INDUCTION)                   2.72          1923.            0.0            0.0
+    STRUCTURE TOTAL                            (  30.90)     (  21865.)        (  0.0)       (   0.0)
+         ENGINES                                  11.87          8400.            0.0            0.0
+         THRUST REVERSERS                          0.00             0.            0.0            0.0
+         MISCELLANEOUS SYSTEMS                     0.50           355.            0.0            0.0
+         FUEL SYSTEM-TANKS AND PLUMBING            1.69          1198.            0.0            0.0
+    PROPULSION TOTAL                           (  14.07)     (   9953.)        (  0.0)       (   0.0)
+         SURFACE CONTROLS                          2.25          1591.            0.0            0.0
+         AUXILIARY POWER                           0.00             0.            0.0            0.0
+         INSTRUMENTS                               0.25           176.            0.0            0.0
+         HYDRAULICS                                1.15           815.            0.0            0.0
+         ELECTRICAL                                1.15           811.            0.0            0.0
+         AVIONICS                                  4.30          3041.            0.0            0.0
+         ARMAMENT                                  0.19           136.            0.0            0.0
+         FURNISHINGS AND EQUIPMENT                 0.90           636.            0.0            0.0
+         AIR CONDITIONING                          1.01           716.            0.0            0.0
+         AUXILIARY GEAR                            0.32           228.            0.0            0.0
+    SYSTEMS AND EQUIPMENT TOTAL                (  11.52)     (   8150.)        (  0.0)       (   0.0)
+
+    WEIGHT EMPTY                                  56.48         39968.            0.0            0.0
+
+         CREW AND BAGGAGE-FLIGHT, 2                0.51           360.            0.0            0.0
+         UNUSABLE FUEL                             0.27           192.            0.0            0.0
+         ENGINE OIL                                0.15           105.            0.0            0.0
+         AMMUNITION, ETC.                          0.22           157.            0.0            0.0
+         MISCELLANEOUS                             0.25           175.            0.0            0.0
+
+    OPERATING WEIGHT                              57.88         40957.            0.0            0.0
+
+         AUXILIARY TANKS                           0.81           570.            0.0            0.0
+         EXTERNAL STORES                          12.63          8936.            0.0            0.0
+
+    ZERO FUEL WEIGHT                              71.32         50463.            0.0            0.0
+
+         MISSION FUEL                             28.68         20296.            0.0            0.0
+
+    RAMP (GROSS) WEIGHT                          100.00         70759.            0.0            0.0
+
+#OBJ/VAR/CONSTR SUMMARY
+
+      FUEL  RANGE  VAPP FAROFF FARLDG   AMFOR   SSFOR       GW     AR    THRUST     SW    TR  SWEEP   TCA   VCMN    CH    W/S   T/W
+   20296.3    0.0 120.9  4396.  5575.  11551.  12041.    70759.0  7.512 20900.0   590.0 0.264 15.00 0.1244 2.500      0. 119.9 0.591
+
+
+#TITLE, BEGIN OUTPUT OF RESULTS
+
+ WEIGHT TEST CASE - TRANSONIC FIGHTER - 3 WING AREAS BY 2 THRUSTS                
+
+
+# OUTPUT FROM THE WEIGHTS MODULE
+
+   DESCRIPTION                               VALUE  DIMENSIONS
+
+   WING BENDING FACTOR                      7.0125
+   ENGINE INERTIA RELIEF FACTOR           1.000000
+
+   WING WEIGHT BREAKDOWN
+        TERM 1                              1315.0  LB
+        TERM 2                              3124.6  LB
+        TERM 3                              1690.9  LB
+
+   WING SPAN                                 65.55  FT
+   WING GLOVE AREA                           18.00  SQ FT
+
+   HORIZONTAL TAIL AREA                     140.00  SQ FT
+      MODIFIED VOLUME COEFFICIENT         1.659725
+   VERTICAL TAIL AREA                        68.40  SQ FT
+      MODIFIED VOLUME COEFFICIENT         0.107953
+
+   NACELLE LENGTH                             0.00  FT
+   NACELLE DIAMETER                           0.00  FT
+
+   LENGTH OF MAIN GEAR                       86.80  IN
+   LENGTH OF NOSE GEAR                       59.00  IN
+
+   MAXIMUM LANDING WEIGHT                  51830.0  LB
+
+   WING FUEL CAPACITY                       7092.3  LB
+   FUSELAGE FUEL CAPACITY                   9549.0  LB
+   AUXILIARY TANK CAPACITY                  3800.0  LB
+      TOTAL FUEL CAPACITY                  20441.3  LB
+      EXCESS FUEL CAPACITY                   404.3  LB
+
+    MASS AND BALANCE SUMMARY                  PERCENT WREF       POUNDS     PERCENT LREF  HORI CG-INCHES
+         WING                                      8.66          6131.            0.0            0.0
+         HORIZONTAL TAIL                           1.17           831.            0.0            0.0
+         VERTICAL TAIL                             0.92           651.            0.0            0.0
+         VERTICAL FIN                              0.00             0.            0.0            0.0
+         CANARD                                    0.00             0.            0.0            0.0
+         FUSELAGE                                 13.53          9575.            0.0            0.0
+         LANDING GEAR                              3.89          2755.            0.0            0.0
+         NACELLE (AIR INDUCTION)                   2.73          1933.            0.0            0.0
+    STRUCTURE TOTAL                            (  30.92)     (  21876.)        (  0.0)       (   0.0)
+         ENGINES                                  12.20          8632.            0.0            0.0
+         THRUST REVERSERS                          0.00             0.            0.0            0.0
+         MISCELLANEOUS SYSTEMS                     0.51           363.            0.0            0.0
+         FUEL SYSTEM-TANKS AND PLUMBING            1.69          1198.            0.0            0.0
+    PROPULSION TOTAL                           (  14.40)     (  10192.)        (  0.0)       (   0.0)
+         SURFACE CONTROLS                          2.25          1591.            0.0            0.0
+         AUXILIARY POWER                           0.00             0.            0.0            0.0
+         INSTRUMENTS                               0.25           176.            0.0            0.0
+         HYDRAULICS                                1.15           815.            0.0            0.0
+         ELECTRICAL                                1.15           811.            0.0            0.0
+         AVIONICS                                  4.30          3041.            0.0            0.0
+         ARMAMENT                                  0.19           136.            0.0            0.0
+         FURNISHINGS AND EQUIPMENT                 0.90           636.            0.0            0.0
+         AIR CONDITIONING                          1.02           723.            0.0            0.0
+         AUXILIARY GEAR                            0.32           228.            0.0            0.0
+    SYSTEMS AND EQUIPMENT TOTAL                (  11.53)     (   8157.)        (  0.0)       (   0.0)
+
+    WEIGHT EMPTY                                  56.85         40224.            0.0            0.0
+
+         CREW AND BAGGAGE-FLIGHT, 2                0.51           360.            0.0            0.0
+         UNUSABLE FUEL                             0.27           193.            0.0            0.0
+         ENGINE OIL                                0.15           107.            0.0            0.0
+         AMMUNITION, ETC.                          0.22           157.            0.0            0.0
+         MISCELLANEOUS                             0.25           175.            0.0            0.0
+
+    OPERATING WEIGHT                              58.25         41216.            0.0            0.0
+
+         AUXILIARY TANKS                           0.81           570.            0.0            0.0
+         EXTERNAL STORES                          12.63          8936.            0.0            0.0
+
+    ZERO FUEL WEIGHT                              71.68         50722.            0.0            0.0
+
+         MISSION FUEL                             28.32         20037.            0.0            0.0
+
+    RAMP (GROSS) WEIGHT                          100.00         70759.            0.0            0.0
+
+#OBJ/VAR/CONSTR SUMMARY
+
+      FUEL  RANGE  VAPP FAROFF FARLDG   AMFOR   SSFOR       GW     AR    THRUST     SW    TR  SWEEP   TCA   VCMN    CH    W/S   T/W
+   20037.0    0.0 120.9  4333.  5575.  12066.  12550.    70759.0  7.512 21400.0   590.0 0.264 15.00 0.1244 2.500      0. 119.9 0.605

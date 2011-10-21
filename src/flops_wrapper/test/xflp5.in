@@ -1,0 +1,106 @@
+AIR SUPERIORITY FIGHTER
+ $OPTION
+  IOPT=1, IANAL=3, IFITE=1,
+ $END
+ $WTIN
+  ULF=12.0, FCOMP=.8,
+  SHT=300., NVERT=2, SVT=100.,
+  XL=60., WF=6.0, DF=5.0,
+  FULAUX=12000., FULFMX=12000.,
+  NEF=2,
+  CARGOF=2000., 
+  THRSO=35000.,WENG=2800.,
+ $END
+ $CONFIN
+  DESRNG=1000., VCMN=1.6, CH=40000.,
+  GW=70000., THRUST=35000.,
+  AR=4.0, SW=1000., TR=.2, SWEEP=35., TCA=.035,
+ $END
+ $AERIN
+  CLTOM=1.5, CLAPP=1.0,
+  FLTO=7000.,
+ $END
+ $ENGDIN
+  IGENEN=1, IDLE=1, NONEG=1,
+  NGPRT=0,
+ $END
+ $ENGINE
+  IENG=3, IPRINT=0,
+  ABURN=.TRUE., NPDRY=10, NPAB=5, TABMAX=3860.,
+  BPRDES=0.5, OPRDES=28.0, FPRDES=5.92,
+  DESFN=36000.0, TETDES=3260.0, TTRDES=1.15,
+  XMMAX=1.6, AMAX=65000.0, 
+  AINC=5000., XMINC=0.1,
+  CDTMAX=1860., QMAX=1500.0,
+  NGINWT=-1, IWTPRT=1, UTIP1=1600.,
+  RH2T1=.40, TRBAN2=4.5, YEAR=2005.,
+ $END
+ $MISSIN
+  IFLAG=2, IRW=1, IATA=0,
+  ITTFF=1, TAXOTM=10., TAKOTM=2., TAXITM=5.,
+  FWF=-1., IPPCL=6, IFAACL=0,
+  CLDCD=0.011,
+  NODIVE=1,
+  NCRUSE=4,
+  IOC   =      0,     4,      2,      4,
+  CRMACH=    1.5,   0.9,    1.5,    0.9,
+  CRALT = 50000.,    0., 30000., 40000.,
+  CRDCD =   0.00,  0.00, 0.0008,    0.0,
+  CRMMIN=    0.4,   0.3,    1.5,    0.3,
+  IRS=2, RESRFU=0.05,
+  HPMIN=200.,
+  IVS=0,
+  NPCON=6,
+ $END
+START
+CLIMB    1
+CRUISE   1      400.
+HOLD     4       90.
+RELEASE        1800.
+ACCEL           1.5                         30000.
+CRUISE   3      500.
+TURN     1      360.                 0.9    20000.
+TURN     1      360.                 0.9    20000.
+TURN     1      360.                 0.9    20000.
+RELEASE        1500.
+ACCEL            1.5                 0.9    20000.
+CLIMB    1                           0.9    20000.
+CRUISE   1
+DESCENT
+HOLD     2       20.
+DESCENT
+END
+Performance Constraint - 6 G's at Mach 0.6 at 10000 feet
+ $PCONIN
+  ICONTP=8,  CONLIM=6.,
+  CONALT=10000.,  CONMCH=0.6,
+  CONWT=50000.,
+ $END
+Performance Constraint - 5 G's at Mach 0.9 at 30000 feet
+ $PCONIN
+  CONLIM=5.,
+  CONALT=30000.,  CONMCH=0.9,
+ $END
+Acccelerate from Mach 0.9 to 1.5 at 20000 feet in 30 seconds
+ $PCONIN
+  ICONTP=16,  CONLIM=.5,
+  CONALT=20000.,  CONMCH=0.9,  CONAUX=1.5,
+  CONFM=.6,
+ $END
+Maintain turn rate of 15 deg/sec at Mach 0.9 at 20000 feet
+ $PCONIN
+  ICONTP=10,  CONLIM=15.,
+ $END
+Excess energy = 50 ft/sec at Mach 0.9 at 30000 feet at 4 G's
+ $PCONIN
+  ICONTP=12,  CONLIM=50.,
+  CONALT=30000.,  CONMCH=0.9,
+  CONNZ=4.,
+  ICONSG=2,
+ $END
+Climb Ceiling = 50000 feet at Mach 1.6
+ $PCONIN
+  ICONTP=13,  CONLIM=60000.,
+  CONALT=60000.,  CONMCH=1.6,
+  CONNZ=1.,  CONAUX=1000.,
+ $END

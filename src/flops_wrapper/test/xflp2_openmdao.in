@@ -1,0 +1,499 @@
+SUBSONIC TRANSPORT 5 VARIABLE OPTIMIZATION EXAMPLE PROBLEM
+&OPTION
+  
+  ! Program Control, Execution, Analysis and Plot Option Data
+  ianal = 3
+  icost = 0
+  ifite = 0
+  iland = 0
+  ineng = 0
+  iopt = 3
+  itakof = 0
+  mprint = 1
+  noise = 0
+  nopro = 0
+  
+  ! Plot files for XFLOPS Graphical Interface Postprocessor (MSMPLOT)
+  ixfl = 0
+  
+  ! Takeoff and Climb Profile File for Noise Calculations (NPROF)
+  npfile = 0
+  
+  ! Drag Polar Plot File (POLPLOT)
+  ipolp = 0
+  polalt = 0.0
+  
+  ! Engine Performance Data Plot File (THRPLOT)
+  ipltth = 0
+  
+  ! Design History Plot File (HISPLOT)
+  iplths = 0
+  
+  ! Plotfile Names
+/
+&WTIN
+  
+  ! Geometric, Weight, Balance and Inertia Data
+  cgrefl = 0.0
+  cgrefx = 0.0
+  dgw = 1.0
+  hydpr = 3000.0
+  ialtwt = 0
+  mywts = 0
+  nwref = 39
+  ulf = 4.22
+  vmmo = 0.843
+  wpaint = 0.0
+  
+  ! Special Option for Operating Weight Empty Calculations
+  ispowe = 0
+  spwcon = 38584.0
+  spwgw = 0.104087
+  spwsw = 9.5
+  spwth = 2.2344
+  
+  ! Wing Data
+  dih = 0.7
+  faert = 0.0
+  fcomp = 0.0
+  flapr = 0.333
+  fstrt = 0.0
+  glov = 0.0
+  span = 0.0
+  varswp = 0.0
+  
+  ! Tails, Fins, Canards
+  
+  ! Horizontal Tail Data
+  sht = 388.81
+  swpht = 35.0
+  arht = 4.0
+  trht = 0.4
+  tcht = 0.11
+  hht = 1.0
+  
+  ! Vertical Tail Data
+  nvert = 1
+  svt = 393.87
+  swpvt = 55.0
+  arvt = 0.67
+  trvt = 0.7
+  tcvt = 0.12
+  
+  ! Fuselage Data
+  df = 17.0
+  nfuse = 1
+  wf = 16.44
+  xl = 152.35
+  xlp = 0.0
+  
+  ! Landing Gear Data
+  carbas = 0.0
+  dldwt = 0.0
+  mldwt = 0
+  wldg = 0.0
+  xmlg = 0.0
+  xnlg = 0.0
+  
+  ! Propulsion System Data
+  dnac = 7.81
+  eexp = 1.15
+  einl = 1.0
+  enoz = 1.0
+  nef = 0
+  new = 2
+  thrso = 48925.0
+  weng = 9410.0
+  winl = 0.0
+  wnoz = 0.0
+  wpmisc = 0.0
+  xnac = 19.75
+  
+  ! Fuel System Data
+  ntank = 10
+  fulwmx = 57000.0
+  fulden = 1.0
+  fulfmx = 0.0
+  ifufu = 0
+  fulaux = 0.0
+  
+  ! Crew and Payload Data
+  bpp = -1.0
+  cargf = 0.0
+  cargof = 0.0
+  cargow = 0.0
+  nflcr = 3
+  ngalc = 0
+  npb = 0
+  npf = 20
+  npt = 180
+  nstu = 5
+  wppass = 165.0
+  
+  ! Override Parameters
+  ewmarg = 0.0
+  frcan = 1.0
+  frfin = 1.0
+  frfu = 1.0
+  frht = 1.0
+  frlgm = 1.0
+  frlgn = 1.0
+  frna = 1.0
+  frsc = 1.0
+  frvt = 1.0
+  frwi = 1.0
+  frwi1 = 1.0
+  frwi2 = 1.0
+  frwi3 = 1.0
+  frwi4 = 1.0
+  wac = 1.0
+  wai = 1.0
+  wapu = 1.0
+  warm = 0.0
+  wauxt = 1.0
+  wavonc = 1.0
+  wcon = 1.0
+  welec = 1.0
+  wflcrb = 1.0
+  wfsys = 1.0
+  wfurn = 1.0
+  whyd = 1.0
+  win = 1.0
+  woil = 1.0
+  wpmsc = 1.0
+  wsrv = 1.0
+  wstuab = 1.0
+  wthr = 3610.0
+  wuf = 1.0
+  
+  ! Center of Gravity (C.G.) Data
+  cgacon = 0.0
+  cgais = 0.0
+  cgammo = 0.0
+  cgap = 0.0
+  cgarm = 0.0
+  cgav = 0.0
+  cgaxg = 0.0
+  cgaxt = 0.0
+  cgcan = 0.0
+  cgcf = 0.0
+  cgcr = 0.0
+  cgcw = 0.0
+  cgea = 0.0
+  cgef = 0.0
+  cgf = 0.0
+  cgfin = 0.0
+  cgfwf = 0.0
+  cght = 0.0
+  cglgm = 0.0
+  cglgn = 0.0
+  cgmis = 0.0
+  cgp = 0.0
+  cgvt = 0.0
+  cgw = 0.0
+  cgzwf = 0.0
+/
+&CONFIN
+  desrng = 2500.0
+  fixful = 0.0
+  fixspn = 0.0
+  htvc = 1.557
+  pglov = 0.0
+  twr = 0.0
+  vtvc = 0.1945
+  wsr = 0.0
+  
+  ! Objective Function Definition
+  oarea = 0.0
+  ofc = 0.0
+  off = 0.0
+  ofg = 1.0
+  ofh = 0.0
+  ofm = 0.0
+  ofnf = 0.0
+  ofnfom = 0.0
+  ofnox = 0.0
+  ofns = 0.0
+  ofr = 0.0
+  osfc = 0.0
+  
+  ! Design Variables
+  gw = 250000.0
+  ar = 8.108000000000001, 1.0
+  thrust = 47500.0, 1.0
+  sw = 2272.0, 1.0
+  tr = 0.267
+  sweep = 31.5, 1.0
+  tca = 0.1095, 1.0
+  vcmn = 0.8
+  ch = 40000.0
+  
+  ! Engine Design Variables
+/
+&AERIN
+  
+  ! Internally Computed Aerodynamics
+  aitek = 1.5
+  cam = 0.0
+  e = 1.0
+  fcldes = -1.0
+  fmdes = -1.0
+  modaro = 0
+  sbase = 0.0
+  swetc = 1.0
+  swetf = 1.0
+  sweth = 1.0
+  swetn = 1.0
+  swetv = 1.0
+  swetw = 1.0
+  trlb = 0.0
+  trlc = 0.0
+  trlh = 0.0
+  trln = 0.0
+  trlv = 0.0
+  trlw = 0.0
+  trub = 0.0
+  truc = 0.0
+  truh = 0.0
+  trun = 0.0
+  truv = 0.0
+  truw = 0.0
+  xllam = 0
+  clapp = 0.0
+  clldm = 3.0
+  cltom = 2.0
+  dratio = 1.0
+  elodma = 0.0
+  elodss = 0.0
+  flldg = 0.0
+  flto = 6000.0
+  thrma = 0.0
+  throff = 0.0
+  thrss = 0.0
+  vappr = 125.0
+  wratio = 0.0
+/
+&ENGDIN
+  
+  ! Engine Deck Control, Scaling and Usage Data
+  ngprt = 0
+  igenen = 1
+  extfac = 1.0
+  fffsub = 1.0
+  fffsup = 1.0
+  idle = 1
+  noneg = 0
+  fidmin = 0.08
+  fidmax = 1.0
+  ixtrap = 1
+  ifill = 2
+  maxcr = 1
+  nox = 0
+  boost = 0.0
+  igeo = 0
+  dffac = 0.0
+  fffac = 0.0
+  eifile = ''
+/
+&ENGINE
+  ieng = 2
+  iprint = 0
+  gendek = F
+  ithrot = 1
+  npab = 0
+  npdry = 15
+  xidle = 0.05
+  nitmax = 50
+  xmmax = 0.9
+  amax = 40000.0
+  xminc = 0.1
+  ainc = 5000.0
+  qmin = 150.0
+  qmax = 800.0
+  nginwt = 0
+  ftalt = 0.0
+  ftmach = 0.0
+  jet = -1
+  nprint = 0
+  desfn = 48925.0
+  oprdes = 29.5
+  fprdes = 1.67
+  bprdes = 5.0
+  tetdes = 2660.0
+  ttrdes = 1.0
+  hpcpr = 5.0
+  aburn = F
+  dburn = F
+  effab = 0.85
+  tabmax = 3500.0
+  ven = F
+  costbl = 1.0
+  fanbl = 0.0
+  hpext = 200.0
+  wcool = -0.0001
+  fhv = 18500.0
+  dtce = 0.0
+  alc = 10000.0
+  year = 1985.0
+  
+  ! Installation effects
+  boat = F
+  ajmax = 0.0
+  etaprp = 0.84
+  shpowa = 60.0
+  
+  ! Engine operating constraints
+  cdtmax = 99999.0
+  cdpmax = 99999.0
+  vjmax = 99999.0
+  stmin = 1.0
+  armax = 99999.0
+  limcd = 1
+  fprop = 1.0
+  fgbox = 1.0
+  tfile = 'ENGTAB'
+  ifile = 'TFNSEP'
+/
+&MISSIN
+  
+  ! Performance Controls and Factors and Mission Segment Definition
+  indr = 0
+  fact = 0.9
+  fleak = 0.0
+  fcdo = 1.0
+  fcdi = 1.0
+  fcdsub = 1.0
+  fcdsup = 1.0
+  iskal = 1
+  owfact = 1.0
+  iflag = 2
+  msumpt = 1
+  dtc = 0.0
+  irw = 1
+  rtol = 0.001
+  nhold = 0
+  iata = 1
+  tlwind = 0.0
+  dwt = 1.0
+  idoq = 0
+  npcon = 0
+  mywts = 0
+  
+  ! Ground Operations and Takeoff and Approach Allowances
+  appfff = 2.0
+  apprtm = 0.0
+  faprfl = 0.0
+  ftkofl = 0.0
+  ftxifl = 0.0
+  ftxofl = 0.0
+  ittff = 0
+  takoff = 16445.0
+  takotm = 0.4
+  taxitm = 10.0
+  taxotm = 10.0
+  txfufl = 1064.0
+  
+  ! Climb Schedule Definition
+  nclimb = 1
+  clmmin = 0.3
+  clmmax = 0.0
+  clamin = 0.0
+  clamax = 0.0
+  nincl = 15
+  fwf = -1.0
+  ncrcl = 1
+  cldcd = 0.0
+  ippcl = 1
+  maxcl = 1
+  keasvc = 0
+  ifaacl = 1
+  ifaade = -1
+  nodive = 0
+  divlim = 0.0
+  qlim = 0.0
+  spdlim = 0.0
+  
+  ! Cruise Schedule Definition
+
+  ncruse = 1
+  ioc = 1
+  crmach = 0.0
+  cralt = -1.0
+  crdcd = 0.0
+  flrcr = 1.0
+  crmmin = 0.7
+  crclmx = 1.2
+  hpmin = 1000.0
+  ffuel = 1.0
+  fnox = 0.0
+  ifeath = 0
+  feathf = 0.5
+  cdfeth = 0.0
+  dcwt = 1.0
+  rcin = 100.0
+  
+  ! Descent Schedule Definition
+  ivs = 1
+  decl = 0.8
+  demmin = 0.3
+  demmax = 0.0
+  deamin = 0.0
+  deamax = 0.0
+  ninde = 15
+  dedcd = 0.0
+  rdlim = -99999.0
+  keasvd = 0
+  altran = 0.0
+  erealt = -1.0
+  eremch = -1.0
+  holdtm = 30.0
+  icron = 0
+  ihopos = 1
+  irs = 2
+  nclres = 1
+  ncrhol = 0
+  ncrres = 1
+  ncrth = 1
+  resrfu = 0.05
+  restrp = 0.0
+  srealt = -1.0
+  sremch = -1.0
+  thold = 0.0
+  timmap = 5.0
+/
+START
+CLIMB
+CRUISE
+DESCENT
+END
+&SYNTIN
+  exfcap = 0.0
+  gnox = 0.0
+  roclim = 100.0
+  dhdtlm = 100.0
+  tmglim = 0.1
+  ibfgs = 1
+  itfine = 0
+  
+  ! Optimization Control
+  ndd = 1
+  rk = 1.0
+  fdd = 0.02
+  nlin = 4
+  nstep = 20
+  ef = 3.0
+  eps = 0.001
+  amult = 10.0
+  dep = 0.001
+  accux = 0.0003
+  glm = 0.002
+  autscl = 1.0
+  icent = 0
+  rhomin = 0.0
+  rhomax = 300.0
+  rhodel = 0.0
+  itmax = 30
+  jprnt = 2
+  rdfun = 0.01
+  adfun = 0.001
+/
