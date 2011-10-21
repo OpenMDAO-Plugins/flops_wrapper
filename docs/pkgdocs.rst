@@ -36,11 +36,11 @@ Package Metadata
 - **requires-python**:: 
 
     >=2.6
-    <3,0
+    <3.0
 
 - **static_path:** [ '_static' ]
 
 - **summary:** OpenMDAO component wrapper for FLOPS
 
-- **version:** 0.5
+- **version:** 0.6
 
