@@ -9,7 +9,7 @@ Contents:
 .. toctree::
    :maxdepth: 2
     
-   usage
+   usage.rst
    srcdocs
    pkgdocs
 
