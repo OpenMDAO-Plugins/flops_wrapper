@@ -2069,7 +2069,7 @@ class FlopsWrapper(ExternalCode):
         self.stdin = 'flops.inp'
         self.stdout = 'flops.out'
         self.stderr = 'flops.err'
-        self.command = 'FLOPS'
+        self.command = ['FLOPS']
         
         self.external_files = [
             FileMetadata(path=self.stdin, input=True),

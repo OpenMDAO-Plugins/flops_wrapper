@@ -45,6 +45,6 @@ to tell OpenMDAO where to find it as per the following example:
 
 ::
 
-    flops_comp.command = '/home/ktmoore1/work/FLOPS/bin/flops'
+    flops_comp.command = ['/home/ktmoore1/work/FLOPS/bin/flops']
 
     
