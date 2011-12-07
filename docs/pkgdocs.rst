@@ -42,5 +42,5 @@ Package Metadata
 
 - **summary:** OpenMDAO component wrapper for FLOPS
 
-- **version:** 0.7
+- **version:** 0.8
 
