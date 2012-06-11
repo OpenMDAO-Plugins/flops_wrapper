@@ -202,7 +202,7 @@ class FlopsWrapper_output_Noise(VariableTree):
     """Container for output.Noise"""
 
     # OpenMDAO Public Variables
-    #nsplot = File(iotype='out', path='nsplot.out', msg='Noise output file')
+    nsplot = Str('', msg='Noise output filename')
 
 
 class FlopsWrapper_output_Geometry_BWB(VariableTree):
@@ -257,11 +257,11 @@ class FlopsWrapper_output_Engine(VariableTree):
     """Container for output.Engine"""
 
     # OpenMDAO Public Variables
-    #ofile = File(iotype='out', path='ofile.out')
-    #eofile = File(iotype='out', path='eofile.out')
-    #anopp = File(iotype='out', path='anopp.out')
-    #footpr = File(iotype='out', path='footpr.out')
-    #pltfil = File(iotype='out', path='pltfil')
+    ofile = Str('')
+    eofile = Str('')
+    anopp = Str('')
+    footpr = Str('')
+    pltfil = Str('')
 
 
 class FlopsWrapper_output_Econ(VariableTree):
@@ -1475,7 +1475,7 @@ class FlopsWrapper_input_engine_deck(VariableTree):
     """Container for input.engine_deck"""
 
     # OpenMDAO Public Variables
-    engdek = Str(iotype='in')
+    engdek = Str('')
 
 
 class FlopsWrapper_input_engine_Other(VariableTree):
@@ -1680,10 +1680,10 @@ class FlopsWrapper_input_engdin(VariableTree):
     """Container for input.engdin"""
 
     # OpenMDAO Public Variables
-    #cdfile = File(iotype='in')
+    cdfile = Str('')
 
     # Special addition for analysis runs where we aren't connected to NPSS. 
-    eifile = Str(desc="Engine deck filename")
+    eifile = Str('', desc="Engine deck filename")
 
     def __init__(self, *args, **kwargs):
         """Constructor for the FlopsWrapper_input_engdin component"""
@@ -1921,7 +1921,7 @@ class FlopsWrapper_input_aero_data(VariableTree):
     """Container for input.aero_data"""
 
     # OpenMDAO Public Variables
-    aerodat = Str(iotype='in')
+    aerodat = Str('')
 
 
 class FlopsWrapper_input_aerin_Takeoff_Landing(VariableTree):
