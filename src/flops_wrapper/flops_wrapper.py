@@ -2056,10 +2056,10 @@ class FlopsWrapper(ExternalCode):
     # ----
     #execute_cmd = Str('flops', iotype='in', desc='Command for executing FLOPS')
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self):
         """Constructor for the FlopsWrapper component"""
 
-        super(FlopsWrapper, self).__init__(*args, **kwargs)
+        super(FlopsWrapper, self).__init__()
 
         # VariableTrees
         self.add('input',  FlopsWrapper_input(iotype='in'))
