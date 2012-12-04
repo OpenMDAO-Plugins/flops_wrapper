@@ -11,5 +11,5 @@ through the proper channels.
 
 To view the Sphinx documentation for this distribution, type:
 
-plugin_docs flops_wrapper
+openmdao docs flops_wrapper
 
