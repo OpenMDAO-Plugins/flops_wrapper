@@ -16,7 +16,7 @@ from openmdao.util.namelist_util import Namelist
 
 from openmdao.main.api import VariableTree, FileMetadata
 from openmdao.lib.datatypes.api import Str, Bool, Int, Array, Enum, Float, \
-                                       File, List, Slot
+                                       File, List, VarTree
 from openmdao.lib.components.api import ExternalCode
 
 # pylint: disable-msg=C0301,C0324,C0103,R0903
@@ -90,14 +90,9 @@ class FlopsWrapper_output_Weight(VariableTree):
     zfw = Float(0.0)
     wbomb = Float(0.0)
     
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_output_Weight component"""
-
-        super(FlopsWrapper_output_Weight, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('Inertia',  FlopsWrapper_output_Weight_Inertia())
-        self.add('Wing',  FlopsWrapper_output_Weight_Wing())
+    # VariableTrees
+    Inertia = VarTree(FlopsWrapper_output_Weight_Inertia())
+    Wing = VarTree(FlopsWrapper_output_Weight_Wing())
 
 
 class FlopsWrapper_output_Plot_Files(VariableTree):
@@ -170,14 +165,9 @@ class FlopsWrapper_output_Performance(VariableTree):
     thrso = Float(0.0)
     vmmo = Float(0.0)
 
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_output_Performance component"""
-
-        super(FlopsWrapper_output_Performance, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('Constraints',  FlopsWrapper_output_Performance_Constraints())
-        self.add('Segments',  FlopsWrapper_output_Performance_Segments())
+    # VariableTrees
+    Constraints = VarTree(FlopsWrapper_output_Performance_Constraints())
+    Segments = VarTree(FlopsWrapper_output_Performance_Segments())
 
 
 class FlopsWrapper_output_Payload(VariableTree):
@@ -244,13 +234,8 @@ class FlopsWrapper_output_Geometry(VariableTree):
     xmlg = Float(0.0)
     xnlg = Float(0.0)
 
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_output_Geometry component"""
-
-        super(FlopsWrapper_output_Geometry, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('BWB', FlopsWrapper_output_Geometry_BWB())
+    # VariableTrees
+    BWB = VarTree(FlopsWrapper_output_Geometry_BWB())
 
 
 class FlopsWrapper_output_Engine(VariableTree):
@@ -285,20 +270,15 @@ class FlopsWrapper_output_Econ(VariableTree):
 class FlopsWrapper_output(VariableTree):
     """Container for output"""
 
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_output component"""
-
-        super(FlopsWrapper_output, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('Econ',  FlopsWrapper_output_Econ())
-        self.add('Engine',  FlopsWrapper_output_Engine())
-        self.add('Geometry',  FlopsWrapper_output_Geometry())
-        self.add('Noise',  FlopsWrapper_output_Noise())
-        self.add('Payload',  FlopsWrapper_output_Payload())
-        self.add('Performance',  FlopsWrapper_output_Performance())
-        self.add('Plot_Files',  FlopsWrapper_output_Plot_Files())
-        self.add('Weight',  FlopsWrapper_output_Weight())
+    # VariableTrees
+    Econ = VarTree(FlopsWrapper_output_Econ())
+    Engine = VarTree(FlopsWrapper_output_Engine())
+    Geometry = VarTree(FlopsWrapper_output_Geometry())
+    Noise = VarTree(FlopsWrapper_output_Noise())
+    Payload = VarTree(FlopsWrapper_output_Payload())
+    Performance = VarTree(FlopsWrapper_output_Performance())
+    Plot_Files = VarTree(FlopsWrapper_output_Plot_Files())
+    Weight = VarTree(FlopsWrapper_output_Weight())
 
 
 class FlopsWrapper_input_wtin_Wing_Data(VariableTree):
@@ -571,25 +551,20 @@ class FlopsWrapper_input_wtin(VariableTree):
 
     # OpenMDAO Public Variables
 
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_input_wtin component"""
-
-        super(FlopsWrapper_input_wtin, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('Basic',  FlopsWrapper_input_wtin_Basic())
-        self.add('Center_of_Gravity',  FlopsWrapper_input_wtin_Center_of_Gravity())
-        self.add('Crew_Payload',  FlopsWrapper_input_wtin_Crew_Payload())
-        self.add('Detailed_Wing',  FlopsWrapper_input_wtin_Detailed_Wing())
-        self.add('Fuel_System',  FlopsWrapper_input_wtin_Fuel_System())
-        self.add('Fuselage',  FlopsWrapper_input_wtin_Fuselage())
-        self.add('Inertia',  FlopsWrapper_input_wtin_Inertia())
-        self.add('Landing_Gear',  FlopsWrapper_input_wtin_Landing_Gear())
-        self.add('OEW_Calculations',  FlopsWrapper_input_wtin_OEW_Calculations())
-        self.add('Override',  FlopsWrapper_input_wtin_Override())
-        self.add('Propulsion',  FlopsWrapper_input_wtin_Propulsion())
-        self.add('Tails_Fins',  FlopsWrapper_input_wtin_Tails_Fins())
-        self.add('Wing_Data',  FlopsWrapper_input_wtin_Wing_Data())
+    # VariableTrees
+    Basic = VarTree(FlopsWrapper_input_wtin_Basic())
+    Center_of_Gravity = VarTree(FlopsWrapper_input_wtin_Center_of_Gravity())
+    Crew_Payload = VarTree(FlopsWrapper_input_wtin_Crew_Payload())
+    Detailed_Wing = VarTree(FlopsWrapper_input_wtin_Detailed_Wing())
+    Fuel_System = VarTree(FlopsWrapper_input_wtin_Fuel_System())
+    Fuselage = VarTree(FlopsWrapper_input_wtin_Fuselage())
+    Inertia = VarTree(FlopsWrapper_input_wtin_Inertia())
+    Landing_Gear = VarTree(FlopsWrapper_input_wtin_Landing_Gear())
+    OEW_Calculations = VarTree(FlopsWrapper_input_wtin_OEW_Calculations())
+    Override = VarTree(FlopsWrapper_input_wtin_Override())
+    Propulsion = VarTree(FlopsWrapper_input_wtin_Propulsion())
+    Tails_Fins = VarTree(FlopsWrapper_input_wtin_Tails_Fins())
+    Wing_Data = VarTree(FlopsWrapper_input_wtin_Wing_Data())
 
 
 class FlopsWrapper_input_tolin_Thrust_Reverser(VariableTree):
@@ -707,17 +682,12 @@ class FlopsWrapper_input_tolin_Basic(VariableTree):
 class FlopsWrapper_input_tolin(VariableTree):
     """Container for input.tolin"""
 
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_input_tolin component"""
-
-        super(FlopsWrapper_input_tolin, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('Basic',  FlopsWrapper_input_tolin_Basic())
-        self.add('Integration_Intervals',  FlopsWrapper_input_tolin_Integration_Intervals())
-        self.add('Landing',  FlopsWrapper_input_tolin_Landing())
-        self.add('Takeoff',  FlopsWrapper_input_tolin_Takeoff())
-        self.add('Thrust_Reverser',  FlopsWrapper_input_tolin_Thrust_Reverser())
+    # VariableTrees
+    Basic = VarTree(FlopsWrapper_input_tolin_Basic())
+    Integration_Intervals = VarTree(FlopsWrapper_input_tolin_Integration_Intervals())
+    Landing = VarTree(FlopsWrapper_input_tolin_Landing())
+    Takeoff = VarTree(FlopsWrapper_input_tolin_Takeoff())
+    Thrust_Reverser = VarTree(FlopsWrapper_input_tolin_Thrust_Reverser())
 
 
 class FlopsWrapper_input_syntin_Variables(VariableTree):
@@ -773,14 +743,9 @@ class FlopsWrapper_input_syntin_Optimization_Control(VariableTree):
 class FlopsWrapper_input_syntin(VariableTree):
     """Container for input.syntin"""
 
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_input_syntin component"""
-
-        super(FlopsWrapper_input_syntin, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('Optimization_Control',  FlopsWrapper_input_syntin_Optimization_Control())
-        self.add('Variables',  FlopsWrapper_input_syntin_Variables())
+    # VariableTrees
+    Optimization_Control = VarTree(FlopsWrapper_input_syntin_Optimization_Control())
+    Variables = VarTree(FlopsWrapper_input_syntin_Variables())
 
 
 class FlopsWrapper_input_rfhin(VariableTree):
@@ -883,15 +848,10 @@ class FlopsWrapper_input_option_Excess_Power_Plot(VariableTree):
 class FlopsWrapper_input_option(VariableTree):
     """Container for input.option"""
 
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_input_option component"""
-
-        super(FlopsWrapper_input_option, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('Excess_Power_Plot',  FlopsWrapper_input_option_Excess_Power_Plot())
-        self.add('Plot_Files',  FlopsWrapper_input_option_Plot_Files())
-        self.add('Program_Control',  FlopsWrapper_input_option_Program_Control())
+    # VariableTrees
+    Excess_Power_Plot = VarTree(FlopsWrapper_input_option_Excess_Power_Plot())
+    Plot_Files = VarTree(FlopsWrapper_input_option_Plot_Files())
+    Program_Control = VarTree(FlopsWrapper_input_option_Program_Control())
 
 
 class FlopsWrapper_input_noisin_Turbine(VariableTree):
@@ -1177,26 +1137,21 @@ class FlopsWrapper_input_noisin_Airframe(VariableTree):
 class FlopsWrapper_input_noisin(VariableTree):
     """Container for input.noisin"""
 
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_input_noisin component"""
-
-        super(FlopsWrapper_input_noisin, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('Airframe',  FlopsWrapper_input_noisin_Airframe())
-        self.add('Basic',  FlopsWrapper_input_noisin_Basic())
-        self.add('Core',  FlopsWrapper_input_noisin_Core())
-        self.add('Engine_Parameters',  FlopsWrapper_input_noisin_Engine_Parameters())
-        self.add('Fan',  FlopsWrapper_input_noisin_Fan())
-        self.add('Flap_Noise',  FlopsWrapper_input_noisin_Flap_Noise())
-        self.add('Ground_Effects',  FlopsWrapper_input_noisin_Ground_Effects())
-        self.add('Jet',  FlopsWrapper_input_noisin_Jet())
-        self.add('MSJet',  FlopsWrapper_input_noisin_MSJet())
-        self.add('Observers',  FlopsWrapper_input_noisin_Observers())
-        self.add('Propagation',  FlopsWrapper_input_noisin_Propagation())
-        self.add('Propeller',  FlopsWrapper_input_noisin_Propeller())
-        self.add('Shielding',  FlopsWrapper_input_noisin_Shielding())
-        self.add('Turbine',  FlopsWrapper_input_noisin_Turbine())
+    # VariableTrees
+    Airframe = VarTree(FlopsWrapper_input_noisin_Airframe())
+    Basic = VarTree(FlopsWrapper_input_noisin_Basic())
+    Core = VarTree(FlopsWrapper_input_noisin_Core())
+    Engine_Parameters = VarTree(FlopsWrapper_input_noisin_Engine_Parameters())
+    Fan = VarTree(FlopsWrapper_input_noisin_Fan())
+    Flap_Noise = VarTree(FlopsWrapper_input_noisin_Flap_Noise())
+    Ground_Effects = VarTree(FlopsWrapper_input_noisin_Ground_Effects())
+    Jet = VarTree(FlopsWrapper_input_noisin_Jet())
+    MSJet = VarTree(FlopsWrapper_input_noisin_MSJet())
+    Observers = VarTree(FlopsWrapper_input_noisin_Observers())
+    Propagation = VarTree(FlopsWrapper_input_noisin_Propagation())
+    Propeller = VarTree(FlopsWrapper_input_noisin_Propeller())
+    Shielding = VarTree(FlopsWrapper_input_noisin_Shielding())
+    Turbine = VarTree(FlopsWrapper_input_noisin_Turbine())
 
 
 class FlopsWrapper_input_nacell(VariableTree):
@@ -1407,21 +1362,16 @@ class FlopsWrapper_input_missin_Basic(VariableTree):
 class FlopsWrapper_input_missin(VariableTree):
     """Container for input.missin"""
 
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_input_missin component"""
-
-        super(FlopsWrapper_input_missin, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('Basic',  FlopsWrapper_input_missin_Basic())
-        self.add('Climb',  FlopsWrapper_input_missin_Climb())
-        self.add('Cruise',  FlopsWrapper_input_missin_Cruise())
-        self.add('Descent',  FlopsWrapper_input_missin_Descent())
-        self.add('Ground_Operations',  FlopsWrapper_input_missin_Ground_Operations())
-        self.add('Reserve',  FlopsWrapper_input_missin_Reserve())
-        self.add('Store_Drag',  FlopsWrapper_input_missin_Store_Drag())
-        self.add('Turn_Segments',  FlopsWrapper_input_missin_Turn_Segments())
-        self.add('User_Weights',  FlopsWrapper_input_missin_User_Weights())
+    # VariableTrees
+    Basic = VarTree(FlopsWrapper_input_missin_Basic())
+    Climb = VarTree(FlopsWrapper_input_missin_Climb())
+    Cruise = VarTree(FlopsWrapper_input_missin_Cruise())
+    Descent = VarTree(FlopsWrapper_input_missin_Descent())
+    Ground_Operations = VarTree(FlopsWrapper_input_missin_Ground_Operations())
+    Reserve = VarTree(FlopsWrapper_input_missin_Reserve())
+    Store_Drag = VarTree(FlopsWrapper_input_missin_Store_Drag())
+    Turn_Segments = VarTree(FlopsWrapper_input_missin_Turn_Segments())
+    User_Weights = VarTree(FlopsWrapper_input_missin_User_Weights())
 
 
 class FlopsWrapper_input_fusein_Basic(VariableTree):
@@ -1461,14 +1411,9 @@ class FlopsWrapper_input_fusein_BWB(VariableTree):
 class FlopsWrapper_input_fusein(VariableTree):
     """Container for input.fusein"""
 
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_input_fusein component"""
-
-        super(FlopsWrapper_input_fusein, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('BWB',  FlopsWrapper_input_fusein_BWB())
-        self.add('Basic',  FlopsWrapper_input_fusein_Basic())
+    # VariableTrees
+    BWB = VarTree(FlopsWrapper_input_fusein_BWB())
+    Basic = VarTree(FlopsWrapper_input_fusein_Basic())
 
 
 class FlopsWrapper_input_engine_deck(VariableTree):
@@ -1621,18 +1566,13 @@ class FlopsWrapper_input_engine(VariableTree):
     ifile = Str(desc='Name of cycle definition input file.  Used only if IENG = 0.')
     tfile = Str('ENGTAB', desc='Name of the file containing component map tables.')
 
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_input_engine component"""
-
-        super(FlopsWrapper_input_engine, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('Basic',  FlopsWrapper_input_engine_Basic())
-        self.add('Design_Point',  FlopsWrapper_input_engine_Design_Point())
-        self.add('Engine_Weight',  FlopsWrapper_input_engine_Engine_Weight())
-        self.add('IC_Engine',  FlopsWrapper_input_engine_IC_Engine())
-        self.add('Noise_Data',  FlopsWrapper_input_engine_Noise_Data())
-        self.add('Other',  FlopsWrapper_input_engine_Other())
+    # VariableTrees
+    Basic = VarTree(FlopsWrapper_input_engine_Basic())
+    Design_Point = VarTree(FlopsWrapper_input_engine_Design_Point())
+    Engine_Weight = VarTree(FlopsWrapper_input_engine_Engine_Weight())
+    IC_Engine = VarTree(FlopsWrapper_input_engine_IC_Engine())
+    Noise_Data = VarTree(FlopsWrapper_input_engine_Noise_Data())
+    Other = VarTree(FlopsWrapper_input_engine_Other())
 
 
 class FlopsWrapper_input_engdin_Special_Options(VariableTree):
@@ -1685,14 +1625,9 @@ class FlopsWrapper_input_engdin(VariableTree):
     # Special addition for analysis runs where we aren't connected to NPSS. 
     eifile = Str('', desc="Engine deck filename")
 
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_input_engdin component"""
-
-        super(FlopsWrapper_input_engdin, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('Basic',  FlopsWrapper_input_engdin_Basic())
-        self.add('Special_Options',  FlopsWrapper_input_engdin_Special_Options())
+    # VariableTrees
+    Basic = VarTree(FlopsWrapper_input_engdin_Basic())
+    Special_Options = VarTree(FlopsWrapper_input_engdin_Special_Options())
 
 
 class FlopsWrapper_input_costin_Mission_Performance(VariableTree):
@@ -1817,15 +1752,10 @@ class FlopsWrapper_input_costin_Basic(VariableTree):
 class FlopsWrapper_input_costin(VariableTree):
     """Container for input.costin"""
 
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_input_costin component"""
-
-        super(FlopsWrapper_input_costin, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('Basic',  FlopsWrapper_input_costin_Basic())
-        self.add('Cost_Technology',  FlopsWrapper_input_costin_Cost_Technology())
-        self.add('Mission_Performance',  FlopsWrapper_input_costin_Mission_Performance())
+    # VariableTrees
+    Basic = VarTree(FlopsWrapper_input_costin_Basic())
+    Cost_Technology = VarTree(FlopsWrapper_input_costin_Cost_Technology())
+    Mission_Performance = VarTree(FlopsWrapper_input_costin_Mission_Performance())
 
 
 class FlopsWrapper_input_confin_Objective(VariableTree):
@@ -1887,15 +1817,10 @@ class FlopsWrapper_input_confin_Basic(VariableTree):
 class FlopsWrapper_input_confin(VariableTree):
     """Container for input.confin"""
 
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_input_confin component"""
-
-        super(FlopsWrapper_input_confin, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('Basic',  FlopsWrapper_input_confin_Basic())
-        self.add('Design_Variables',  FlopsWrapper_input_confin_Design_Variables())
-        self.add('Objective',  FlopsWrapper_input_confin_Objective())
+    # VariableTrees
+    Basic = VarTree(FlopsWrapper_input_confin_Basic())
+    Design_Variables = VarTree(FlopsWrapper_input_confin_Design_Variables())
+    Objective = VarTree(FlopsWrapper_input_confin_Objective())
 
 
 class FlopsWrapper_input_asclin(VariableTree):
@@ -1989,15 +1914,10 @@ class FlopsWrapper_input_aerin_Basic(VariableTree):
 class FlopsWrapper_input_aerin(VariableTree):
     """Container for input.aerin"""
 
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_input_aerin component"""
-
-        super(FlopsWrapper_input_aerin, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('Basic',  FlopsWrapper_input_aerin_Basic())
-        self.add('Internal_Aero',  FlopsWrapper_input_aerin_Internal_Aero())
-        self.add('Takeoff_Landing',  FlopsWrapper_input_aerin_Takeoff_Landing())
+    # VariableTrees
+    Basic = VarTree(FlopsWrapper_input_aerin_Basic())
+    Internal_Aero = VarTree(FlopsWrapper_input_aerin_Internal_Aero())
+    Takeoff_Landing = VarTree(FlopsWrapper_input_aerin_Takeoff_Landing())
 
 
 class FlopsWrapper_input(VariableTree):
@@ -2006,31 +1926,25 @@ class FlopsWrapper_input(VariableTree):
     # OpenMDAO Public Variables
     title = Str('', desc='Any alphanumeric title')
 
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_input component"""
-
-        super(FlopsWrapper_input, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('aerin',  FlopsWrapper_input_aerin())
-        self.add('aero_data',  FlopsWrapper_input_aero_data())
-        self.add('asclin',  FlopsWrapper_input_asclin())
-        self.add('confin',  FlopsWrapper_input_confin())
-        self.add('costin',  FlopsWrapper_input_costin())
-        self.add('engdin',  FlopsWrapper_input_engdin())
-        self.add('engine',  FlopsWrapper_input_engine())
-        self.add('engine_deck',  FlopsWrapper_input_engine_deck())
-        self.add('fusein',  FlopsWrapper_input_fusein())
-        self.add('missin',  FlopsWrapper_input_missin())
-        self.add('mission_definition',  FlopsWrapper_input_mission_definition())
-        self.add('nacell',  FlopsWrapper_input_nacell())
-        self.add('noisin',  FlopsWrapper_input_noisin())
-        self.add('option',  FlopsWrapper_input_option())
-        self.add('proin',  FlopsWrapper_input_proin())
-        self.add('rfhin',  FlopsWrapper_input_rfhin())
-        self.add('syntin',  FlopsWrapper_input_syntin())
-        self.add('tolin',  FlopsWrapper_input_tolin())
-        self.add('wtin',  FlopsWrapper_input_wtin())
+    aerin = VarTree(FlopsWrapper_input_aerin())
+    aero_data = VarTree(FlopsWrapper_input_aero_data())
+    asclin = VarTree(FlopsWrapper_input_asclin())
+    confin = VarTree(FlopsWrapper_input_confin())
+    costin = VarTree(FlopsWrapper_input_costin())
+    engdin = VarTree(FlopsWrapper_input_engdin())
+    engine = VarTree(FlopsWrapper_input_engine())
+    engine_deck = VarTree(FlopsWrapper_input_engine_deck())
+    fusein = VarTree(FlopsWrapper_input_fusein())
+    missin = VarTree(FlopsWrapper_input_missin())
+    mission_definition = VarTree(FlopsWrapper_input_mission_definition())
+    nacell = VarTree(FlopsWrapper_input_nacell())
+    noisin = VarTree(FlopsWrapper_input_noisin())
+    option = VarTree(FlopsWrapper_input_option())
+    proin = VarTree(FlopsWrapper_input_proin())
+    rfhin = VarTree(FlopsWrapper_input_rfhin())
+    syntin = VarTree(FlopsWrapper_input_syntin())
+    tolin = VarTree(FlopsWrapper_input_tolin())
+    wtin = VarTree(FlopsWrapper_input_wtin())
 
         
 # pylint: enable-msg=C0301,C0324,R0903
@@ -2047,9 +1961,9 @@ class FlopsWrapper(ExternalCode):
     npcons = Array(iotype='in', dtype=numpy_int64, desc='Number of PCONIN ' +
                    'namelists to be created with each RERUN namelist')
     
-    # Slots for Variable Trees
-    input = Slot(FlopsWrapper_input, iotype='in')
-    output = Slot(FlopsWrapper_output, iotype='out')
+    # Variable Trees
+    input = VarTree(FlopsWrapper_input(), iotype='in')
+    output = VarTree(FlopsWrapper_output(), iotype='out')
     
     # This stuff is defined in ExternalCode. I'm preserving it to keep a record
     # of the var names that were used in the MC Java wrapper.
@@ -2061,10 +1975,6 @@ class FlopsWrapper(ExternalCode):
 
         super(FlopsWrapper, self).__init__()
 
-        # VariableTrees
-        self.add('input',  FlopsWrapper_input(iotype='in'))
-        self.add('output',  FlopsWrapper_output(iotype='out'))
-        
         # External Code public variables
         self.stdin = 'flops.inp'
         self.stdout = 'flops.out'
