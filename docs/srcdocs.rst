@@ -5,7 +5,7 @@
 ====================
 Source Documentation
 ====================
-        
+
         
 .. index:: flops_wrapper.py
 
@@ -18,5 +18,5 @@ flops_wrapper.py
    :members:
    :undoc-members:
    :show-inheritance:
-    
+
         
