@@ -47,21 +47,18 @@ class FLOPSWrapperTestCase(unittest.TestCase):
                 flops_comp.load_model(startfile_name)
                 flops_comp.generate_input()
     
-                file1 = open(infile_name, 'r')
-                result1 = file1.readlines()
-                file1.close()
-                file2 = open('flops.inp', 'r')
-                result2 = file2.readlines()
-                file2.close()
+                with open(infile_name, 'r') as inp:
+                    result1 = inp.readlines()
+                with open('flops.inp', 'r') as inp:
+                    result2 = inp.readlines()
                 
                 lnum = 1
                 for line1, line2 in zip(result1, result2):
                     try:
                         self.assertEqual(line1, line2)
                     except AssertionError as err:
-                        raise AssertionError("line %d doesn't match file %s: %s" % (lnum, 
-                                                                                    infile_name,
-                                                                                    str(err)))
+                        raise AssertionError("line %d doesn't match file %s: %s"
+                                             % (lnum, infile_name, err))
                     lnum += 1
                         
                 # Check output file parsing
@@ -69,21 +66,24 @@ class FLOPSWrapperTestCase(unittest.TestCase):
                 shutil.copyfile(outfile_name, 'flops.out')
                 flops_comp.parse_output()
     
-                file1 = open('flops.dump', 'w')
-                dump(flops_comp, stream=file1, recurse=True)
-                file1.close()
+                with open('flops.dump', 'w') as out:
+                    dump(flops_comp, stream=out, recurse=True)
     
-                file1 = open('flops.dump', 'r')
-                result1 = file1.readlines()
-                file1.close()
-                file2 = open(dumpfile_name, 'r')
-                result2 = file2.readlines()
-                file2.close()
+                with open(dumpfile_name, 'r') as inp:
+                    result1 = inp.readlines()
+                with open('flops.dump', 'r') as inp:
+                    result2 = inp.readlines()
     
+                lnum = 1
                 for line1, line2 in zip(result1, result2):
                     # Omit lines with objects, because memory location differs
                     if 'object at' not in line1:
-                        self.assertEqual(line1, line2)
+                        try:
+                            self.assertEqual(line1, line2)
+                        except AssertionError as err:
+                            raise AssertionError("line %d doesn't match file %s: %s"
+                                                 % (lnum, dumpfile_name, err))
+                        lnum += 1
 
         finally:
             os.chdir(basename)

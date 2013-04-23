@@ -16,7 +16,7 @@ from openmdao.util.namelist_util import Namelist
 
 from openmdao.main.api import VariableTree, FileMetadata
 from openmdao.lib.datatypes.api import Str, Bool, Int, Array, Enum, Float, \
-                                       File, List, Slot
+                                       File, List, VarTree
 from openmdao.lib.components.api import ExternalCode
 
 # pylint: disable-msg=C0301,C0324,C0103,R0903
@@ -90,14 +90,9 @@ class FlopsWrapper_output_Weight(VariableTree):
     zfw = Float(0.0)
     wbomb = Float(0.0)
     
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_output_Weight component"""
-
-        super(FlopsWrapper_output_Weight, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('Inertia',  FlopsWrapper_output_Weight_Inertia())
-        self.add('Wing',  FlopsWrapper_output_Weight_Wing())
+    # VariableTrees
+    Inertia = VarTree(FlopsWrapper_output_Weight_Inertia())
+    Wing = VarTree(FlopsWrapper_output_Weight_Wing())
 
 
 class FlopsWrapper_output_Plot_Files(VariableTree):
@@ -170,14 +165,9 @@ class FlopsWrapper_output_Performance(VariableTree):
     thrso = Float(0.0)
     vmmo = Float(0.0)
 
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_output_Performance component"""
-
-        super(FlopsWrapper_output_Performance, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('Constraints',  FlopsWrapper_output_Performance_Constraints())
-        self.add('Segments',  FlopsWrapper_output_Performance_Segments())
+    # VariableTrees
+    Constraints = VarTree(FlopsWrapper_output_Performance_Constraints())
+    Segments = VarTree(FlopsWrapper_output_Performance_Segments())
 
 
 class FlopsWrapper_output_Payload(VariableTree):
@@ -244,13 +234,8 @@ class FlopsWrapper_output_Geometry(VariableTree):
     xmlg = Float(0.0)
     xnlg = Float(0.0)
 
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_output_Geometry component"""
-
-        super(FlopsWrapper_output_Geometry, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('BWB', FlopsWrapper_output_Geometry_BWB())
+    # VariableTrees
+    BWB = VarTree(FlopsWrapper_output_Geometry_BWB())
 
 
 class FlopsWrapper_output_Engine(VariableTree):
@@ -285,20 +270,15 @@ class FlopsWrapper_output_Econ(VariableTree):
 class FlopsWrapper_output(VariableTree):
     """Container for output"""
 
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_output component"""
-
-        super(FlopsWrapper_output, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('Econ',  FlopsWrapper_output_Econ())
-        self.add('Engine',  FlopsWrapper_output_Engine())
-        self.add('Geometry',  FlopsWrapper_output_Geometry())
-        self.add('Noise',  FlopsWrapper_output_Noise())
-        self.add('Payload',  FlopsWrapper_output_Payload())
-        self.add('Performance',  FlopsWrapper_output_Performance())
-        self.add('Plot_Files',  FlopsWrapper_output_Plot_Files())
-        self.add('Weight',  FlopsWrapper_output_Weight())
+    # VariableTrees
+    Econ = VarTree(FlopsWrapper_output_Econ())
+    Engine = VarTree(FlopsWrapper_output_Engine())
+    Geometry = VarTree(FlopsWrapper_output_Geometry())
+    Noise = VarTree(FlopsWrapper_output_Noise())
+    Payload = VarTree(FlopsWrapper_output_Payload())
+    Performance = VarTree(FlopsWrapper_output_Performance())
+    Plot_Files = VarTree(FlopsWrapper_output_Plot_Files())
+    Weight = VarTree(FlopsWrapper_output_Weight())
 
 
 class FlopsWrapper_input_wtin_Wing_Data(VariableTree):
@@ -571,25 +551,20 @@ class FlopsWrapper_input_wtin(VariableTree):
 
     # OpenMDAO Public Variables
 
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_input_wtin component"""
-
-        super(FlopsWrapper_input_wtin, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('Basic',  FlopsWrapper_input_wtin_Basic())
-        self.add('Center_of_Gravity',  FlopsWrapper_input_wtin_Center_of_Gravity())
-        self.add('Crew_Payload',  FlopsWrapper_input_wtin_Crew_Payload())
-        self.add('Detailed_Wing',  FlopsWrapper_input_wtin_Detailed_Wing())
-        self.add('Fuel_System',  FlopsWrapper_input_wtin_Fuel_System())
-        self.add('Fuselage',  FlopsWrapper_input_wtin_Fuselage())
-        self.add('Inertia',  FlopsWrapper_input_wtin_Inertia())
-        self.add('Landing_Gear',  FlopsWrapper_input_wtin_Landing_Gear())
-        self.add('OEW_Calculations',  FlopsWrapper_input_wtin_OEW_Calculations())
-        self.add('Override',  FlopsWrapper_input_wtin_Override())
-        self.add('Propulsion',  FlopsWrapper_input_wtin_Propulsion())
-        self.add('Tails_Fins',  FlopsWrapper_input_wtin_Tails_Fins())
-        self.add('Wing_Data',  FlopsWrapper_input_wtin_Wing_Data())
+    # VariableTrees
+    Basic = VarTree(FlopsWrapper_input_wtin_Basic())
+    Center_of_Gravity = VarTree(FlopsWrapper_input_wtin_Center_of_Gravity())
+    Crew_Payload = VarTree(FlopsWrapper_input_wtin_Crew_Payload())
+    Detailed_Wing = VarTree(FlopsWrapper_input_wtin_Detailed_Wing())
+    Fuel_System = VarTree(FlopsWrapper_input_wtin_Fuel_System())
+    Fuselage = VarTree(FlopsWrapper_input_wtin_Fuselage())
+    Inertia = VarTree(FlopsWrapper_input_wtin_Inertia())
+    Landing_Gear = VarTree(FlopsWrapper_input_wtin_Landing_Gear())
+    OEW_Calculations = VarTree(FlopsWrapper_input_wtin_OEW_Calculations())
+    Override = VarTree(FlopsWrapper_input_wtin_Override())
+    Propulsion = VarTree(FlopsWrapper_input_wtin_Propulsion())
+    Tails_Fins = VarTree(FlopsWrapper_input_wtin_Tails_Fins())
+    Wing_Data = VarTree(FlopsWrapper_input_wtin_Wing_Data())
 
 
 class FlopsWrapper_input_tolin_Thrust_Reverser(VariableTree):
@@ -707,17 +682,12 @@ class FlopsWrapper_input_tolin_Basic(VariableTree):
 class FlopsWrapper_input_tolin(VariableTree):
     """Container for input.tolin"""
 
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_input_tolin component"""
-
-        super(FlopsWrapper_input_tolin, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('Basic',  FlopsWrapper_input_tolin_Basic())
-        self.add('Integration_Intervals',  FlopsWrapper_input_tolin_Integration_Intervals())
-        self.add('Landing',  FlopsWrapper_input_tolin_Landing())
-        self.add('Takeoff',  FlopsWrapper_input_tolin_Takeoff())
-        self.add('Thrust_Reverser',  FlopsWrapper_input_tolin_Thrust_Reverser())
+    # VariableTrees
+    Basic = VarTree(FlopsWrapper_input_tolin_Basic())
+    Integration_Intervals = VarTree(FlopsWrapper_input_tolin_Integration_Intervals())
+    Landing = VarTree(FlopsWrapper_input_tolin_Landing())
+    Takeoff = VarTree(FlopsWrapper_input_tolin_Takeoff())
+    Thrust_Reverser = VarTree(FlopsWrapper_input_tolin_Thrust_Reverser())
 
 
 class FlopsWrapper_input_syntin_Variables(VariableTree):
@@ -773,14 +743,9 @@ class FlopsWrapper_input_syntin_Optimization_Control(VariableTree):
 class FlopsWrapper_input_syntin(VariableTree):
     """Container for input.syntin"""
 
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_input_syntin component"""
-
-        super(FlopsWrapper_input_syntin, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('Optimization_Control',  FlopsWrapper_input_syntin_Optimization_Control())
-        self.add('Variables',  FlopsWrapper_input_syntin_Variables())
+    # VariableTrees
+    Optimization_Control = VarTree(FlopsWrapper_input_syntin_Optimization_Control())
+    Variables = VarTree(FlopsWrapper_input_syntin_Variables())
 
 
 class FlopsWrapper_input_rfhin(VariableTree):
@@ -883,15 +848,10 @@ class FlopsWrapper_input_option_Excess_Power_Plot(VariableTree):
 class FlopsWrapper_input_option(VariableTree):
     """Container for input.option"""
 
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_input_option component"""
-
-        super(FlopsWrapper_input_option, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('Excess_Power_Plot',  FlopsWrapper_input_option_Excess_Power_Plot())
-        self.add('Plot_Files',  FlopsWrapper_input_option_Plot_Files())
-        self.add('Program_Control',  FlopsWrapper_input_option_Program_Control())
+    # VariableTrees
+    Excess_Power_Plot = VarTree(FlopsWrapper_input_option_Excess_Power_Plot())
+    Plot_Files = VarTree(FlopsWrapper_input_option_Plot_Files())
+    Program_Control = VarTree(FlopsWrapper_input_option_Program_Control())
 
 
 class FlopsWrapper_input_noisin_Turbine(VariableTree):
@@ -1177,26 +1137,21 @@ class FlopsWrapper_input_noisin_Airframe(VariableTree):
 class FlopsWrapper_input_noisin(VariableTree):
     """Container for input.noisin"""
 
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_input_noisin component"""
-
-        super(FlopsWrapper_input_noisin, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('Airframe',  FlopsWrapper_input_noisin_Airframe())
-        self.add('Basic',  FlopsWrapper_input_noisin_Basic())
-        self.add('Core',  FlopsWrapper_input_noisin_Core())
-        self.add('Engine_Parameters',  FlopsWrapper_input_noisin_Engine_Parameters())
-        self.add('Fan',  FlopsWrapper_input_noisin_Fan())
-        self.add('Flap_Noise',  FlopsWrapper_input_noisin_Flap_Noise())
-        self.add('Ground_Effects',  FlopsWrapper_input_noisin_Ground_Effects())
-        self.add('Jet',  FlopsWrapper_input_noisin_Jet())
-        self.add('MSJet',  FlopsWrapper_input_noisin_MSJet())
-        self.add('Observers',  FlopsWrapper_input_noisin_Observers())
-        self.add('Propagation',  FlopsWrapper_input_noisin_Propagation())
-        self.add('Propeller',  FlopsWrapper_input_noisin_Propeller())
-        self.add('Shielding',  FlopsWrapper_input_noisin_Shielding())
-        self.add('Turbine',  FlopsWrapper_input_noisin_Turbine())
+    # VariableTrees
+    Airframe = VarTree(FlopsWrapper_input_noisin_Airframe())
+    Basic = VarTree(FlopsWrapper_input_noisin_Basic())
+    Core = VarTree(FlopsWrapper_input_noisin_Core())
+    Engine_Parameters = VarTree(FlopsWrapper_input_noisin_Engine_Parameters())
+    Fan = VarTree(FlopsWrapper_input_noisin_Fan())
+    Flap_Noise = VarTree(FlopsWrapper_input_noisin_Flap_Noise())
+    Ground_Effects = VarTree(FlopsWrapper_input_noisin_Ground_Effects())
+    Jet = VarTree(FlopsWrapper_input_noisin_Jet())
+    MSJet = VarTree(FlopsWrapper_input_noisin_MSJet())
+    Observers = VarTree(FlopsWrapper_input_noisin_Observers())
+    Propagation = VarTree(FlopsWrapper_input_noisin_Propagation())
+    Propeller = VarTree(FlopsWrapper_input_noisin_Propeller())
+    Shielding = VarTree(FlopsWrapper_input_noisin_Shielding())
+    Turbine = VarTree(FlopsWrapper_input_noisin_Turbine())
 
 
 class FlopsWrapper_input_nacell(VariableTree):
@@ -1407,21 +1362,16 @@ class FlopsWrapper_input_missin_Basic(VariableTree):
 class FlopsWrapper_input_missin(VariableTree):
     """Container for input.missin"""
 
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_input_missin component"""
-
-        super(FlopsWrapper_input_missin, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('Basic',  FlopsWrapper_input_missin_Basic())
-        self.add('Climb',  FlopsWrapper_input_missin_Climb())
-        self.add('Cruise',  FlopsWrapper_input_missin_Cruise())
-        self.add('Descent',  FlopsWrapper_input_missin_Descent())
-        self.add('Ground_Operations',  FlopsWrapper_input_missin_Ground_Operations())
-        self.add('Reserve',  FlopsWrapper_input_missin_Reserve())
-        self.add('Store_Drag',  FlopsWrapper_input_missin_Store_Drag())
-        self.add('Turn_Segments',  FlopsWrapper_input_missin_Turn_Segments())
-        self.add('User_Weights',  FlopsWrapper_input_missin_User_Weights())
+    # VariableTrees
+    Basic = VarTree(FlopsWrapper_input_missin_Basic())
+    Climb = VarTree(FlopsWrapper_input_missin_Climb())
+    Cruise = VarTree(FlopsWrapper_input_missin_Cruise())
+    Descent = VarTree(FlopsWrapper_input_missin_Descent())
+    Ground_Operations = VarTree(FlopsWrapper_input_missin_Ground_Operations())
+    Reserve = VarTree(FlopsWrapper_input_missin_Reserve())
+    Store_Drag = VarTree(FlopsWrapper_input_missin_Store_Drag())
+    Turn_Segments = VarTree(FlopsWrapper_input_missin_Turn_Segments())
+    User_Weights = VarTree(FlopsWrapper_input_missin_User_Weights())
 
 
 class FlopsWrapper_input_fusein_Basic(VariableTree):
@@ -1461,14 +1411,9 @@ class FlopsWrapper_input_fusein_BWB(VariableTree):
 class FlopsWrapper_input_fusein(VariableTree):
     """Container for input.fusein"""
 
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_input_fusein component"""
-
-        super(FlopsWrapper_input_fusein, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('BWB',  FlopsWrapper_input_fusein_BWB())
-        self.add('Basic',  FlopsWrapper_input_fusein_Basic())
+    # VariableTrees
+    BWB = VarTree(FlopsWrapper_input_fusein_BWB())
+    Basic = VarTree(FlopsWrapper_input_fusein_Basic())
 
 
 class FlopsWrapper_input_engine_deck(VariableTree):
@@ -1621,18 +1566,13 @@ class FlopsWrapper_input_engine(VariableTree):
     ifile = Str(desc='Name of cycle definition input file.  Used only if IENG = 0.')
     tfile = Str('ENGTAB', desc='Name of the file containing component map tables.')
 
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_input_engine component"""
-
-        super(FlopsWrapper_input_engine, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('Basic',  FlopsWrapper_input_engine_Basic())
-        self.add('Design_Point',  FlopsWrapper_input_engine_Design_Point())
-        self.add('Engine_Weight',  FlopsWrapper_input_engine_Engine_Weight())
-        self.add('IC_Engine',  FlopsWrapper_input_engine_IC_Engine())
-        self.add('Noise_Data',  FlopsWrapper_input_engine_Noise_Data())
-        self.add('Other',  FlopsWrapper_input_engine_Other())
+    # VariableTrees
+    Basic = VarTree(FlopsWrapper_input_engine_Basic())
+    Design_Point = VarTree(FlopsWrapper_input_engine_Design_Point())
+    Engine_Weight = VarTree(FlopsWrapper_input_engine_Engine_Weight())
+    IC_Engine = VarTree(FlopsWrapper_input_engine_IC_Engine())
+    Noise_Data = VarTree(FlopsWrapper_input_engine_Noise_Data())
+    Other = VarTree(FlopsWrapper_input_engine_Other())
 
 
 class FlopsWrapper_input_engdin_Special_Options(VariableTree):
@@ -1685,14 +1625,9 @@ class FlopsWrapper_input_engdin(VariableTree):
     # Special addition for analysis runs where we aren't connected to NPSS. 
     eifile = Str('', desc="Engine deck filename")
 
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_input_engdin component"""
-
-        super(FlopsWrapper_input_engdin, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('Basic',  FlopsWrapper_input_engdin_Basic())
-        self.add('Special_Options',  FlopsWrapper_input_engdin_Special_Options())
+    # VariableTrees
+    Basic = VarTree(FlopsWrapper_input_engdin_Basic())
+    Special_Options = VarTree(FlopsWrapper_input_engdin_Special_Options())
 
 
 class FlopsWrapper_input_costin_Mission_Performance(VariableTree):
@@ -1817,15 +1752,10 @@ class FlopsWrapper_input_costin_Basic(VariableTree):
 class FlopsWrapper_input_costin(VariableTree):
     """Container for input.costin"""
 
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_input_costin component"""
-
-        super(FlopsWrapper_input_costin, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('Basic',  FlopsWrapper_input_costin_Basic())
-        self.add('Cost_Technology',  FlopsWrapper_input_costin_Cost_Technology())
-        self.add('Mission_Performance',  FlopsWrapper_input_costin_Mission_Performance())
+    # VariableTrees
+    Basic = VarTree(FlopsWrapper_input_costin_Basic())
+    Cost_Technology = VarTree(FlopsWrapper_input_costin_Cost_Technology())
+    Mission_Performance = VarTree(FlopsWrapper_input_costin_Mission_Performance())
 
 
 class FlopsWrapper_input_confin_Objective(VariableTree):
@@ -1887,15 +1817,10 @@ class FlopsWrapper_input_confin_Basic(VariableTree):
 class FlopsWrapper_input_confin(VariableTree):
     """Container for input.confin"""
 
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_input_confin component"""
-
-        super(FlopsWrapper_input_confin, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('Basic',  FlopsWrapper_input_confin_Basic())
-        self.add('Design_Variables',  FlopsWrapper_input_confin_Design_Variables())
-        self.add('Objective',  FlopsWrapper_input_confin_Objective())
+    # VariableTrees
+    Basic = VarTree(FlopsWrapper_input_confin_Basic())
+    Design_Variables = VarTree(FlopsWrapper_input_confin_Design_Variables())
+    Objective = VarTree(FlopsWrapper_input_confin_Objective())
 
 
 class FlopsWrapper_input_asclin(VariableTree):
@@ -1989,15 +1914,10 @@ class FlopsWrapper_input_aerin_Basic(VariableTree):
 class FlopsWrapper_input_aerin(VariableTree):
     """Container for input.aerin"""
 
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_input_aerin component"""
-
-        super(FlopsWrapper_input_aerin, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('Basic',  FlopsWrapper_input_aerin_Basic())
-        self.add('Internal_Aero',  FlopsWrapper_input_aerin_Internal_Aero())
-        self.add('Takeoff_Landing',  FlopsWrapper_input_aerin_Takeoff_Landing())
+    # VariableTrees
+    Basic = VarTree(FlopsWrapper_input_aerin_Basic())
+    Internal_Aero = VarTree(FlopsWrapper_input_aerin_Internal_Aero())
+    Takeoff_Landing = VarTree(FlopsWrapper_input_aerin_Takeoff_Landing())
 
 
 class FlopsWrapper_input(VariableTree):
@@ -2006,31 +1926,25 @@ class FlopsWrapper_input(VariableTree):
     # OpenMDAO Public Variables
     title = Str('', desc='Any alphanumeric title')
 
-    def __init__(self, *args, **kwargs):
-        """Constructor for the FlopsWrapper_input component"""
-
-        super(FlopsWrapper_input, self).__init__(*args, **kwargs)
-
-        # VariableTrees
-        self.add('aerin',  FlopsWrapper_input_aerin())
-        self.add('aero_data',  FlopsWrapper_input_aero_data())
-        self.add('asclin',  FlopsWrapper_input_asclin())
-        self.add('confin',  FlopsWrapper_input_confin())
-        self.add('costin',  FlopsWrapper_input_costin())
-        self.add('engdin',  FlopsWrapper_input_engdin())
-        self.add('engine',  FlopsWrapper_input_engine())
-        self.add('engine_deck',  FlopsWrapper_input_engine_deck())
-        self.add('fusein',  FlopsWrapper_input_fusein())
-        self.add('missin',  FlopsWrapper_input_missin())
-        self.add('mission_definition',  FlopsWrapper_input_mission_definition())
-        self.add('nacell',  FlopsWrapper_input_nacell())
-        self.add('noisin',  FlopsWrapper_input_noisin())
-        self.add('option',  FlopsWrapper_input_option())
-        self.add('proin',  FlopsWrapper_input_proin())
-        self.add('rfhin',  FlopsWrapper_input_rfhin())
-        self.add('syntin',  FlopsWrapper_input_syntin())
-        self.add('tolin',  FlopsWrapper_input_tolin())
-        self.add('wtin',  FlopsWrapper_input_wtin())
+    aerin = VarTree(FlopsWrapper_input_aerin())
+    aero_data = VarTree(FlopsWrapper_input_aero_data())
+    asclin = VarTree(FlopsWrapper_input_asclin())
+    confin = VarTree(FlopsWrapper_input_confin())
+    costin = VarTree(FlopsWrapper_input_costin())
+    engdin = VarTree(FlopsWrapper_input_engdin())
+    engine = VarTree(FlopsWrapper_input_engine())
+    engine_deck = VarTree(FlopsWrapper_input_engine_deck())
+    fusein = VarTree(FlopsWrapper_input_fusein())
+    missin = VarTree(FlopsWrapper_input_missin())
+    mission_definition = VarTree(FlopsWrapper_input_mission_definition())
+    nacell = VarTree(FlopsWrapper_input_nacell())
+    noisin = VarTree(FlopsWrapper_input_noisin())
+    option = VarTree(FlopsWrapper_input_option())
+    proin = VarTree(FlopsWrapper_input_proin())
+    rfhin = VarTree(FlopsWrapper_input_rfhin())
+    syntin = VarTree(FlopsWrapper_input_syntin())
+    tolin = VarTree(FlopsWrapper_input_tolin())
+    wtin = VarTree(FlopsWrapper_input_wtin())
 
         
 # pylint: enable-msg=C0301,C0324,R0903
@@ -2047,9 +1961,9 @@ class FlopsWrapper(ExternalCode):
     npcons = Array(iotype='in', dtype=numpy_int64, desc='Number of PCONIN ' +
                    'namelists to be created with each RERUN namelist')
     
-    # Slots for Variable Trees
-    input = Slot(FlopsWrapper_input, iotype='in')
-    output = Slot(FlopsWrapper_output, iotype='out')
+    # Variable Trees
+    input = VarTree(FlopsWrapper_input(), iotype='in')
+    output = VarTree(FlopsWrapper_output(), iotype='out')
     
     # This stuff is defined in ExternalCode. I'm preserving it to keep a record
     # of the var names that were used in the MC Java wrapper.
@@ -2061,10 +1975,6 @@ class FlopsWrapper(ExternalCode):
 
         super(FlopsWrapper, self).__init__()
 
-        # VariableTrees
-        self.add('input',  FlopsWrapper_input(iotype='in'))
-        self.add('output',  FlopsWrapper_output(iotype='out'))
-        
         # External Code public variables
         self.stdin = 'flops.inp'
         self.stdout = 'flops.out'
@@ -4589,26 +4499,26 @@ class FlopsWrapper(ExternalCode):
         self.nseg0 += 1
         comp = VariableTree()
 
-        comp.add_trait('key', Str('CHAN', desc="Key word specifying reason for end of segment"))
-        comp.add_trait('nflap', Int(-1, desc="Number of drag polar to use\nIf NFLAP = -1, default value or previous value is used"))
-        comp.add_trait('ifix', Int(-1, desc="Constraints for climb segments after OBSTACLE\nIf IFIX = 0, default value or previous value is used" ))
-        comp.add_trait('engscl', Float(-1., desc="Engine setting as a fraction of thrust at IPCMAX\nIf ENGSCL = -1., default value or previous value is used" ))
-        comp.add_trait('afix', Float(-10., units='deg', desc="Fixed angle of attack for IFIX = 3 or 6\nIf AFIX = -10., final value from previous segment is used" ))
-        comp.add_trait('gfix', Float(-10., units='deg', desc="Fixed flight path angle for IFIX = 2 or 4, or fixed cabin floor angle for IFIX = 5\nIf GFIX = -10., final value from previous segment is used" ))
-        comp.add_trait('vfix', Float(-1., units='nmi/h', desc="Fixed velocity for IFIX = 1, 4 or 6\nIf VFIX = -1., final value from previous segment is used" ))
-        comp.add_trait('hstop', Float(-1., units='ft', desc="Segment termination altitude\nIf HSTOP = -1., default value is used" ))
-        comp.add_trait('dstop', Float(-1., units='ft', desc="Segment termination distance\nIf DSTOP = -1., value from following segment is used" ))
-        comp.add_trait('tstop', Float(-1., units='s', desc="Segment termination time\nIf TSTOP = -1., value from following segment is used" ))
-        comp.add_trait('vstop', Float(-1., units='nmi/h', desc="Segment termination velocity\nIf VSTOP = -1., default value is used" ))
-        comp.add_trait('hmin', Float(-1., units='ft', desc="Minimum altitude for segment termination; overrides STOP variables above\nIf HMIN = -1., value is not used" ))
-        comp.add_trait('sprate', Float(-1., desc="Thrust reduction rate during segments where the power setting is reduced\nIf SPRATE = -1., default value or previous value is used" ))
-        comp.add_trait('iplr', Int(-1, desc="Programmed lapse rate switch for this segment\nIf IPLR = -1, default value is used" ))
-        comp.add_trait('noycal', Int(-1, desc="Noise calculation switch - available only for simplified noise calculations in DOSS version\nIf NOYCAL = -1, default value is used" ))
-        comp.add_trait('delt', Float(-1., units='s', desc="Time step for post OBSTACLE segments\nIf DELT = -1., default value is used" ))
-        comp.add_trait('grdaeo', Float(-1., units='deg', desc="Flight path angle for CUTBACK with all engines operating\nIf GRDAEO = -1., default value is used" ))
-        comp.add_trait('grdoeo', Float(-1., units='deg', desc="Flight path angle for CUTBACK with one engine out\nIf GRDOEO = -1., default value is used" ))
+        comp.add('key', Str('CHAN', desc="Key word specifying reason for end of segment"))
+        comp.add('nflap', Int(-1, desc="Number of drag polar to use\nIf NFLAP = -1, default value or previous value is used"))
+        comp.add('ifix', Int(-1, desc="Constraints for climb segments after OBSTACLE\nIf IFIX = 0, default value or previous value is used" ))
+        comp.add('engscl', Float(-1., desc="Engine setting as a fraction of thrust at IPCMAX\nIf ENGSCL = -1., default value or previous value is used" ))
+        comp.add('afix', Float(-10., units='deg', desc="Fixed angle of attack for IFIX = 3 or 6\nIf AFIX = -10., final value from previous segment is used" ))
+        comp.add('gfix', Float(-10., units='deg', desc="Fixed flight path angle for IFIX = 2 or 4, or fixed cabin floor angle for IFIX = 5\nIf GFIX = -10., final value from previous segment is used" ))
+        comp.add('vfix', Float(-1., units='nmi/h', desc="Fixed velocity for IFIX = 1, 4 or 6\nIf VFIX = -1., final value from previous segment is used" ))
+        comp.add('hstop', Float(-1., units='ft', desc="Segment termination altitude\nIf HSTOP = -1., default value is used" ))
+        comp.add('dstop', Float(-1., units='ft', desc="Segment termination distance\nIf DSTOP = -1., value from following segment is used" ))
+        comp.add('tstop', Float(-1., units='s', desc="Segment termination time\nIf TSTOP = -1., value from following segment is used" ))
+        comp.add('vstop', Float(-1., units='nmi/h', desc="Segment termination velocity\nIf VSTOP = -1., default value is used" ))
+        comp.add('hmin', Float(-1., units='ft', desc="Minimum altitude for segment termination; overrides STOP variables above\nIf HMIN = -1., value is not used" ))
+        comp.add('sprate', Float(-1., desc="Thrust reduction rate during segments where the power setting is reduced\nIf SPRATE = -1., default value or previous value is used" ))
+        comp.add('iplr', Int(-1, desc="Programmed lapse rate switch for this segment\nIf IPLR = -1, default value is used" ))
+        comp.add('noycal', Int(-1, desc="Noise calculation switch - available only for simplified noise calculations in DOSS version\nIf NOYCAL = -1, default value is used" ))
+        comp.add('delt', Float(-1., units='s', desc="Time step for post OBSTACLE segments\nIf DELT = -1., default value is used" ))
+        comp.add('grdaeo', Float(-1., units='deg', desc="Flight path angle for CUTBACK with all engines operating\nIf GRDAEO = -1., default value is used" ))
+        comp.add('grdoeo', Float(-1., units='deg', desc="Flight path angle for CUTBACK with one engine out\nIf GRDOEO = -1., default value is used" ))
         
-        self.input.add(name, comp)
+        self.input.add(name, VarTree(comp))
         
 
     def remove_segin(self):
@@ -4636,29 +4546,29 @@ class FlopsWrapper(ExternalCode):
         self.npcon0 += 1
         comp = VariableTree()
 
-        comp.add_trait('conalt', Float(-1., units='ft', desc="Altitude at which constraint is to be evaluated (Default = value from preceding constraint)" ))
-        comp.add_trait('conmch', Float(-1., units='nmi/h', desc="Velocity at which constraint is to be evaluated, kts.  If less than or equal to 5., assumed to be Mach number (Default = value from preceding constraint)" ))
+        comp.add('conalt', Float(-1., units='ft', desc="Altitude at which constraint is to be evaluated (Default = value from preceding constraint)" ))
+        comp.add('conmch', Float(-1., units='nmi/h', desc="Velocity at which constraint is to be evaluated, kts.  If less than or equal to 5., assumed to be Mach number (Default = value from preceding constraint)" ))
         
         if self.npcon0 == 1:
-            comp.add_trait('connz', Float(1., desc="Load factor (Nz) at which constraint is to be evaluated, G's (Default = value from preceding constraint or 1.)" ))
-            comp.add_trait('conpc', Float(1., desc="Engine power setting parameter\n< 1., Fraction of maximum available thrust\n= 1., Maximum thrust at this Mach number and altitude\n> 1., Power setting for engine deck (3. would indicate the third highest thrust)\n(Default = value from preceding constraint or 1.)" ))
-            comp.add_trait('icstdg', Int(0, desc="Number of store drag schedule (see Namelist $MISSIN) to be applied to this constraint (Default = value from preceding constraint or 0)" ))
+            comp.add('connz', Float(1., desc="Load factor (Nz) at which constraint is to be evaluated, G's (Default = value from preceding constraint or 1.)" ))
+            comp.add('conpc', Float(1., desc="Engine power setting parameter\n< 1., Fraction of maximum available thrust\n= 1., Maximum thrust at this Mach number and altitude\n> 1., Power setting for engine deck (3. would indicate the third highest thrust)\n(Default = value from preceding constraint or 1.)" ))
+            comp.add('icstdg', Int(0, desc="Number of store drag schedule (see Namelist $MISSIN) to be applied to this constraint (Default = value from preceding constraint or 0)" ))
         else:
-            comp.add_trait('connz', Float(-1., desc="Load factor (Nz) at which constraint is to be evaluated, G's (Default = value from preceding constraint or 1.)" ))
-            comp.add_trait('conpc', Float(-10., desc="Engine power setting parameter\n< 1., Fraction of maximum available thrust\n= 1., Maximum thrust at this Mach number and altitude\n> 1., Power setting for engine deck (3. would indicate the third highest thrust)\n(Default = value from preceding constraint or 1.)" ))
-            comp.add_trait('icstdg', Int(-1, desc="Number of store drag schedule (see Namelist $MISSIN) to be applied to this constraint (Default = value from preceding constraint or 0)" ))
+            comp.add('connz', Float(-1., desc="Load factor (Nz) at which constraint is to be evaluated, G's (Default = value from preceding constraint or 1.)" ))
+            comp.add('conpc', Float(-10., desc="Engine power setting parameter\n< 1., Fraction of maximum available thrust\n= 1., Maximum thrust at this Mach number and altitude\n> 1., Power setting for engine deck (3. would indicate the third highest thrust)\n(Default = value from preceding constraint or 1.)" ))
+            comp.add('icstdg', Int(-1, desc="Number of store drag schedule (see Namelist $MISSIN) to be applied to this constraint (Default = value from preceding constraint or 0)" ))
 
-        comp.add_trait('conlim', Float(-999., desc="Constraint minimum or maximum value" ))
-        comp.add_trait('conaux', Float(-1., desc="Additional constraint parameter" ))
-        comp.add_trait('neo', Int(-1, desc="Number of engines operating (Default = value from preceding constraint or all)" ))
-        comp.add_trait('conwt', Float(-1., units='lb', desc="Fixed weight (Default = value from preceding constraint)" ))
-        comp.add_trait('iconsg', Int(-1, desc="Weight at start of mission segment ICONSG is used (Default = value from preceding constraint)" ))
-        comp.add_trait('confm', Float(-1., desc="Fuel multiplier or fraction of fuel burned (Default = value from preceding constraint)" ))
-        comp.add_trait('conwta', Float(-999., units='lb', desc="Delta weight (Default = value from preceding constraint)" ))
-        comp.add_trait('icontp', Enum(-1, (-1,5,6,7,8,9,10,11,12,13,16,17,20,30), desc="Type of constraint (Default = value from preceding constraint)", \
+        comp.add('conlim', Float(-999., desc="Constraint minimum or maximum value" ))
+        comp.add('conaux', Float(-1., desc="Additional constraint parameter" ))
+        comp.add('neo', Int(-1, desc="Number of engines operating (Default = value from preceding constraint or all)" ))
+        comp.add('conwt', Float(-1., units='lb', desc="Fixed weight (Default = value from preceding constraint)" ))
+        comp.add('iconsg', Int(-1, desc="Weight at start of mission segment ICONSG is used (Default = value from preceding constraint)" ))
+        comp.add('confm', Float(-1., desc="Fuel multiplier or fraction of fuel burned (Default = value from preceding constraint)" ))
+        comp.add('conwta', Float(-999., units='lb', desc="Delta weight (Default = value from preceding constraint)" ))
+        comp.add('icontp', Enum(-1, (-1,5,6,7,8,9,10,11,12,13,16,17,20,30), desc="Type of constraint (Default = value from preceding constraint)", \
                                       aliases=("Previous","Min. climb rate","Max. time-to-climb","Max. time-to-distance","Min. sustained load factor","Min. instant. load factor","Min. turn rate","Max. turn radius","Min. excess energy","Min. climb ceiling","Max. accel./decel. time","Min. max. speed","Min. energy bleed rate","Min. thrust margin")))
             
-        self.input.add(name, comp)
+        self.input.add(name, VarTree(comp))
         
 
     def remove_pconin(self):
@@ -4691,19 +4601,19 @@ class FlopsWrapper(ExternalCode):
         self.npcons0[i] += 1
         comp = VariableTree()
 
-        comp.add_trait('conalt', Float(-1., units='ft', desc="Altitude at which constraint is to be evaluated (Default = value from preceding constraint)" ))
-        comp.add_trait('conmch', Float(-1., units='nmi/h', desc="Velocity at which constraint is to be evaluated, kts.  If less than or equal to 5., assumed to be Mach number (Default = value from preceding constraint)" ))
-        comp.add_trait('connz', Float(-1., desc="Load factor (Nz) at which constraint is to be evaluated, G's (Default = value from preceding constraint or 1.)" ))
-        comp.add_trait('conpc', Float(-10., desc="Engine power setting parameter\n< 1., Fraction of maximum available thrust\n= 1., Maximum thrust at this Mach number and altitude\n> 1., Power setting for engine deck (3. would indicate the third highest thrust)\n(Default = value from preceding constraint or 1.)" ))
-        comp.add_trait('icstdg', Int(-1, desc="Number of store drag schedule (see Namelist $MISSIN) to be applied to this constraint (Default = value from preceding constraint or 0)" ))
-        comp.add_trait('conlim', Float(-999., desc="Constraint minimum or maximum value" ))
-        comp.add_trait('conaux', Float(-1., desc="Additional constraint parameter" ))
-        comp.add_trait('neo', Int(-1, desc="Number of engines operating (Default = value from preceding constraint or all)" ))
-        comp.add_trait('conwt', Float(-1., units='lb', desc="Fixed weight (Default = value from preceding constraint)" ))
-        comp.add_trait('iconsg', Int(-1, desc="Weight at start of mission segment ICONSG is used (Default = value from preceding constraint)" ))
-        comp.add_trait('confm', Float(-1., desc="Fuel multiplier or fraction of fuel burned (Default = value from preceding constraint)" ))
-        comp.add_trait('conwta', Float(-999., units='lb', desc="Delta weight (Default = value from preceding constraint)" ))
-        comp.add_trait('icontp', Enum(-1, (-1,5,6,7,8,9,10,11,12,13,16,17,20,30), desc="Type of constraint (Default = value from preceding constraint)", \
+        comp.add('conalt', Float(-1., units='ft', desc="Altitude at which constraint is to be evaluated (Default = value from preceding constraint)" ))
+        comp.add('conmch', Float(-1., units='nmi/h', desc="Velocity at which constraint is to be evaluated, kts.  If less than or equal to 5., assumed to be Mach number (Default = value from preceding constraint)" ))
+        comp.add('connz', Float(-1., desc="Load factor (Nz) at which constraint is to be evaluated, G's (Default = value from preceding constraint or 1.)" ))
+        comp.add('conpc', Float(-10., desc="Engine power setting parameter\n< 1., Fraction of maximum available thrust\n= 1., Maximum thrust at this Mach number and altitude\n> 1., Power setting for engine deck (3. would indicate the third highest thrust)\n(Default = value from preceding constraint or 1.)" ))
+        comp.add('icstdg', Int(-1, desc="Number of store drag schedule (see Namelist $MISSIN) to be applied to this constraint (Default = value from preceding constraint or 0)" ))
+        comp.add('conlim', Float(-999., desc="Constraint minimum or maximum value" ))
+        comp.add('conaux', Float(-1., desc="Additional constraint parameter" ))
+        comp.add('neo', Int(-1, desc="Number of engines operating (Default = value from preceding constraint or all)" ))
+        comp.add('conwt', Float(-1., units='lb', desc="Fixed weight (Default = value from preceding constraint)" ))
+        comp.add('iconsg', Int(-1, desc="Weight at start of mission segment ICONSG is used (Default = value from preceding constraint)" ))
+        comp.add('confm', Float(-1., desc="Fuel multiplier or fraction of fuel burned (Default = value from preceding constraint)" ))
+        comp.add('conwta', Float(-999., units='lb', desc="Delta weight (Default = value from preceding constraint)" ))
+        comp.add('icontp', Enum(-1, (-1,5,6,7,8,9,10,11,12,13,16,17,20,30), desc="Type of constraint (Default = value from preceding constraint)", \
                                       aliases=("Previous","Min. climb rate","Max. time-to-climb","Max. time-to-distance","Min. sustained load factor","Min. instant. load factor","Min. turn rate","Max. turn radius","Min. excess energy","Min. climb ceiling","Max. accel./decel. time","Min. max. speed","Min. energy bleed rate","Min. thrust margin")))
 
         temp = getattr(self.input, rerun_name)
@@ -4742,164 +4652,164 @@ class FlopsWrapper(ExternalCode):
         self.npcons0.append(0)
         comp = VariableTree()
 
-        comp.add_trait('desrng', Float(-1., units="nmi/s" ))
-        comp.add_trait('mywts', Int(-1 ))
-        comp.add_trait('rampwt', Float(-1., units="lb" ))
-        comp.add_trait('dowe', Float(-1., units="lb" ))
-        comp.add_trait('paylod', Float(-1., units="lb" ))
-        comp.add_trait('fuemax', Float(-1., units="lb" ))
-        comp.add_trait('itakof', Int(-1 ))
-        comp.add_trait('iland', Int(-1 ))
-        comp.add_trait('nopro', Int(-1 ))
-        comp.add_trait('noise', Int(-1 ))
-        comp.add_trait('icost', Int(-1 ))
-        comp.add_trait('wsr', Float(-1. ))
-        comp.add_trait('twr', Float(-1. ))
+        comp.add('desrng', Float(-1., units="nmi/s" ))
+        comp.add('mywts', Int(-1 ))
+        comp.add('rampwt', Float(-1., units="lb" ))
+        comp.add('dowe', Float(-1., units="lb" ))
+        comp.add('paylod', Float(-1., units="lb" ))
+        comp.add('fuemax', Float(-1., units="lb" ))
+        comp.add('itakof', Int(-1 ))
+        comp.add('iland', Int(-1 ))
+        comp.add('nopro', Int(-1 ))
+        comp.add('noise', Int(-1 ))
+        comp.add('icost', Int(-1 ))
+        comp.add('wsr', Float(-1. ))
+        comp.add('twr', Float(-1. ))
         
-        comp.add('missin', VariableTree())
-        comp.missin.add('Basic', VariableTree())
-        comp.missin.Basic.add_trait('indr', Int(-999 ))
-        comp.missin.Basic.add_trait('fact', Float(-999. ))
-        comp.missin.Basic.add_trait('fleak', Float(-999. ))
-        comp.missin.Basic.add_trait('fcdo', Float(-999. ))
-        comp.missin.Basic.add_trait('fcdi', Float(-999. ))
-        comp.missin.Basic.add_trait('fcdsub', Float(-999. ))
-        comp.missin.Basic.add_trait('fcdsup', Float(-999. ))
-        comp.missin.Basic.add_trait('iskal', Int(-999 ))
-        comp.missin.Basic.add_trait('owfact', Float(-999. ))
-        comp.missin.Basic.add_trait('iflag', Int(-999 ))
-        comp.missin.Basic.add_trait('msumpt', Int(-999 ))
-        comp.missin.Basic.add_trait('dtc', Float(-999. ))
-        comp.missin.Basic.add_trait('irw', Int(-999 ))
-        comp.missin.Basic.add_trait('rtol', Float(-999. ))
-        comp.missin.Basic.add_trait('nhold', Int(-999 ))
-        comp.missin.Basic.add_trait('iata', Int(-999 ))
-        comp.missin.Basic.add_trait('tlwind', Float(-999. ))
-        comp.missin.Basic.add_trait('dwt', Float(-999. ))
-        comp.missin.Basic.add_trait('offdr', Array(dtype=numpy_float64 ))
-        comp.missin.Basic.add_trait('idoq', Int(-999 ))
-        comp.missin.Basic.add_trait('nsout', Int(-999 ))
-        comp.missin.Basic.add_trait('nsadj', Int(-999 ))
-        comp.missin.Basic.add_trait('mirror', Int(-999 ))
+        comp.add('missin', VarTree(VariableTree()))
+        comp.missin.add('Basic', VarTree(VariableTree()))
+        comp.missin.Basic.add('indr', Int(-999 ))
+        comp.missin.Basic.add('fact', Float(-999. ))
+        comp.missin.Basic.add('fleak', Float(-999. ))
+        comp.missin.Basic.add('fcdo', Float(-999. ))
+        comp.missin.Basic.add('fcdi', Float(-999. ))
+        comp.missin.Basic.add('fcdsub', Float(-999. ))
+        comp.missin.Basic.add('fcdsup', Float(-999. ))
+        comp.missin.Basic.add('iskal', Int(-999 ))
+        comp.missin.Basic.add('owfact', Float(-999. ))
+        comp.missin.Basic.add('iflag', Int(-999 ))
+        comp.missin.Basic.add('msumpt', Int(-999 ))
+        comp.missin.Basic.add('dtc', Float(-999. ))
+        comp.missin.Basic.add('irw', Int(-999 ))
+        comp.missin.Basic.add('rtol', Float(-999. ))
+        comp.missin.Basic.add('nhold', Int(-999 ))
+        comp.missin.Basic.add('iata', Int(-999 ))
+        comp.missin.Basic.add('tlwind', Float(-999. ))
+        comp.missin.Basic.add('dwt', Float(-999. ))
+        comp.missin.Basic.add('offdr', Array(dtype=numpy_float64 ))
+        comp.missin.Basic.add('idoq', Int(-999 ))
+        comp.missin.Basic.add('nsout', Int(-999 ))
+        comp.missin.Basic.add('nsadj', Int(-999 ))
+        comp.missin.Basic.add('mirror', Int(-999 ))
 
-        comp.missin.add('Store_Drag', VariableTree())
-        comp.missin.Store_Drag.add_trait('stma', Array(dtype=numpy_float64 ))
-        comp.missin.Store_Drag.add_trait('cdst', Array(dtype=numpy_float64 ))
-        comp.missin.Store_Drag.add_trait('istcl', Array(dtype=numpy_float64 ))
-        comp.missin.Store_Drag.add_trait('istcr', Array(dtype=numpy_float64 ))
-        comp.missin.Store_Drag.add_trait('istde', Int(-999 ))
+        comp.missin.add('Store_Drag', VarTree(VariableTree()))
+        comp.missin.Store_Drag.add('stma', Array(dtype=numpy_float64 ))
+        comp.missin.Store_Drag.add('cdst', Array(dtype=numpy_float64 ))
+        comp.missin.Store_Drag.add('istcl', Array(dtype=numpy_float64 ))
+        comp.missin.Store_Drag.add('istcr', Array(dtype=numpy_float64 ))
+        comp.missin.Store_Drag.add('istde', Int(-999 ))
 
-        comp.missin.add('User_Weights', VariableTree())
-        comp.missin.User_Weights.add_trait('mywts', Int(-999 ))
-        comp.missin.User_Weights.add_trait('rampwt', Float(-999. ))
-        comp.missin.User_Weights.add_trait('dowe', Float(-999. ))
-        comp.missin.User_Weights.add_trait('paylod', Float(-999. ))
-        comp.missin.User_Weights.add_trait('fuemax', Float(-999. ))
+        comp.missin.add('User_Weights', VarTree(VariableTree()))
+        comp.missin.User_Weights.add('mywts', Int(-999 ))
+        comp.missin.User_Weights.add('rampwt', Float(-999. ))
+        comp.missin.User_Weights.add('dowe', Float(-999. ))
+        comp.missin.User_Weights.add('paylod', Float(-999. ))
+        comp.missin.User_Weights.add('fuemax', Float(-999. ))
 
-        comp.missin.add('Ground_Operations', VariableTree())
-        comp.missin.Ground_Operations.add_trait('takotm', Float(-999. ))
-        comp.missin.Ground_Operations.add_trait('taxotm', Float(-999. ))
-        comp.missin.Ground_Operations.add_trait('apprtm', Float(-999. ))
-        comp.missin.Ground_Operations.add_trait('appfff', Float(-999. ))
-        comp.missin.Ground_Operations.add_trait('taxitm', Float(-999. ))
-        comp.missin.Ground_Operations.add_trait('ittff', Int(-999 ))
-        comp.missin.Ground_Operations.add_trait('takoff', Float(-999. ))
-        comp.missin.Ground_Operations.add_trait('txfufl', Float(-999. ))
-        comp.missin.Ground_Operations.add_trait('ftkofl', Float(-999. ))
-        comp.missin.Ground_Operations.add_trait('ftxofl', Float(-999. ))
-        comp.missin.Ground_Operations.add_trait('ftxifl', Float(-999. ))
-        comp.missin.Ground_Operations.add_trait('faprfl', Float(-999. ))
+        comp.missin.add('Ground_Operations', VarTree(VariableTree()))
+        comp.missin.Ground_Operations.add('takotm', Float(-999. ))
+        comp.missin.Ground_Operations.add('taxotm', Float(-999. ))
+        comp.missin.Ground_Operations.add('apprtm', Float(-999. ))
+        comp.missin.Ground_Operations.add('appfff', Float(-999. ))
+        comp.missin.Ground_Operations.add('taxitm', Float(-999. ))
+        comp.missin.Ground_Operations.add('ittff', Int(-999 ))
+        comp.missin.Ground_Operations.add('takoff', Float(-999. ))
+        comp.missin.Ground_Operations.add('txfufl', Float(-999. ))
+        comp.missin.Ground_Operations.add('ftkofl', Float(-999. ))
+        comp.missin.Ground_Operations.add('ftxofl', Float(-999. ))
+        comp.missin.Ground_Operations.add('ftxifl', Float(-999. ))
+        comp.missin.Ground_Operations.add('faprfl', Float(-999. ))
 
-        comp.missin.add('Turn_Segments', VariableTree())
-        comp.missin.Turn_Segments.add_trait('xnz', Array(dtype=numpy_float64 ))
-        comp.missin.Turn_Segments.add_trait('xcl', Array(dtype=numpy_float64 ))
-        comp.missin.Turn_Segments.add_trait('xmach', Array(dtype=numpy_float64 ))
+        comp.missin.add('Turn_Segments', VarTree(VariableTree()))
+        comp.missin.Turn_Segments.add('xnz', Array(dtype=numpy_float64 ))
+        comp.missin.Turn_Segments.add('xcl', Array(dtype=numpy_float64 ))
+        comp.missin.Turn_Segments.add('xmach', Array(dtype=numpy_float64 ))
 
-        comp.missin.add('Climb', VariableTree())
-        comp.missin.Climb.add_trait('nclimb', Int(-999))
-        comp.missin.Climb.add_trait('clmmin', Array(dtype=numpy_float64 ))
-        comp.missin.Climb.add_trait('clmmax', Array(dtype=numpy_float64 ))
-        comp.missin.Climb.add_trait('clamin', Array(dtype=numpy_float64 ))
-        comp.missin.Climb.add_trait('clamax', Array(dtype=numpy_float64 ))
-        comp.missin.Climb.add_trait('nincl', Array(dtype=numpy_int64 ))
-        comp.missin.Climb.add_trait('fwf', Array(dtype=numpy_float64 ))
-        comp.missin.Climb.add_trait('ncrcl', Array(dtype=numpy_int64 ))
-        comp.missin.Climb.add_trait('cldcd', Array(dtype=numpy_float64 ))
-        comp.missin.Climb.add_trait('ippcl', Array(dtype=numpy_int64 ))
-        comp.missin.Climb.add_trait('maxcl', Array(dtype=numpy_int64 ))
-        comp.missin.Climb.add_trait('no', Array(dtype=numpy_int64 ))
-        comp.missin.Climb.add_trait('keasvc', Int(-999 ))
-        comp.missin.Climb.add_trait('actab', Array(dtype=numpy_float64 ))
-        comp.missin.Climb.add_trait('vctab', Array(dtype=numpy_float64 ))
-        comp.missin.Climb.add_trait('ifaacl', Int(-999 ))
-        comp.missin.Climb.add_trait('ifaade', Int(-999 ))
-        comp.missin.Climb.add_trait('nodive', Int(-999 ))
-        comp.missin.Climb.add_trait('divlim', Float(-999. ))
-        comp.missin.Climb.add_trait('qlim', Float(-999. ))
-        comp.missin.Climb.add_trait('spdlim', Float(-999. ))
-        comp.missin.Climb.add_trait('nql', Int(-999 ))
-        comp.missin.Climb.add_trait('qlalt', Array(dtype=numpy_float64 ))
-        comp.missin.Climb.add_trait('vqlm', Array(dtype=numpy_float64 ))
+        comp.missin.add('Climb', VarTree(VariableTree()))
+        comp.missin.Climb.add('nclimb', Int(-999))
+        comp.missin.Climb.add('clmmin', Array(dtype=numpy_float64 ))
+        comp.missin.Climb.add('clmmax', Array(dtype=numpy_float64 ))
+        comp.missin.Climb.add('clamin', Array(dtype=numpy_float64 ))
+        comp.missin.Climb.add('clamax', Array(dtype=numpy_float64 ))
+        comp.missin.Climb.add('nincl', Array(dtype=numpy_int64 ))
+        comp.missin.Climb.add('fwf', Array(dtype=numpy_float64 ))
+        comp.missin.Climb.add('ncrcl', Array(dtype=numpy_int64 ))
+        comp.missin.Climb.add('cldcd', Array(dtype=numpy_float64 ))
+        comp.missin.Climb.add('ippcl', Array(dtype=numpy_int64 ))
+        comp.missin.Climb.add('maxcl', Array(dtype=numpy_int64 ))
+        comp.missin.Climb.add('no', Array(dtype=numpy_int64 ))
+        comp.missin.Climb.add('keasvc', Int(-999 ))
+        comp.missin.Climb.add('actab', Array(dtype=numpy_float64 ))
+        comp.missin.Climb.add('vctab', Array(dtype=numpy_float64 ))
+        comp.missin.Climb.add('ifaacl', Int(-999 ))
+        comp.missin.Climb.add('ifaade', Int(-999 ))
+        comp.missin.Climb.add('nodive', Int(-999 ))
+        comp.missin.Climb.add('divlim', Float(-999. ))
+        comp.missin.Climb.add('qlim', Float(-999. ))
+        comp.missin.Climb.add('spdlim', Float(-999. ))
+        comp.missin.Climb.add('nql', Int(-999 ))
+        comp.missin.Climb.add('qlalt', Array(dtype=numpy_float64 ))
+        comp.missin.Climb.add('vqlm', Array(dtype=numpy_float64 ))
         
-        comp.missin.add('Cruise', VariableTree())
-        comp.missin.Cruise.add_trait('ncruse', Int(-999 ))
-        comp.missin.Cruise.add_trait('ioc', Array(dtype=numpy_int64 ))
-        comp.missin.Cruise.add_trait('crmach', Array(dtype=numpy_float64 ))
-        comp.missin.Cruise.add_trait('cralt', Array(dtype=numpy_float64 ))
-        comp.missin.Cruise.add_trait('crdcd', Array(dtype=numpy_float64 ))
-        comp.missin.Cruise.add_trait('flrcr', Array(dtype=numpy_float64 ))
-        comp.missin.Cruise.add_trait('crmmin', Array(dtype=numpy_float64 ))
-        comp.missin.Cruise.add_trait('crclmx', Array(dtype=numpy_float64 ))
-        comp.missin.Cruise.add_trait('hpmin', Array(dtype=numpy_float64 ))
-        comp.missin.Cruise.add_trait('ffuel', Array(dtype=numpy_float64 ))
-        comp.missin.Cruise.add_trait('fnox', Array(dtype=numpy_float64 ))
-        comp.missin.Cruise.add_trait('ifeath', Array(dtype=numpy_int64 ))
-        comp.missin.Cruise.add_trait('feathf', Array(dtype=numpy_float64 ))
-        comp.missin.Cruise.add_trait('cdfeth', Array(dtype=numpy_float64 ))
-        comp.missin.Cruise.add_trait('dcwt', Float(-999. ))
-        comp.missin.Cruise.add_trait('rcin', Float(-999. ))
-        comp.missin.Cruise.add_trait('wtbm', Array(dtype=numpy_float64 ))
-        comp.missin.Cruise.add_trait('altbm', Array(dtype=numpy_float64 ))
+        comp.missin.add('Cruise', VarTree(VariableTree()))
+        comp.missin.Cruise.add('ncruse', Int(-999 ))
+        comp.missin.Cruise.add('ioc', Array(dtype=numpy_int64 ))
+        comp.missin.Cruise.add('crmach', Array(dtype=numpy_float64 ))
+        comp.missin.Cruise.add('cralt', Array(dtype=numpy_float64 ))
+        comp.missin.Cruise.add('crdcd', Array(dtype=numpy_float64 ))
+        comp.missin.Cruise.add('flrcr', Array(dtype=numpy_float64 ))
+        comp.missin.Cruise.add('crmmin', Array(dtype=numpy_float64 ))
+        comp.missin.Cruise.add('crclmx', Array(dtype=numpy_float64 ))
+        comp.missin.Cruise.add('hpmin', Array(dtype=numpy_float64 ))
+        comp.missin.Cruise.add('ffuel', Array(dtype=numpy_float64 ))
+        comp.missin.Cruise.add('fnox', Array(dtype=numpy_float64 ))
+        comp.missin.Cruise.add('ifeath', Array(dtype=numpy_int64 ))
+        comp.missin.Cruise.add('feathf', Array(dtype=numpy_float64 ))
+        comp.missin.Cruise.add('cdfeth', Array(dtype=numpy_float64 ))
+        comp.missin.Cruise.add('dcwt', Float(-999. ))
+        comp.missin.Cruise.add('rcin', Float(-999. ))
+        comp.missin.Cruise.add('wtbm', Array(dtype=numpy_float64 ))
+        comp.missin.Cruise.add('altbm', Array(dtype=numpy_float64 ))
 
-        comp.missin.add('Descent', VariableTree())
-        comp.missin.Descent.add_trait('ivs', Int(-999 ))
-        comp.missin.Descent.add_trait('decl', Float(-999. ))
-        comp.missin.Descent.add_trait('demmin', Float(-999. ))
-        comp.missin.Descent.add_trait('demmax', Float(-999. ))
-        comp.missin.Descent.add_trait('deamin', Float(-999. ))
-        comp.missin.Descent.add_trait('deamax', Float(-999. ))
-        comp.missin.Descent.add_trait('ninde', Int(-999 ))
-        comp.missin.Descent.add_trait('dedcd', Float(-999. ))
-        comp.missin.Descent.add_trait('rdlim', Float(-999. ))
-        comp.missin.Descent.add_trait('ns', Int(-999 ))
-        comp.missin.Descent.add_trait('keasvd', Int(-999 ))
-        comp.missin.Descent.add_trait('adtab', Array(dtype=numpy_float64 ))
-        comp.missin.Descent.add_trait('vdtab', Array(dtype=numpy_float64 ))
+        comp.missin.add('Descent', VarTree(VariableTree()))
+        comp.missin.Descent.add('ivs', Int(-999 ))
+        comp.missin.Descent.add('decl', Float(-999. ))
+        comp.missin.Descent.add('demmin', Float(-999. ))
+        comp.missin.Descent.add('demmax', Float(-999. ))
+        comp.missin.Descent.add('deamin', Float(-999. ))
+        comp.missin.Descent.add('deamax', Float(-999. ))
+        comp.missin.Descent.add('ninde', Int(-999 ))
+        comp.missin.Descent.add('dedcd', Float(-999. ))
+        comp.missin.Descent.add('rdlim', Float(-999. ))
+        comp.missin.Descent.add('ns', Int(-999 ))
+        comp.missin.Descent.add('keasvd', Int(-999 ))
+        comp.missin.Descent.add('adtab', Array(dtype=numpy_float64 ))
+        comp.missin.Descent.add('vdtab', Array(dtype=numpy_float64 ))
 
-        comp.missin.add('Reserve', VariableTree())
-        comp.missin.Reserve.add_trait('irs', Int(-999 ))
-        comp.missin.Reserve.add_trait('resrfu', Float(-999. ))
-        comp.missin.Reserve.add_trait('restrp', Float(-999. ))
-        comp.missin.Reserve.add_trait('timmap', Float(-999. ))
-        comp.missin.Reserve.add_trait('altran', Float(-999. ))
-        comp.missin.Reserve.add_trait('nclres', Int(-999 ))
-        comp.missin.Reserve.add_trait('ncrres', Int(-999 ))
-        comp.missin.Reserve.add_trait('sremch', Float(-999. ))
-        comp.missin.Reserve.add_trait('eremch', Float(-999. ))
-        comp.missin.Reserve.add_trait('srealt', Float(-999. ))
-        comp.missin.Reserve.add_trait('erealt', Float(-999. ))
-        comp.missin.Reserve.add_trait('holdtm', Float(-999. ))
-        comp.missin.Reserve.add_trait('ncrhol', Int(-999 ))
-        comp.missin.Reserve.add_trait('ihopos', Int(-999 ))
-        comp.missin.Reserve.add_trait('icron', Int(-999 ))
-        comp.missin.Reserve.add_trait('thold', Float(-999. ))
-        comp.missin.Reserve.add_trait('ncrth', Int(-999 ))
+        comp.missin.add('Reserve', VarTree(VariableTree()))
+        comp.missin.Reserve.add('irs', Int(-999 ))
+        comp.missin.Reserve.add('resrfu', Float(-999. ))
+        comp.missin.Reserve.add('restrp', Float(-999. ))
+        comp.missin.Reserve.add('timmap', Float(-999. ))
+        comp.missin.Reserve.add('altran', Float(-999. ))
+        comp.missin.Reserve.add('nclres', Int(-999 ))
+        comp.missin.Reserve.add('ncrres', Int(-999 ))
+        comp.missin.Reserve.add('sremch', Float(-999. ))
+        comp.missin.Reserve.add('eremch', Float(-999. ))
+        comp.missin.Reserve.add('srealt', Float(-999. ))
+        comp.missin.Reserve.add('erealt', Float(-999. ))
+        comp.missin.Reserve.add('holdtm', Float(-999. ))
+        comp.missin.Reserve.add('ncrhol', Int(-999 ))
+        comp.missin.Reserve.add('ihopos', Int(-999 ))
+        comp.missin.Reserve.add('icron', Int(-999 ))
+        comp.missin.Reserve.add('thold', Float(-999. ))
+        comp.missin.Reserve.add('ncrth', Int(-999 ))
 
         # New mission definition defaults to the original one
-        comp.add_trait('mission_definition', List(iotype='in'))
+        comp.add('mission_definition', List(iotype='in'))
         comp.mission_definition = self.input.mission_definition.mission
         
-        self.input.add(name, comp)
+        self.input.add(name, VarTree(comp))
 
 
     def remove_rerun(self):
