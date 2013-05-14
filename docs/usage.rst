@@ -19,7 +19,7 @@ installed.
 
 ::
 
-    from flops_wrapper import FlopsWrapper
+    from flops_wrapper.flops_wrapper import FlopsWrapper
 
 Generally, the easiest way for you to import your existing FLOPS models
 into the openmdao component is to use the ``load_model`` method.
