@@ -100,15 +100,15 @@ class FlopsWrapper_output_Plot_Files(VariableTree):
 
     # OpenMDAO Public Variables
     # TODO - Do we really need to read these in every time? Let's not for now.
-    #cnfile = File(iotype='out', path='Insert_Filename_Here', desc='Contour or thumbprint plot data file')
-    #msfile = File(iotype='out', path='Insert_Filename_Here', desc='Mission summary data file')
-    #crfile = File(iotype='out', path='Insert_Filename_Here', desc='Cruise schedule summary data file')
-    #tofile = File(iotype='out', path='Insert_Filename_Here', desc='Takeoff and landing aerodynamic and thrust data file')
-    #nofile = File(iotype='out', path='Insert_Filename_Here', desc='Takeoff and climb profile data file')
-    #apfile = File(iotype='out', path='Insert_Filename_Here', desc='Drag polar plot data file')
-    #thfile = File(iotype='out', path='Insert_Filename_Here', desc='Engine plot data file name')
-    #hsfile = File(iotype='out', path='Insert_Filename_Here', desc='Design history plot file')
-    #psfile = File(iotype='out', path='Insert_Filename_Here', desc='Excess power and load factor plot data file')
+    #cnfile = File(iotype='out', desc='Contour or thumbprint plot data file')
+    #msfile = File(iotype='out', desc='Mission summary data file')
+    #crfile = File(iotype='out', desc='Cruise schedule summary data file')
+    #tofile = File(iotype='out', desc='Takeoff and landing aerodynamic and thrust data file')
+    #nofile = File(iotype='out', desc='Takeoff and climb profile data file')
+    #apfile = File(iotype='out', desc='Drag polar plot data file')
+    #thfile = File(iotype='out', desc='Engine plot data file name')
+    #hsfile = File(iotype='out', desc='Design history plot file')
+    #psfile = File(iotype='out', desc='Excess power and load factor plot data file')
 
 
 class FlopsWrapper_output_Performance_Segments(VariableTree):
