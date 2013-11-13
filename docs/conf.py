@@ -17,7 +17,7 @@ def _sys_path_add(toadd=None):
         distdir = os.path.dirname(os.path.dirname(__file__))
         sys.path = [distdir] + [os.path.join(distdir, p) for p in toadd] + sys.path
 
-_sys_path_add(['flops_wrapper', 'src', 'src/flops_wrapper', 'src/flops_wrapper/test'])
+_sys_path_add(['temp', 'flops_wrapper', 'src', 'src/flops_wrapper', 'src/flops_wrapper/test'])
 
 # General configuration
 # ---------------------
@@ -26,7 +26,7 @@ _sys_path_add(['flops_wrapper', 'src', 'src/flops_wrapper', 'src/flops_wrapper/t
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = ['sphinx.ext.autodoc', 'sphinx.ext.intersphinx', 
               'sphinx.ext.doctest', 'sphinx.ext.todo','openmdao.util.doctools', 
-              'sphinx.ext.viewcode'
+              'sphinx.ext.viewcode','sphinx.ext.mathjax'
       ]
 
 # Add any paths that contain templates here, relative to this directory.
