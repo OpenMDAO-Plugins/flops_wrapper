@@ -309,7 +309,6 @@ SUPERSONIC TRANSPORT EXAMPLE PROBLEM WITH NOISE AND INERTIA
   igeo = 0
   dffac = 0.0
   fffac = 0.0
-  eifile = ''
 /
  0.00       0.0        53048.0       2.0   52696.9            1.4
  0.00    1000.0        51366.4       1.9   50994.8            1.4

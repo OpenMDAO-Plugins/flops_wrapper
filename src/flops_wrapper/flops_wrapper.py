@@ -89,7 +89,7 @@ class FlopsWrapper_output_Weight(VariableTree):
     wsrv = Float(0.0)
     zfw = Float(0.0)
     wbomb = Float(0.0)
-    
+
     # VariableTrees
     Inertia = VarTree(FlopsWrapper_output_Weight_Inertia())
     Wing = VarTree(FlopsWrapper_output_Weight_Wing())
@@ -946,7 +946,7 @@ class FlopsWrapper_input_noisin_MSJet(VariableTree):
     a6 = Float(0.0, desc='Ratio of ejector inlet area to nozzle (total or annulus) area (input zero for no ejector) (IY9=2,3,5,6)')
     zl9 = Float(0.0, desc='Ratio of ejector length to suppressor nozzle equivalent diameter (IY9=2,3,5,6)')
     a = Array(dtype=numpy_float64, desc='A(0): Ejector treatment faceplate thickness, in\nA(1): Ejector treatment hole diameter, in\nA(2): Ejector treatment cavity depth, in\nA(3): Ejector treatment open area ratio\n(IY9=2,3,5,6)')
-    
+
     # TODO - rr and rx are units of 'Rayl' (rayleigh)
     rr = Array(dtype=numpy_float64, desc='Ejector treatment specific resistance (59 values required) (IY9=2,3,5,6)')
     rx = Array(dtype=numpy_float64, desc='Ejector treatment specific reactance (59 values required) (IY9=2,3,5,6)')
@@ -1622,7 +1622,7 @@ class FlopsWrapper_input_engdin(VariableTree):
     # OpenMDAO Public Variables
     cdfile = Str('')
 
-    # Special addition for analysis runs where we aren't connected to NPSS. 
+    # Special addition for analysis runs where we aren't connected to NPSS.
     eifile = Str('', desc="Engine deck filename")
 
     # VariableTrees
@@ -1946,7 +1946,7 @@ class FlopsWrapper_input(VariableTree):
     tolin = VarTree(FlopsWrapper_input_tolin())
     wtin = VarTree(FlopsWrapper_input_wtin())
 
-        
+
 # pylint: enable-msg=C0301,C0324,R0903
 
 class FlopsWrapper(ExternalCode):
@@ -1960,11 +1960,11 @@ class FlopsWrapper(ExternalCode):
     nrerun = Int(0, iotype='in', desc='Number of RERUN namelists to be created')
     npcons = Array(iotype='in', dtype=numpy_int64, desc='Number of PCONIN ' +
                    'namelists to be created with each RERUN namelist')
-    
+
     # Variable Trees
     input = VarTree(FlopsWrapper_input(), iotype='in')
     output = VarTree(FlopsWrapper_output(), iotype='out')
-    
+
     # This stuff is defined in ExternalCode. I'm preserving it to keep a record
     # of the var names that were used in the MC Java wrapper.
     # ----
@@ -1980,14 +1980,14 @@ class FlopsWrapper(ExternalCode):
         self.stdout = 'flops.out'
         self.stderr = 'flops.err'
         self.command = ['flops']
-        
+
         self.external_files = [
             FileMetadata(path=self.stdin, input=True),
             FileMetadata(path=self.stdout),
             FileMetadata(path=self.stderr),
         ]
-        
-        # This stuff is global in the Java wrap. 
+
+        # This stuff is global in the Java wrap.
         # These are used when adding and removing certain segments.
         self.nseg0 = 0
         self.npcon0 = 0
@@ -1998,32 +1998,32 @@ class FlopsWrapper(ExternalCode):
 
     def execute(self):
         """Run Flops."""
-        
+
         #Prepare the input files for Flops
         self.generate_input()
-        
+
         #Run Flops via ExternalCode's execute function
         super(FlopsWrapper, self).execute()
 
         #Parse the outut files from Flops
         self.parse_output()
-        
+
     def generate_input(self):
         """Creates the FLOPS input file(s) namelists."""
-        
+
         sb = Namelist(self)
         sb.set_filename(self.stdin)
-        
+
         # Write the Title Card
         sb.set_title(self.input.title)
-        
+
         #-------------------
         # Namelist &OPTION
         #-------------------
-        
+
         sb.add_group('OPTION')
         sb.add_comment("\n  ! Program Control, Execution, Analysis and Plot Option Data")
-        
+
         iopt = self.input.option.Program_Control.iopt
         ianal = self.input.option.Program_Control.ianal
         ineng = self.input.option.Program_Control.ineng
@@ -2034,7 +2034,7 @@ class FlopsWrapper(ExternalCode):
         icost = self.input.option.Program_Control.icost
         ifite = self.input.option.Program_Control.ifite
         mywts = self.input.wtin.Basic.mywts
-        
+
         sb.add_container("input.option.Program_Control")
 
         sb.add_comment("\n  ! Plot files for XFLOPS Graphical Interface Postprocessor (MSMPLOT)")
@@ -2046,7 +2046,7 @@ class FlopsWrapper(ExternalCode):
         sb.add_comment("\n  ! Drag Polar Plot File (POLPLOT)")
         sb.add_var("input.option.Plot_Files.ipolp")
         sb.add_var("input.option.Plot_Files.polalt")
-        
+
         nmach = len(self.input.option.Plot_Files.pmach)
         if nmach > 0:
             sb.add_newvar("nmach", nmach)
@@ -2063,7 +2063,7 @@ class FlopsWrapper(ExternalCode):
             sb.add_comment("\n  ! Excess Power Plot File (PSPLOT)")
             sb.add_newvar("ipltps", ipltps)
             sb.add_container("input.option.Excess_Power_Plot")
-            
+
         # Plotfile names
         sb.add_comment("\n  ! Plotfile Names")
         if self.input.option.Plot_Files.cnfile:
@@ -2084,11 +2084,11 @@ class FlopsWrapper(ExternalCode):
             sb.add_var("input.option.Plot_Files.hsfile ")
         if self.input.option.Plot_Files.psfile :
             sb.add_var("input.option.Plot_Files.psfile ")
-            
+
         #-------------------
         # Namelist &WTIN
         #-------------------
-        
+
         sb.add_group('WTIN')
 
         sb.add_comment("\n  ! Geometric, Weight, Balance and Inertia Data")
@@ -2113,7 +2113,7 @@ class FlopsWrapper(ExternalCode):
             sb.add_var("input.wtin.Detailed_Wing.arref")
             sb.add_var("input.wtin.Detailed_Wing.tcref")
             sb.add_var("input.wtin.Detailed_Wing.nstd")
-            
+
             pdist = self.input.wtin.Detailed_Wing.pdist
             sb.add_var("input.wtin.Detailed_Wing.pdist")
             if pdist < 0.0001:
@@ -2128,7 +2128,7 @@ class FlopsWrapper(ExternalCode):
         sb.add_var("input.wtin.Tails_Fins.trht")
         sb.add_var("input.wtin.Tails_Fins.tcht")
         sb.add_var("input.wtin.Tails_Fins.hht")
-            
+
         nvert = self.input.wtin.Tails_Fins.nvert
         if nvert != 0:
             sb.add_comment("\n  ! Vertical Tail Data")
@@ -2138,7 +2138,7 @@ class FlopsWrapper(ExternalCode):
             sb.add_var("input.wtin.Tails_Fins.arvt")
             sb.add_var("input.wtin.Tails_Fins.trvt")
             sb.add_var("input.wtin.Tails_Fins.tcvt")
-            
+
         nfin = self.input.wtin.Tails_Fins.nfin
         if nfin != 0:
             sb.add_comment("\n  ! Fin Data")
@@ -2214,7 +2214,7 @@ class FlopsWrapper(ExternalCode):
             sb.add_var("input.wtin.Inertia.tcr")
             sb.add_var("input.wtin.Inertia.tct")
             sb.add_var("input.wtin.Inertia.incpay")
-            
+
             l = len(self.input.wtin.Inertia.tx)
             sb.add_newvar("itank", l)
             if l > 0:
@@ -2236,20 +2236,20 @@ class FlopsWrapper(ExternalCode):
         #-------------------
         # Namelist &FUSEIN
         #-------------------
-        
+
         # Namelist &FUSEIN is only required if XL=0 or IFITE=3.
         xl = self.input.wtin.Fuselage.xl
         if xl < 0.0000001 or ifite == 3:
-            
+
             sb.add_group('FUSEIN')
             sb.add_comment("\n  ! Fuselage Design Data")
             sb.add_container("input.fusein.Basic")
             sb.add_container("input.fusein.BWB")
-            
+
         #-------------------
         # Namelist &CONFIN
         #-------------------
-        
+
         sb.add_group('CONFIN')
         sb.add_container("input.confin.Basic")
 
@@ -2258,7 +2258,7 @@ class FlopsWrapper(ExternalCode):
         # if iopt >= 3:
         sb.add_comment("\n  ! Objective Function Definition")
         sb.add_container("input.confin.Objective")
-            
+
         sb.add_comment("\n  ! Design Variables")
         sb.add_var("input.confin.Design_Variables.gw")
         sb.add_var("input.confin.Design_Variables.ar")
@@ -2272,7 +2272,7 @@ class FlopsWrapper(ExternalCode):
         sb.add_var("input.confin.Design_Variables.varth")
         sb.add_var("input.confin.Design_Variables.rotvel")
         sb.add_var("input.confin.Design_Variables.plr")
-        
+
         igenen = self.input.engdin.Basic.igenen
         if igenen in (1, -2):
             sb.add_comment("\n  ! Engine Design Variables")
@@ -2312,7 +2312,7 @@ class FlopsWrapper(ExternalCode):
         # Namelist &COSTIN is only required if ICOST=1.
         if icost != 0:
             sb.add_group('COSTIN')
-            
+
             sb.add_comment("\n  ! Cost Calculation Data")
             sb.add_container("input.costin.Basic")
             sb.add_comment("\n  ! Mission Performance Data")
@@ -2327,7 +2327,7 @@ class FlopsWrapper(ExternalCode):
         # Namelist &ENGDIN is only required in IANAL=3 or 4 or INENG=1.
         if ianal in (3, 4) or ineng == 1:
             sb.add_group('ENGDIN')
-            
+
             sb.add_comment("\n  ! Engine Deck Control, Scaling and Usage Data")
             sb.add_var("input.engdin.Basic.ngprt")
             sb.add_var("input.engdin.Basic.igenen")
@@ -2342,17 +2342,17 @@ class FlopsWrapper(ExternalCode):
             sb.add_var("input.engdin.Basic.ifill")
             sb.add_var("input.engdin.Basic.maxcr")
             sb.add_var("input.engdin.Basic.nox")
-            
+
             npcode =  len(self.input.engdin.Basic.pcode)
             if npcode > 0:
                 sb.add_newvar("npcode", npcode)
                 sb.add_var("input.engdin.Basic.pcode")
-                
+
             sb.add_var("input.engdin.Basic.boost")
             sb.add_var("input.engdin.Basic.igeo")
             sb.add_var("input.engdin.Special_Options.dffac")
             sb.add_var("input.engdin.Special_Options.fffac")
-            
+
             if igenen in (1, -2):
                 j =  len(self.input.engdin.Special_Options.emach)
                 l =  self.input.engdin.Special_Options.alt.shape[0]
@@ -2364,7 +2364,7 @@ class FlopsWrapper(ExternalCode):
                         # TODO - Find out about fake 3d for new FLOPS double prop
                         # capability.
                         sb.add_var("input.engdin.Special_Options.alt")
-                                  
+
             insdrg =  self.input.engdin.Special_Options.insdrg
             if insdrg != 0:
                 sb.add_comment("\n  ! Nozzle installation drag using table look-up")
@@ -2377,23 +2377,24 @@ class FlopsWrapper(ExternalCode):
                 sb.add_var("input.engdin.Special_Options.xnoz")
                 sb.add_var("input.engdin.Special_Options.xnref")
                 sb.add_var("input.engdin.Special_Options.rcrv")
-                
+
                 # TODO - rawInputFile( cdfile, "ENDRAG" );
                 #cdfile.open
-                
+
             # Write out the eifile. This is a new addition.
-            sb.add_var("input.engdin.eifile")
+            if self.input.engdin.eifile:
+                sb.add_var("input.engdin.eifile")
 
 
             #----------------------
             # Namelist Engine deck
             #----------------------
-    
+
             # Insert the engine deck into the flops input file
-    
+
             # If IGENEN=0 the engine deck is part of the input file, otherwise it is an
             # external file.
-            
+
             engine_deck  = self.input.engine_deck.engdek
             if igenen in (0, -2):
                 # engine_deck contains the raw engine deck
@@ -2409,12 +2410,12 @@ class FlopsWrapper(ExternalCode):
 
         # Namelist &ENGINE is only required if IGENEN=-2 or 1.
         if igenen in (-2, 1):
-            
+
             sb.add_group('ENGINE')
 
             nginwt =  self.input.engine.Engine_Weight.nginwt
             ieng = self.input.engine.Basic.ieng
-            
+
             sb.add_var("input.engine.Basic.ieng")
             sb.add_var("input.engine.Basic.iprint")
             sb.add_var("input.engine.Basic.gendek")
@@ -2423,7 +2424,7 @@ class FlopsWrapper(ExternalCode):
             sb.add_var("input.engine.Basic.npdry")
             sb.add_var("input.engine.Basic.xidle")
             sb.add_var("input.engine.Basic.nitmax")
-            
+
             if self.input.engine.Basic.xmmax > 0:
                 sb.add_var("input.engine.Basic.xmmax")
             if self.input.engine.Basic.amax > 0:
@@ -2436,17 +2437,17 @@ class FlopsWrapper(ExternalCode):
                 sb.add_var("input.engine.Basic.qmin")
             if self.input.engine.Basic.qmax > 0:
                 sb.add_var("input.engine.Basic.qmax")
-                
+
             sb.add_newvar("nginwt", nginwt)
             sb.add_container("input.engine.Noise_Data")
-            
+
             if self.input.engine.Design_Point.desfn > 0:
                 sb.add_var("input.engine.Design_Point.desfn")
             if self.input.engine.Design_Point.xmdes > 0:
                 sb.add_var("input.engine.Design_Point.xmdes")
             if self.input.engine.Design_Point.xades > 0:
                 sb.add_var("input.engine.Design_Point.xades")
-                
+
             sb.add_var("input.engine.Design_Point.oprdes")
             sb.add_var("input.engine.Design_Point.fprdes")
             sb.add_var("input.engine.Design_Point.bprdes")
@@ -2469,7 +2470,7 @@ class FlopsWrapper(ExternalCode):
             sb.add_comment("\n  ! Installation effects")
             sb.add_var("input.engine.Other.boat")
             sb.add_var("input.engine.Other.ajmax")
-            
+
             if self.input.engine.Other.spill:
                 sb.add_comment("\n  ! Installation effects")
                 sb.add_var("input.engine.Other.spill")
@@ -2478,7 +2479,7 @@ class FlopsWrapper(ExternalCode):
                 sb.add_var("input.engine.Other.spldes")
                 sb.add_var("input.engine.Other.aminds")
                 sb.add_var("input.engine.Other.alinds")
-                
+
             sb.add_var("input.engine.Other.etaprp")
             sb.add_var("input.engine.Other.shpowa")
             sb.add_comment("\n  ! Engine operating constraints")
@@ -2488,7 +2489,7 @@ class FlopsWrapper(ExternalCode):
             sb.add_var("input.engine.Other.stmin")
             sb.add_var("input.engine.Other.armax")
             sb.add_var("input.engine.Other.limcd")
-            
+
             if nginwt != 0:
                 sb.add_comment("\n  ! Engine Weight Calculation Data")
                 sb.add_var("input.engine.Engine_Weight.iwtprt")
@@ -2515,7 +2516,7 @@ class FlopsWrapper(ExternalCode):
                 sb.add_var("input.engine.IC_Engine.pwrmin")
                 sb.add_var("input.engine.IC_Engine.engspd")
                 sb.add_var("input.engine.IC_Engine.prpspd")
-      
+
             if ieng == 101 or igenen == -2 and nginwt > 0:
                 sb.add_var("input.engine.IC_Engine.iwc")
                 sb.add_var("input.engine.IC_Engine.ecid")
@@ -2532,7 +2533,7 @@ class FlopsWrapper(ExternalCode):
                 sb.add_var("input.engine.IC_Engine.dprop")
                 sb.add_var("input.engine.IC_Engine.nblade")
                 sb.add_var("input.engine.IC_Engine.gbloss")
-         
+
             nrpm =  len(self.input.engine.IC_Engine.arrpm)
             if nrpm > 0:
                 sb.add_comment("  ! power curve input data")
@@ -2543,13 +2544,13 @@ class FlopsWrapper(ExternalCode):
                 if self.input.engine.IC_Engine.lfuun != 0:
                     sb.add_var("input.engine.IC_Engine.lfuun")
                     sb.add_var("input.engine.IC_Engine.feng")
-               
+
             sb.add_var("input.engine.IC_Engine.fprop")
             sb.add_var("input.engine.IC_Engine.fgbox")
 
             ifile = self.input.engine.ifile
             tfile = self.input.engine.tfile
-      
+
             # The name of the engine cycle definition file to be read in is
             # set by the value of if IENG.
             filenames = { 0: "MYCYCL",
@@ -2568,7 +2569,7 @@ class FlopsWrapper(ExternalCode):
             except KeyError:
                 msg = "Illegal value %s for input.engine.Basic.IENG" % ieng
                 raise KeyError(msg)
-                
+
             # TODO - rawInputFile( ifile, ifilNam )
             # TODO - rawInputFile( tfile, "ENGTAB" )
             sb.add_newvar("tfile", tfile)
@@ -2581,23 +2582,23 @@ class FlopsWrapper(ExternalCode):
             # Namelist &NACELL is only required if NGINWT != 0
             # (note:, still in IGENEN=-2 or 1.)
             if nginwt != 0:
-            
+
                 sb.add_group('NACELL')
                 sb.add_comment("\n  ! Data for Computation of Nacelle Weight.")
                 sb.add_container("input.nacell")
-            
+
         #-------------------
         # Namelist &MISSIN
         #-------------------
 
         # Namelist &MISSIN is only required if IANAL=3
-        
+
         npcon = self.npcon
 
         if ianal == 3:
-            
+
             sb.add_group('MISSIN')
-            
+
             sb.add_comment("\n  ! Performance Controls and Factors and Mission Segment Definition")
             sb.add_var("input.missin.Basic.indr")
             sb.add_var("input.missin.Basic.fact")
@@ -2617,13 +2618,13 @@ class FlopsWrapper(ExternalCode):
             sb.add_var("input.missin.Basic.iata")
             sb.add_var("input.missin.Basic.tlwind")
             sb.add_var("input.missin.Basic.dwt")
-            
+
             if len(self.input.missin.Basic.offdr) > 0:
                 sb.add_var("input.missin.Basic.offdr")
-                
+
             sb.add_var("input.missin.Basic.idoq")
             sb.add_newvar("npcon", npcon)
-            
+
             nsout =  self.input.missin.Basic.nsout
             if nsout > 0:
                 sb.add_comment("\n  ! Combat Radius Mission\n")
@@ -2643,10 +2644,10 @@ class FlopsWrapper(ExternalCode):
                 sb.add_var("input.missin.User_Weights.dowe")
                 sb.add_var("input.missin.User_Weights.paylod")
                 sb.add_var("input.missin.User_Weights.fuemax")
-      
+
             sb.add_comment("\n  ! Ground Operations and Takeoff and Approach Allowances")
             sb.add_container("input.missin.Ground_Operations")
-            
+
             if len(self.input.missin.Turn_Segments.xnz) > 0:
                 sb.add_var("input.missin.Turn_Segments.xnz")
             if len(self.input.missin.Turn_Segments.xcl) > 0:
@@ -2663,7 +2664,7 @@ class FlopsWrapper(ExternalCode):
                           len(self.input.missin.Climb.cldcd),
                           len(self.input.missin.Climb.ippcl),
                           len(self.input.missin.Climb.maxcl) )
-            
+
             # TODO - Ask Karl or Jeff about this
             # I've removed ioc and ifeath from this. These are parameters, so
             # their "length" should have nothing to do with how many Cruise
@@ -2696,7 +2697,7 @@ class FlopsWrapper(ExternalCode):
             sb.add_var("input.missin.Climb.ippcl")
             sb.add_var("input.missin.Climb.maxcl")
             sb.add_var("input.missin.Climb.keasvc")
-            
+
             actab = self.input.missin.Climb.actab
             no = actab.shape[1]
             if no == 0:
@@ -2713,7 +2714,7 @@ class FlopsWrapper(ExternalCode):
                                 break
                     else:
                         noval += "0, "
-                        
+
                 sb.add_newvar("no", noval)
                 sb.add_var("input.missin.Climb.actab")
                 sb.add_var("input.missin.Climb.vctab")
@@ -2727,7 +2728,7 @@ class FlopsWrapper(ExternalCode):
             if nql > 0:
                 sb.add_var("input.missin.Climb.qlalt")
                 sb.add_var("input.missin.Climb.vqlm")
-      
+
             sb.add_comment("\n  ! Cruise Schedule Definition\n")
             sb.add_newvar("ncruse", ncruse)
             sb.add_var("input.missin.Cruise.ioc")
@@ -2749,7 +2750,7 @@ class FlopsWrapper(ExternalCode):
                 sb.add_var("input.missin.Cruise.wtbm")
             if len(self.input.missin.Cruise.altbm) > 0:
                 sb.add_var("input.missin.Cruise.altbm")
-                
+
             sb.add_comment("\n  ! Descent Schedule Definition")
             sb.add_var("input.missin.Descent.ivs")
             sb.add_var("input.missin.Descent.decl")
@@ -2765,7 +2766,7 @@ class FlopsWrapper(ExternalCode):
                 sb.add_newvar("ns", ns)
                 sb.add_var("input.missin.Descent.adtab")
                 sb.add_var("input.missin.Descent.vdtab")
-      
+
             sb.add_container("input.missin.Reserve")
 
             #----------------------
@@ -2773,7 +2774,7 @@ class FlopsWrapper(ExternalCode):
             #----------------------
 
             mission = self.input.mission_definition.mission
-            
+
             for seg in mission:
                 sb.add_group(seg)
 
@@ -2782,19 +2783,19 @@ class FlopsWrapper(ExternalCode):
                          mission.count('ACCEL') + mission.count('TURN') + \
                          mission.count('COMBAT') + mission.count('HOLD') + \
                          mission.count('DESCENT')
-            
+
         #-------------------
         # Namelist &PCONIN
         #-------------------
 
         # One or more &PCONIN namelists may have been created by the user.
         if npcon > 0 and ianal == 3:
-            
+
             for i in range(0, npcon):
 
                 sb.add_group('PCONIN')
                 sb.add_comment("\n  ! Performance Constraint")
-                
+
                 if self.get("input.pconin%s.conalt" % (i)) >= 0.:
                     sb.add_var("input.pconin%s.conalt" % (i))
                 if self.get("input.pconin%s.conmch" % (i)) >= 0.:
@@ -2821,15 +2822,15 @@ class FlopsWrapper(ExternalCode):
                     sb.add_var("input.pconin%s.conwta" % (i))
                 if self.get("input.pconin%s.icontp" % (i)) >= 0:
                     sb.add_var("input.pconin%s.icontp" % (i))
-            
+
         #--------------------
         # Aerodynamic data
         #--------------------
-        
+
         # Aerodynamic data are placed in the input file if MYAERO > 0.  If MYAERO=3,
         # insert the aerodynamic data after namelist &RFHIN (below), otherwise insert
         # them here.
-        
+
         if myaero > 0 and myaero != 3 and ianal == 3:
 
             # aerodat contains the raw aero data
@@ -2840,9 +2841,9 @@ class FlopsWrapper(ExternalCode):
         #-------------------
 
         # Namelist &RFHIN is only required if MYAERO=3.
-        
+
         elif myaero == 3:
-            
+
             sb.add_group('RFHIN')
 
             mmach = len(self.input.rfhin.tmach)
@@ -2852,19 +2853,19 @@ class FlopsWrapper(ExternalCode):
 
             # If MYAERO=3, insert the aerodynamic data here.  Otherwise it may have already
             # been inserted above.
-            
+
             # aerodat contains the raw aero data
             sb.add_group(self.input.aero_data.aerodat)
 
-            
+
         #-------------------
         # Namelist &ASCLIN
         #-------------------
 
         # Namelist &ASCLIN is only required if MYAERO=2.
-        
+
         if myaero == 2:
-            
+
             sb.add_group('ASCLIN')
 
             sb.add_comment("  ! Scaling Data for Lift Independent Drag")
@@ -2873,7 +2874,7 @@ class FlopsWrapper(ExternalCode):
             sb.add_var("input.asclin.awetn")
             sb.add_var("input.asclin.eltot")
             sb.add_var("input.asclin.voltot")
-            
+
             if len(self.input.asclin.awett) > 0:
                 sb.add_var("input.asclin.awett")
             if len(self.input.asclin.awetw) > 0:
@@ -2886,7 +2887,7 @@ class FlopsWrapper(ExternalCode):
                 sb.add_var("input.asclin.form")
             if len(self.input.asclin.eql) > 0:
                 sb.add_var("input.asclin.eql")
-                
+
             ncdwav = len(self.input.asclin.cdwav)
             if ncdwav > 0:
                 sb.add_var("input.asclin.cdwav")
@@ -2897,9 +2898,9 @@ class FlopsWrapper(ExternalCode):
         #-------------------
 
         if itakof == 1 or iland == 1 or nopro == 1:
-            
+
             sb.add_group('TOLIN')
-            
+
             sb.add_var("input.tolin.Basic.apa")
             sb.add_var("input.tolin.Basic.dtct")
             if self.input.tolin.Basic.swref > 0:
@@ -2918,22 +2919,22 @@ class FlopsWrapper(ExternalCode):
             sb.add_var("input.tolin.Basic.incgef")
             sb.add_var("input.tolin.Basic.argef")
             sb.add_var("input.tolin.Basic.itime")
-            
+
             sb.add_comment("\n  ! Thrust Reverser")
             sb.add_var("input.tolin.Thrust_Reverser.inthrv")
             sb.add_var("input.tolin.Thrust_Reverser.rvfact")
             if len(self.input.tolin.Thrust_Reverser.velrv) > 0:
                 sb.add_var("input.tolin.Thrust_Reverser.velrv")
                 sb.add_var("input.tolin.Thrust_Reverser.thrrv")
-      
+
             sb.add_var("input.tolin.Thrust_Reverser.tirvrs")
             sb.add_var("input.tolin.Thrust_Reverser.revcut")
             sb.add_var("input.tolin.Thrust_Reverser.clrev")
             sb.add_var("input.tolin.Thrust_Reverser.cdrev")
-            
+
             sb.add_comment("\n  ! Integration Intervals  (Default values will provide a precision of +/-.25 ft)")
             sb.add_container("input.tolin.Integration_Intervals")
-            
+
             sb.add_comment("\n  ! Takeoff Data")
             if self.input.tolin.Takeoff.cltom > 0:
                 sb.add_var("input.tolin.Takeoff.cltom")
@@ -2946,13 +2947,13 @@ class FlopsWrapper(ExternalCode):
             sb.add_var("input.tolin.Takeoff.clto")
             sb.add_var("input.tolin.Takeoff.cdto")
             sb.add_var("input.tolin.Takeoff.inthto")
-            
+
             if len(self.input.tolin.Takeoff.velto) > 0:
                 sb.add_var("input.tolin.Takeoff.velto")
                 sb.add_var("input.tolin.Takeoff.thrto")
             if self.input.tolin.Takeoff.alprot > -99:
                 sb.add_var("input.tolin.Takeoff.alprot")
-                
+
             sb.add_var("input.tolin.Takeoff.vrotat")
             sb.add_var("input.tolin.Takeoff.vangl")
             sb.add_var("input.tolin.Takeoff.thfact")
@@ -2963,7 +2964,7 @@ class FlopsWrapper(ExternalCode):
             sb.add_var("input.tolin.Takeoff.tigear")
             sb.add_var("input.tolin.Takeoff.ibal")
             sb.add_var("input.tolin.Takeoff.itxout")
-            
+
             sb.add_comment("\n  ! Aborted Takeoff Data")
             sb.add_var("input.tolin.Takeoff.pilott")
             sb.add_var("input.tolin.Takeoff.tispa")
@@ -2971,7 +2972,7 @@ class FlopsWrapper(ExternalCode):
             sb.add_var("input.tolin.Takeoff.tirva")
             sb.add_var("input.tolin.Takeoff.ispol")
             sb.add_var("input.tolin.Takeoff.irev")
-            
+
             sb.add_comment("\n  ! Landing Data")
             if self.input.tolin.Landing.clldm > 0:
                 sb.add_var("input.tolin.Landing.clldm")
@@ -3012,9 +3013,9 @@ class FlopsWrapper(ExternalCode):
 
         # Namelist &PROIN is only required if NOPRO=1.
         if nopro > 0:
-            
+
             npol = len(self.input.proin.dflap)
-            
+
             sb.add_group('PROIN')
             sb.add_var("input.proin.npol")
 
@@ -3029,7 +3030,7 @@ class FlopsWrapper(ExternalCode):
             sb.add_var("input.proin.txf")
             sb.add_var("input.proin.alpmin")
             sb.add_var("input.proin.gamlim")
-            
+
             inm = self.input.proin.inm
             if inm == 1:
                 sb.add_var("input.proin.inm")
@@ -3045,7 +3046,7 @@ class FlopsWrapper(ExternalCode):
         # One or more &SEGIN namelists may have been created by the user.
         #nseg = self.nseg
         if nopro > 0 and self.nseg0 > 0:
-            
+
             for i in range(0, self.nseg0):
 
                 key    = self.get("input.segin%s.key" % (i))
@@ -3068,7 +3069,7 @@ class FlopsWrapper(ExternalCode):
 
                 sb.add_group('SEGIN')
                 sb.add_newvar("key", key)
-                
+
                 if nflap > 0:
                     sb.add_newvar("nflap", nflap)
                 if ifix > 0:
@@ -3108,7 +3109,7 @@ class FlopsWrapper(ExternalCode):
 
         # Namelist &NOISIN is only required if NOISIN=1.
         if noise == 1:
-            
+
             sb.add_group('NOISIN')
 
             sb.add_comment("\n  ! Data for Noise Calculations\n  ! Noise regulation control")
@@ -3117,7 +3118,7 @@ class FlopsWrapper(ExternalCode):
             sb.add_var("input.noisin.Basic.depns")
             sb.add_var("input.noisin.Basic.depnl")
             sb.add_var("input.noisin.Basic.itrade")
-            
+
             sb.add_comment("\n  ! Noise sources to be included")
             ijet = self.input.noisin.Basic.ijet
             ifan = self.input.noisin.Basic.ifan
@@ -3145,7 +3146,7 @@ class FlopsWrapper(ExternalCode):
                 sb.add_newvar("iairf", iairf)
             if igear > 0:
                 sb.add_newvar("igear", igear)
-                
+
             sb.add_comment("\n  ! Noise Propagation Corrections")
             sb.add_var("input.noisin.Propagation.isupp")
             sb.add_var("input.noisin.Propagation.idop")
@@ -3158,7 +3159,7 @@ class FlopsWrapper(ExternalCode):
             sb.add_var("input.noisin.Propagation.filbw")
             sb.add_var("input.noisin.Propagation.tdi")
             sb.add_var("input.noisin.Propagation.rh")
-            
+
             sb.add_comment("\n  ! Observer Locations")
             nob = len(self.input.noisin.Observers.xo)
             if nob > 0:
@@ -3172,10 +3173,10 @@ class FlopsWrapper(ExternalCode):
             sb.add_var("input.noisin.Observers.igeom")
             if self.input.noisin.Observers.thrn > 0:
                 sb.add_var("input.noisin.Observers.thrn")
-                
+
             sb.add_var("input.noisin.Observers.icorr")
             sb.add_var("input.noisin.Observers.tcorxp")
-            
+
             nparam = len(self.input.noisin.Engine_Parameters.aepp)
             if nparam > 0:
                 sb.add_comment("\n  ! Engine Noise Parameters")
@@ -3216,17 +3217,17 @@ class FlopsWrapper(ExternalCode):
                 sb.add_var("input.noisin.Fan.ifd")
                 sb.add_var("input.noisin.Fan.iexh")
                 sb.add_var("input.noisin.Fan.nfh")
-                
+
                 if self.input.noisin.Fan.nstg > 0:
                     sb.add_var("input.noisin.Fan.nstg")
-                    
+
                 sb.add_var("input.noisin.Fan.suppin")
                 sb.add_var("input.noisin.Fan.suppex")
                 sb.add_var("input.noisin.Fan.methtip")
                 sb.add_var("input.noisin.Fan.icomb")
                 sb.add_var("input.noisin.Fan.decmpt")
                 sb.add_var("input.noisin.Fan.gammaf")
-                
+
                 if self.input.noisin.Fan.nbl > 0:
                     sb.add_var("input.noisin.Fan.nbl")
                 if self.input.noisin.Fan.nvan > 0:
@@ -3237,11 +3238,11 @@ class FlopsWrapper(ExternalCode):
                     sb.add_var("input.noisin.Fan.fanhub")
                 if self.input.noisin.Fan.tipmd > 0:
                     sb.add_var("input.noisin.Fan.tipmd")
-                    
+
                 sb.add_var("input.noisin.Fan.rss")
                 sb.add_var("input.noisin.Fan.efdop")
                 sb.add_var("input.noisin.Fan.faneff")
-                
+
                 if self.input.noisin.Fan.nbl2 > 0:
                     sb.add_var("input.noisin.Fan.nbl2")
                 if self.input.noisin.Fan.nvan2 > 0:
@@ -3250,11 +3251,11 @@ class FlopsWrapper(ExternalCode):
                     sb.add_var("input.noisin.Fan.fand2")
                 if self.input.noisin.Fan.tipmd2 > 0:
                     sb.add_var("input.noisin.Fan.tipmd2")
-                    
+
                 sb.add_var("input.noisin.Fan.rss2")
                 sb.add_var("input.noisin.Fan.efdop2")
                 sb.add_var("input.noisin.Fan.fanef2")
-                    
+
                 if self.input.noisin.Fan.trat > 0:
                     sb.add_var("input.noisin.Fan.trat")
                 if igenen not in [1, -2] and self.input.noisin.Fan.prat > 0:
@@ -3300,7 +3301,7 @@ class FlopsWrapper(ExternalCode):
             if ignd > 0:
                 sb.add_comment("\n  ! Ground Reflection Effects Data")
                 sb.add_var("input.noisin.Ground_Effects.itone")
-                
+
                 nht = len(self.input.noisin.Ground_Effects.dk)
                 if nht > 0:
                     sb.add_newvar("nht", nht)
@@ -3312,7 +3313,7 @@ class FlopsWrapper(ExternalCode):
 
         # Namelist &SYNTIN is only required if IOPT=3.
         if iopt == 3:
-            
+
             sb.add_group('SYNTIN')
 
             if self.input.syntin.Variables.desrng > 0:
@@ -3323,7 +3324,7 @@ class FlopsWrapper(ExternalCode):
                 sb.add_var("input.syntin.Variables.flto")
             if self.input.syntin.Variables.flldg > 0:
                 sb.add_var("input.syntin.Variables.flldg")
-                
+
             sb.add_var("input.syntin.Variables.exfcap")
             if igenen == 1:
                 if self.input.syntin.Variables.cdtmax > 0:
@@ -3344,15 +3345,15 @@ class FlopsWrapper(ExternalCode):
             sb.add_var("input.syntin.Variables.ig")
             sb.add_var("input.syntin.Variables.ibfgs")
             sb.add_var("input.syntin.Variables.itfine")
-                
+
             sb.add_comment("\n  ! Optimization Control")
             sb.add_var("input.syntin.Optimization_Control.ndd")
             sb.add_var("input.syntin.Optimization_Control.rk")
             sb.add_var("input.syntin.Optimization_Control.fdd")
-            
+
             if self.input.syntin.Optimization_Control.nlin > 0:
                 sb.add_var("input.syntin.Optimization_Control.nlin")
-                
+
             sb.add_var("input.syntin.Optimization_Control.nstep")
             sb.add_var("input.syntin.Optimization_Control.ef")
             sb.add_var("input.syntin.Optimization_Control.eps")
@@ -3360,10 +3361,10 @@ class FlopsWrapper(ExternalCode):
             sb.add_var("input.syntin.Optimization_Control.dep")
             sb.add_var("input.syntin.Optimization_Control.accux")
             sb.add_var("input.syntin.Optimization_Control.glm")
-            
+
             if len(self.input.syntin.Optimization_Control.gfact) > 0:
                 sb.add_var("input.syntin.Optimization_Control.gfact")
-                
+
             sb.add_var("input.syntin.Optimization_Control.autscl")
             sb.add_var("input.syntin.Optimization_Control.icent")
             sb.add_var("input.syntin.Optimization_Control.rhomin")
@@ -3379,10 +3380,10 @@ class FlopsWrapper(ExternalCode):
         #-------------------
 
         # One or more &RERUN namelists may have been created by the user.
-        
+
         #nrerun = self.nrerun
         if self.nrern0 > 0:
-            
+
             for i in range(0, self.nrern0):
 
                 sb.add_group('RERUN')
@@ -3482,7 +3483,7 @@ class FlopsWrapper(ExternalCode):
                     sb.add_var("input.rerun%s.missin.Basic.iata" % (i))
                 if re_tlwind != -999.:
                     sb.add_var("input.rerun%s.missin.Basic.tlwind" % (i))
-                
+
                 re_dwt    = self.get("input.rerun%s.missin.Basic.dwt" % (i))
                 re_offdr  = self.get("input.rerun%s.missin.Basic.offdr" % (i))
                 re_idoq   = self.get("input.rerun%s.missin.Basic.idoq" % (i))
@@ -3742,7 +3743,7 @@ class FlopsWrapper(ExternalCode):
                     sb.add_var("input.rerun%s.missin.Descent.dedcd" % (i))
                 if re_rdlim != -999.:
                     sb.add_var("input.rerun%s.missin.Descent.rdlim" % (i))
-                    
+
                 ns = len(self.get("input.rerun%s.missin.Descent.adtab" % (i)))
                 if  ns > 0:
                     sb.add_comment("\n  ! Input Descent Schedule\n")
@@ -3790,31 +3791,31 @@ class FlopsWrapper(ExternalCode):
                 # Insert the new mission definition.
                 #infile = self.get("input.rerun%s.mission" % (i)).open()
                 #mission = infile.read()
-                #infile.close()            
+                #infile.close()
                 #sb.add_comment(mission)
-                
+
                 # Get the mission definition
-                
+
                 mission = self.get("input.rerun%s.mission_definition" % i)
-                
+
                 for seg in mission:
                     sb.add_group(seg)
-    
+
                 # Insert the &PCONIN namelists
                 for j in range(0, self.npcons0[i]):
 
-                    re_conalt = self.get("input.rerun%s.pconin%s.conalt" % (i, j)) 
-                    re_conmch = self.get("input.rerun%s.pconin%s.conmch" % (i, j)) 
-                    re_connz  = self.get("input.rerun%s.pconin%s.connz" % (i, j)) 
-                    re_conpc  = self.get("input.rerun%s.pconin%s.conpc" % (i, j)) 
-                    re_conlim = self.get("input.rerun%s.pconin%s.conlim" % (i, j)) 
-                    re_conaux = self.get("input.rerun%s.pconin%s.conaux" % (i, j)) 
-                    re_neo    = self.get("input.rerun%s.pconin%s.neo" % (i, j)) 
-                    re_icstdg = self.get("input.rerun%s.pconin%s.icstdg" % (i, j)) 
-                    re_conwt  = self.get("input.rerun%s.pconin%s.conwt" % (i, j)) 
-                    re_iconsg = self.get("input.rerun%s.pconin%s.iconsg" % (i, j)) 
-                    re_confm  = self.get("input.rerun%s.pconin%s.confm" % (i, j)) 
-                    re_conwta = self.get("input.rerun%s.pconin%s.conwta" % (i, j)) 
+                    re_conalt = self.get("input.rerun%s.pconin%s.conalt" % (i, j))
+                    re_conmch = self.get("input.rerun%s.pconin%s.conmch" % (i, j))
+                    re_connz  = self.get("input.rerun%s.pconin%s.connz" % (i, j))
+                    re_conpc  = self.get("input.rerun%s.pconin%s.conpc" % (i, j))
+                    re_conlim = self.get("input.rerun%s.pconin%s.conlim" % (i, j))
+                    re_conaux = self.get("input.rerun%s.pconin%s.conaux" % (i, j))
+                    re_neo    = self.get("input.rerun%s.pconin%s.neo" % (i, j))
+                    re_icstdg = self.get("input.rerun%s.pconin%s.icstdg" % (i, j))
+                    re_conwt  = self.get("input.rerun%s.pconin%s.conwt" % (i, j))
+                    re_iconsg = self.get("input.rerun%s.pconin%s.iconsg" % (i, j))
+                    re_confm  = self.get("input.rerun%s.pconin%s.confm" % (i, j))
+                    re_conwta = self.get("input.rerun%s.pconin%s.conwta" % (i, j))
                     re_icontp = self.get("input.rerun%s.pconin%s.icontp" % (i, j))
 
                     sb.add_group('PCONIN')
@@ -3845,7 +3846,7 @@ class FlopsWrapper(ExternalCode):
                         sb.add_newvar("CONWTA", re_conwta)
                     if  re_icontp >= 0:
                         sb.add_newvar("ICONTP", re_icontp)
-                    
+
         # Generate the input file for FLOPS
         sb.generate()
 
@@ -3856,17 +3857,17 @@ class FlopsWrapper(ExternalCode):
 
         out = FileParser()
         out.set_file(self.stdout)
-       
+
         # added error check Thu Nov 15 2007
         ERROR = self.ERROR
         HINT  = self.HINT
 
         # Check for namelist read error
         # Throw new Exception for fatal errors
-        # Continue processing for FLOPS failures (may want to return error 
+        # Continue processing for FLOPS failures (may want to return error
         # codes to optimizers sometime in the future)
         out.set_delimiters(" ")
-        
+
         try:
             out.mark_anchor("ERROR READING NAMELIST")
         except RuntimeError:
@@ -3888,7 +3889,7 @@ class FlopsWrapper(ExternalCode):
         try:
             out.mark_anchor("* * * ENGINE DECK MISSING * * *")
         except RuntimeError:
-            pass        
+            pass
         else:
             ERROR = out.transfer_line(0)
             raise RuntimeError('Error during FLOPS execution.\n %s' % ERROR + \
@@ -3899,18 +3900,18 @@ class FlopsWrapper(ExternalCode):
         try:
             out.mark_anchor("* * * ONLY ONE ALTITUDE FOR MACH NUMBER")
         except RuntimeError:
-            pass        
+            pass
         else:
             ERROR = out.transfer_line(0)
-            
+
             # TODO - Why does MC wrapper do this?
             # commented out for now
             #self.output.Performance.range = 0.
             #self.output.Performance.rampwt = 0.
             #self.output.Performance.fuel = 0.
-            
+
             raise RuntimeError('Error during FLOPS execution.\n %s' % ERROR)
-            
+
         out.reset_anchor()
         try:
             out.mark_anchor("* * * ILLEGAL DATA IN ENGINE DECK * * *")
@@ -3940,21 +3941,21 @@ class FlopsWrapper(ExternalCode):
             ERROR = out.transfer_line(0)
             raise RuntimeError('Error during FLOPS execution.\n %s' % ERROR)
 
-        
+
         # Modified this section Fri Mar  5 15:05:09 EST 2010
         # there could be failures that recover during optimization
 
         iopt = self.input.option.Program_Control.iopt
-        
+
         out.reset_anchor()
         try:
             if iopt != 3:
                 out.mark_anchor("TITLE, BEGIN OUTPUT OF RESULTS")
             else:
                 out.mark_anchor("FINAL ANALYSIS")
-                
+
         except RuntimeError:
-            
+
             # Check invalid results
             errorArray = [
                "* * * ENGINE DECK MISSING * * *",
@@ -3974,7 +3975,7 @@ class FlopsWrapper(ExternalCode):
                "Try tweaking SYNTIN inputs to resolve this (AnalysisControl.syntin.control). Also check for other nonfatal failures like failed missed approach climb criterion.",
                "Make sure any initial design variable are within the upper and lower bounds"
                ]
-            
+
             for i in range(0, len(errorArray)):
                 try:
                     out.reset_anchor()
@@ -3989,7 +3990,7 @@ class FlopsWrapper(ExternalCode):
                     ERROR = "None"
                     HINT = "n/a"
 
-        
+
         iopt   = self.input.option.Program_Control.iopt
         ianal  = self.input.option.Program_Control.ianal
         ifite  = self.input.option.Program_Control.ifite
@@ -3997,7 +3998,7 @@ class FlopsWrapper(ExternalCode):
         inrtia = self.input.wtin.Inertia.inrtia
         msumpt = self.input.missin.Basic.msumpt
         noffdr = len(self.input.missin.Basic.offdr)
-        
+
         out.reset_anchor()
 
         if ifite == 3:
@@ -4016,7 +4017,7 @@ class FlopsWrapper(ExternalCode):
 
         out.reset_anchor()
         out.mark_anchor("FUSELAGE DATA")
-        
+
         self.output.Geometry.xl  = out.transfer_var(2, 4)
         self.output.Geometry.wf  = out.transfer_var(3, 4)
         self.output.Geometry.df  = out.transfer_var(4, 4)
@@ -4056,23 +4057,23 @@ class FlopsWrapper(ExternalCode):
             while True:
                 try:
                     out.reset_anchor()
-                    out.mark_anchor( "#OBJ/VAR/CONSTR SUMMARY", 
+                    out.mark_anchor( "#OBJ/VAR/CONSTR SUMMARY",
                                   noffdr+nos+1+self.nrern0 )
                 except RuntimeError:
                     break
                 else:
                     nos += 1
-                    
+
             nit = noffdr + nos
         else:
             nit = nos = 1
-                    
+
         if nit > 0:
 
             # Read output from the weights module
 
             if mywts == 0:
-                
+
                 out.reset_anchor()
                 try:
                     out.mark_anchor( "WING SPAN               ", nos)
@@ -4081,7 +4082,7 @@ class FlopsWrapper(ExternalCode):
                     if ndd == 0:
                         msg = "\n\n***************** \n\n"
                         msg += "There was only one iteration in optimization mode \n\n"
-                        msg += "and we happen to be looking for the final solution, which isn't there. \n\n" 
+                        msg += "and we happen to be looking for the final solution, which isn't there. \n\n"
                         msg += "ndd = %" % ndd + "\n\n"
                         msg += "Try setting flops.input.syntin.Optimization_Control.ndd to 3 or 4.\n\n"
                         msg += "*****************"
@@ -4089,7 +4090,7 @@ class FlopsWrapper(ExternalCode):
                     else:
                         msg = "\n\n***************** \n\n"
                         msg += "There was only one iteration in optimization mode \n\n"
-                        msg += "and we happen to be looking for the final solution, which isn't there. \n\n" 
+                        msg += "and we happen to be looking for the final solution, which isn't there. \n\n"
                         msg += "Something is wrong here and someone needs to figure it out before we can proceed.\n\n"
                         msg += "*****************"
                         raise RuntimeError(msg)
@@ -4102,20 +4103,20 @@ class FlopsWrapper(ExternalCode):
                 self.output.Geometry.dnac    = out.transfer_var(9, 3)
                 self.output.Geometry.xmlg    = out.transfer_var(11, 5)
                 self.output.Geometry.xnlg    = out.transfer_var(12, 5)
-            
+
                 self.output.Weight.wldg    = out.transfer_var(14, 4)
                 self.output.Weight.fultot  = out.transfer_var(19, 4)
                 self.output.Weight.exsful  = out.transfer_var(20, 4)
-            
+
                 out.reset_anchor()
                 out.mark_anchor( "WING BENDING FACTOR", nos)
-            
+
                 self.output.Weight.Wing.w  = out.transfer_var(0, 4)
                 self.output.Weight.Wing.ew = out.transfer_var(1, 5)
                 self.output.Weight.Wing.w1 = out.transfer_var(4, 3)
                 self.output.Weight.Wing.w2 = out.transfer_var(5, 3)
                 self.output.Weight.Wing.w3 = out.transfer_var(6, 3)
-            
+
                 # Read mass and balance summary data
 
                 out.reset_anchor()
@@ -4189,7 +4190,7 @@ class FlopsWrapper(ExternalCode):
                     out.mark_anchor( "#  INERTIA DATA FOR AIRCRAFT", nos)
 
                     nfcon = self.input.wtin.Inertia.tf.shape[0]
-                    
+
                     self.output.Weight.Inertia.cgx = zeros(1+nfcon)
                     self.output.Weight.Inertia.cgy = zeros(1+nfcon)
                     self.output.Weight.Inertia.cgz = zeros(1+nfcon)
@@ -4203,7 +4204,7 @@ class FlopsWrapper(ExternalCode):
                     self.output.Weight.Inertia.cgx[0]  = out.transfer_var(0, 6)
                     self.output.Weight.Inertia.cgy[0]  = out.transfer_var(0, 7)
                     self.output.Weight.Inertia.cgz[0]  = out.transfer_var(0, 8)
-                    
+
                     out.reset_anchor()
                     out.mark_anchor( " AIRCRAFT OWE OR ZFW", 2)
                     self.output.Weight.Inertia.ixxroll[0]  = out.transfer_var(0, 5)
@@ -4286,13 +4287,13 @@ class FlopsWrapper(ExternalCode):
             if self.npcon0 > 0 and ianal == 3:
                 out.reset_anchor()
                 out.mark_anchor( "PERFORMANCE CONSTRAINT SUMMARY", nos)
-                
+
                 out.set_delimiters("columns")
                 self.output.Performance.Constraints.constraint = out.transfer_array(4, 16, 3+self.npcon0, 29)
                 self.output.Performance.Constraints.value      = out.transfer_array(4, 32, 3+self.npcon0, 40)
                 self.output.Performance.Constraints.units      = out.transfer_array(4, 41, 3+self.npcon0, 47)
                 self.output.Performance.Constraints.limit      = out.transfer_array(4, 48, 3+self.npcon0, 56)
-                
+
                 weight = out.transfer_array(4, 56, 3+self.npcon0, 65)
                 if isinstance(weight[0], str):
                     self.output.Performance.Constraints.location   = out.transfer_array(4, 58, 3+self.npcon0, 87)
@@ -4303,7 +4304,7 @@ class FlopsWrapper(ExternalCode):
                     self.output.Performance.Constraints.g      = out.transfer_array(4, 86, 3+self.npcon0, 98)
 
                 out.set_delimiters(" ")
-                
+
             # Read sizing and performance results
 
             if ianal == 3:
@@ -4318,7 +4319,7 @@ class FlopsWrapper(ExternalCode):
                 self.output.Weight.thrso  = out.transfer_var(10, 4)
                 self.output.Weight.esf    = out.transfer_var(11, 4)
                 self.output.Weight.twr    = out.transfer_var(12, 3)
-                
+
                 self.output.Performance.thrso = self.output.Weight.thrso
                 self.output.Performance.esf   = self.output.Weight.esf
 
@@ -4327,7 +4328,7 @@ class FlopsWrapper(ExternalCode):
             if ianal == 3 and msumpt > 0:
                 out.reset_anchor()
                 out.mark_anchor( "DETAILED FLIGHT SEGMENT SUMMARY")
-                
+
                 self.output.Performance.Segments.segment = zeros(self.nmseg)
                 self.output.Performance.Segments.weights = zeros(self.nmseg)
                 self.output.Performance.Segments.alts = zeros(self.nmseg)
@@ -4345,7 +4346,7 @@ class FlopsWrapper(ExternalCode):
                 self.output.Performance.Segments.lode = zeros(self.nmseg)
                 self.output.Performance.Segments.sfce = zeros(self.nmseg)
                 self.output.Performance.Segments.engparme = zeros(self.nmseg)
-                
+
                 for i in range(0, self.nmseg):
                     if i < 9:
                         out.mark_anchor( "SEGMENT  " + str(i+1) + "   ")
@@ -4353,7 +4354,7 @@ class FlopsWrapper(ExternalCode):
                         out.mark_anchor( "SEGMENT " + str(i+1) + "   " )
 
                     self.output.Performance.Segments.segment[i]  = out.transfer_var(0, 3)
-                    
+
                     self.output.Performance.Segments.weights[i]  = out.transfer_var(5, 1)
                     self.output.Performance.Segments.alts[i]     = out.transfer_var(5, 2)
                     self.output.Performance.Segments.machs[i]    = out.transfer_var(5, 3)
@@ -4375,10 +4376,10 @@ class FlopsWrapper(ExternalCode):
                             self.output.Performance.Segments.totmaxe[i]  = out.transfer_var(j+6, 6)
                             self.output.Performance.Segments.sfce[i]     = out.transfer_var(j+6, 7)
                             self.output.Performance.Segments.engparme[i] = out.transfer_var(j+6, 13)
-                            
+
                         except ValueError:
                             break
-                        
+
                         j += 3
 
                 # Read the mission summary
@@ -4396,7 +4397,7 @@ class FlopsWrapper(ExternalCode):
 
             # Changed based on Karl's fix to bug I reported
             if ianal == 3:
-                
+
                 self.output.Performance.fuel    = out.transfer_var(3, 1, 10)
                 self.output.Performance.range   = out.transfer_var(3, 11, 17)
                 self.output.Performance.vapp    = out.transfer_var(3, 18, 23)
@@ -4406,11 +4407,11 @@ class FlopsWrapper(ExternalCode):
                     self.output.Performance.faroff = out.transfer_var(3, 24, 30)
                 except RuntimeError, IndexError:
                     self.output.Performance.faroff = 1.0e10
-                
+
                 self.output.Performance.farldg   = out.transfer_var(3, 31, 37)
                 self.output.Performance.amfor    = out.transfer_var(3, 38, 45)
                 self.output.Performance.ssfor    = out.transfer_var(3, 46, 53)
-    
+
                 self.output.Geometry.ar    = out.transfer_var(3, 65, 70)
                 self.output.Geometry.sw    = out.transfer_var(3, 80, 87)
                 self.output.Geometry.tr    = out.transfer_var(3, 88, 93)
@@ -4424,26 +4425,26 @@ class FlopsWrapper(ExternalCode):
 
             if self.output.Weight.fuel == 0.:
                 self.output.Weight.fuel = out.transfer_var(3, 1, 10)
-                
+
             if self.output.Weight.rampwt == 0.:
                 self.output.Weight.rampwt = out.transfer_var(3, 54, 64)
-                
+
             if self.output.Weight.thrso == 0.:
                 self.output.Weight.thrso = out.transfer_var(3, 72, 78)
                 self.output.Weight.thrsop = self.output.Performance.thrso
-                
+
             if self.output.Weight.wsr == 0.:
                 self.output.Weight.wsr = out.transfer_var(3, 121, 126)
-                
+
             if self.output.Weight.twr == 0.:
                 self.output.Weight.twr = out.transfer_var(3, 127, 132)
-                
+
             out.set_delimiters(" ")
-                
+
             # Read off-design mission data
 
             if ianal == 3:
-                
+
                 ndim = 1 + noffdr + self.nrern0
                 self.output.Econ.sl      = zeros(ndim)
                 self.output.Econ.blockt  = zeros(ndim)
@@ -4459,13 +4460,13 @@ class FlopsWrapper(ExternalCode):
                 self.output.Econ.ssfor   = zeros(ndim)
 
                 for i in range(0, ndim):
-                    
+
                     out.reset_anchor()
                     out.mark_anchor( "CONFIGURATION DATA AFTER RESIZING", (nos-1)*(1 + noffdr) + 1 + i)
-                    
+
                     self.output.Econ.wpayl[i]  = out.transfer_var(3, 2)
                     self.output.Econ.wgross[i] = out.transfer_var(5, 3)
-                    
+
                     out.mark_anchor( "DESIGN RANGE" )
                     self.output.Econ.sl[i] = out.transfer_var(0, 3)
 
@@ -4479,22 +4480,22 @@ class FlopsWrapper(ExternalCode):
                     out.set_delimiters("columns")
                     self.output.Econ.range[i] = out.transfer_var(3, 11, 17)
                     self.output.Econ.vapp[i] = out.transfer_var(3, 18, 23)
-                    
+
                     try:
                         self.output.Econ.faroff[i] = out.transfer_var(3, 24, 30)
                     except RuntimeError, IndexError:
                         self.output.Econ.faroff[i] = 1.0e10
-                        
+
                     self.output.Econ.farldg[i] = out.transfer_var(3, 31, 37)
                     self.output.Econ.amfor[i] = out.transfer_var(3, 38, 45)
                     self.output.Econ.ssfor[i] = out.transfer_var(3, 46, 53)
 
                     out.set_delimiters(" ")
 
-                    
+
     def add_segin(self):
         """Adds a new SEGIN namelist."""
-        
+
         name = "segin" + str(self.nseg0)
         self.nseg0 += 1
         comp = VariableTree()
@@ -4517,21 +4518,21 @@ class FlopsWrapper(ExternalCode):
         comp.add('delt', Float(-1., units='s', desc="Time step for post OBSTACLE segments\nIf DELT = -1., default value is used" ))
         comp.add('grdaeo', Float(-1., units='deg', desc="Flight path angle for CUTBACK with all engines operating\nIf GRDAEO = -1., default value is used" ))
         comp.add('grdoeo', Float(-1., units='deg', desc="Flight path angle for CUTBACK with one engine out\nIf GRDOEO = -1., default value is used" ))
-        
+
         self.input.add(name, VarTree(comp))
-        
+
 
     def remove_segin(self):
         """Removes a SEGIN namelist. Actually, it removes the most recently added SEGIN, as per the MC wrapper."""
-        
+
         if self.nseg0 == 0:
             raise RuntimeError('No &SEGIN namelists to remove!')
-        
+
         self.nseg0 += -1
         name = "segin" + str(self.nseg0)
-        
+
         self.input.remove_container(name)
-        
+
 
     def add_pconin(self):
         """Method to add a pconin* group to the list of input variables.  This method
@@ -4548,7 +4549,7 @@ class FlopsWrapper(ExternalCode):
 
         comp.add('conalt', Float(-1., units='ft', desc="Altitude at which constraint is to be evaluated (Default = value from preceding constraint)" ))
         comp.add('conmch', Float(-1., units='nmi/h', desc="Velocity at which constraint is to be evaluated, kts.  If less than or equal to 5., assumed to be Mach number (Default = value from preceding constraint)" ))
-        
+
         if self.npcon0 == 1:
             comp.add('connz', Float(1., desc="Load factor (Nz) at which constraint is to be evaluated, G's (Default = value from preceding constraint or 1.)" ))
             comp.add('conpc', Float(1., desc="Engine power setting parameter\n< 1., Fraction of maximum available thrust\n= 1., Maximum thrust at this Mach number and altitude\n> 1., Power setting for engine deck (3. would indicate the third highest thrust)\n(Default = value from preceding constraint or 1.)" ))
@@ -4567,21 +4568,21 @@ class FlopsWrapper(ExternalCode):
         comp.add('conwta', Float(-999., units='lb', desc="Delta weight (Default = value from preceding constraint)" ))
         comp.add('icontp', Enum(-1, (-1,5,6,7,8,9,10,11,12,13,16,17,20,30), desc="Type of constraint (Default = value from preceding constraint)", \
                                       aliases=("Previous","Min. climb rate","Max. time-to-climb","Max. time-to-distance","Min. sustained load factor","Min. instant. load factor","Min. turn rate","Max. turn radius","Min. excess energy","Min. climb ceiling","Max. accel./decel. time","Min. max. speed","Min. energy bleed rate","Min. thrust margin")))
-            
+
         self.input.add(name, VarTree(comp))
-        
+
 
     def remove_pconin(self):
         """Removes a PCONIN namelist. Actually, it removes the most recently added PCONIN, as per the MC wrapper."""
-        
+
         if self.npcon0 == 0:
             raise RuntimeError('No &PCONIN namelists to remove!')
-        
+
         self.npcon0 += -1
         name = "pconin" + str(self.npcon0)
-        
+
         self.input.remove_container(name)
-        
+
 
     def add_rerunpconin(self, i):
         """Method to add a pconin* group to the list of input variables, within an
@@ -4591,9 +4592,9 @@ class FlopsWrapper(ExternalCode):
 
         if self.npcons0[i] == 30:
             raise RuntimeError('Maximum of 30 performance constraints')
-        
+
         rerun_name = "rerun" + str(i)
-        
+
         if not hasattr(self.input,rerun_name):
             raise RuntimeError('Attempted to add a PCONIN group to a nonexistant RERUN group')
 
@@ -4618,26 +4619,26 @@ class FlopsWrapper(ExternalCode):
 
         temp = getattr(self.input, rerun_name)
         temp.add(name, comp)
-        
+
 
     def remove_rerunpconin(self, i):
         """Removes a PCONIN from an existing RERUN group. Actually, it removes
         the most recently added PCONIN, as per the MC wrapper."""
-        
+
         if self.npcons0[i] == 0:
             raise RuntimeError('No &PCONIN namelists to remove!')
-        
+
         self.npcons0[i] += -1
         rerun_name = "rerun" + str(i)
-        
+
         if not hasattr(self.input,rerun_name):
             raise RuntimeError('Attempted to remove a PCONIN group to a nonexistant RERUN group')
 
         name = "pconin" + str(self.npcons0[i])
-        
+
         temp = getattr(self.input, rerun_name)
         temp.remove_container(name)
-        
+
 
     def add_rerun(self):
         """ Method to add a rerun* group to the list of input variables.  This method
@@ -4665,7 +4666,7 @@ class FlopsWrapper(ExternalCode):
         comp.add('icost', Int(-1 ))
         comp.add('wsr', Float(-1. ))
         comp.add('twr', Float(-1. ))
-        
+
         comp.add('missin', VarTree(VariableTree()))
         comp.missin.add('Basic', VarTree(VariableTree()))
         comp.missin.Basic.add('indr', Int(-999 ))
@@ -4750,7 +4751,7 @@ class FlopsWrapper(ExternalCode):
         comp.missin.Climb.add('nql', Int(-999 ))
         comp.missin.Climb.add('qlalt', Array(dtype=numpy_float64 ))
         comp.missin.Climb.add('vqlm', Array(dtype=numpy_float64 ))
-        
+
         comp.missin.add('Cruise', VarTree(VariableTree()))
         comp.missin.Cruise.add('ncruse', Int(-999 ))
         comp.missin.Cruise.add('ioc', Array(dtype=numpy_int64 ))
@@ -4808,19 +4809,19 @@ class FlopsWrapper(ExternalCode):
         # New mission definition defaults to the original one
         comp.add('mission_definition', List(iotype='in'))
         comp.mission_definition = self.input.mission_definition.mission
-        
+
         self.input.add(name, VarTree(comp))
 
 
     def remove_rerun(self):
         """Removes a Rerun namelist. Actually, it removes the most recently added Rerun, as per the MC wrapper."""
-        
+
         if self.nrern0 == 0:
             raise RuntimeError('No &PCONIN namelists to remove!')
-        
+
         self.nrern0 += -1
         name = "rerun" + str(self.nrern0)
-        
+
         self.input.remove_container(name)
         self.npcons0 = self.npcons0[:-1]
 
@@ -4869,7 +4870,7 @@ class FlopsWrapper(ExternalCode):
 
         # Add or remove an appropriate number of rerun*.pconin* groups to the input
         # variable list.
-        
+
         for i in range(0,self.nrern0):
             n0 = self.npcons0[i]
             n = self.npcons[i]
@@ -4878,15 +4879,15 @@ class FlopsWrapper(ExternalCode):
                     self.add_rerunpconin(i)
             elif n < n0:
                 for j in range(0,n0-n):
-                    self.remove_rerunpconin(i)        
-                    
+                    self.remove_rerunpconin(i)
+
 
     def load_model(self, filename):
         """ Loads a FLOPS model from an existing input file."""
-        
+
         sb = Namelist(self)
         sb.set_filename(filename)
-        
+
         # Where each namelist goes in the component
         rule_dict = { "OPTION" : ["input.option.Program_Control", \
                                   "input.option.Plot_Files", \
@@ -4961,52 +4962,52 @@ class FlopsWrapper(ExternalCode):
                       "NACELL" : ["input.nacell"],
                       "PROIN"  : ["input.proin"]
                     }
-                     
+
         # Some variables aren't exposed in the OpenMDAO wrapper (e.g., array
         # sizes which aren't needed explicitly.)
         ignore = ["netaw", "itank", "nob", "nparam", "nfcon", "npcon"]
-        
+
         sb.parse_file()
         self.input.title = sb.title
         empty_groups, unlisted_groups, unlinked_vars = \
                     sb.load_model(rule_dict, ignore)
-        
+
         # The pconin groups are problematic, and have not been filled because
         # they aren't created yet. We can parse the unlisted_groups to see
         # which ones are in the input-file, and then add them to the component.
-        
+
         # Rerun, Segin, and Pconin groups also do not have unique names. We give
         # them unique names in OpenMDAO.
         num_mission = 0
         if len(unlisted_groups) > 0:
-            
+
             for i, group in unlisted_groups.iteritems():
-                
+
                 if group.lower().count('pconin'):
-                    
+
                     self.add_pconin()
                     rule_dict = { "PCONIN" : ["input.pconin"+str(self.npcon0-1)] }
-                    
+
                     ne, nu, nv = sb.load_model(rule_dict, ignore, i)
                     for var in nv:
                         unlinked_vars.append(var)
-                        
+
                 elif group.lower().count('rerun'):
-                    
+
                     self.add_rerun()
                     stem = "input.rerun"+str(self.nrern0-1)
                     rule_dict = { "RERUN" : [stem] }
-                    
+
                     ne, nu, nv = sb.load_model(rule_dict, ignore, i)
                     for var in nv:
                         unlinked_vars.append(var)
 
                 elif group.lower().count('segin'):
-                    
+
                     self.add_segin()
                     stem = "input.segin"+str(self.nseg0-1)
                     rule_dict = { "SEGIN" : [stem] }
-                    
+
                     ne, nu, nv = sb.load_model(rule_dict, ignore, i)
                     for var in nv:
                         unlinked_vars.append(var)
@@ -5014,7 +5015,7 @@ class FlopsWrapper(ExternalCode):
                 # Hopefully the missin namelist always follows its associated
                 # rerun group.
                 elif group.lower().count('missin'):
-                    
+
                     rule_dict = { "MISSIN" : [stem+".missin.Basic",
                                               stem+".missin.Store_Drag",
                                               stem+".missin.User_Weights",
@@ -5024,25 +5025,25 @@ class FlopsWrapper(ExternalCode):
                                               stem+".missin.Cruise",
                                               stem+".missin.Descent",
                                               stem+".missin.Reserve",] }
-                    
+
                     ne, nu, nv = sb.load_model(rule_dict, ignore, i)
                     for var in nv:
                         unlinked_vars.append(var)
-                        
+
                     num_mission += 1
-                        
+
 
         # Mission segments are also a challenge.
         # The remaining empty groups should be mission segments or comments.
-        
+
         missions = []
         if len(empty_groups) > 0:
-            
+
             in_mission = False
             for group in empty_groups.values():
-                
+
                 group_name = group.strip().split(" ")[0]
-                
+
                 if group_name.lower() == 'start':
                     missions.append('START')
                     in_mission = True
@@ -5050,11 +5051,11 @@ class FlopsWrapper(ExternalCode):
                     missions.append('END')
                     in_mission = False
                 elif in_mission == True:
-                    
+
                     groups = ['climb', 'cruise', 'refuel', 'release', 'accel', \
                               'turn', 'combat', 'hold', 'descent']
-                              
-                    if group_name.lower() in groups: 
+
+                    if group_name.lower() in groups:
                         missions.append(group.upper())
                     else:
                         print "Warning: Ignoring unknonwn mission %s" % group
@@ -5068,9 +5069,9 @@ class FlopsWrapper(ExternalCode):
                     mission_end = i
                     mission_count += i+1
                     break
-                
+
             self.input.mission_definition.mission = missions[:mission_end+1]
-            
+
             # Next, handle the missions in the Rerun groups
             for j in range(0,self.nrern0):
                 name = "rerun" + str(j)
@@ -5080,80 +5081,80 @@ class FlopsWrapper(ExternalCode):
                         mission_end = i+mission_start
                         mission_count += i+1
                         break
-                    
+
                 self.set("input.%s.mission_definition" % name, \
                            missions[mission_start:mission_end+1])
-                
+
 
         # Certain data files are sometimes jammed into the input file. We have
         # to jump through some hoops to detect and import this information.
-        
+
         ndecks = 0
         if self.input.engdin.Basic.igenen in (0, -2):
-            
+
             found = False
             engine_deck = ""
             for i, group in enumerate(sb.groups):
-                
+
                 if group.lower().strip() == 'engdin':
                     found = True
-                    
+
                 elif found == True:
-                    
+
                     if len(sb.cards[i]) > 0:
                         break
-                    
+
                     engine_deck += '%s\n' % group
                     ndecks += 1
-                    
+
             self.input.engine_deck.engdek = engine_deck
 
         # Aero deck seems to fall after the mission segements
         if self.input.aerin.Basic.myaero > 0 and \
            self.input.aerin.Basic.myaero != 3 and \
            self.input.option.Program_Control.ianal == 3:
-            
+
             found = False
             aerodat = ""
             for i, group in enumerate(sb.groups):
-                
+
                 if group.lower().strip() == 'end':
                     found = True
-                    
+
                 elif found == True:
-                    
+
                     if len(sb.cards[i]) > 0:
                         break
-                    
+
                     aerodat += '%s\n' % group
                     ndecks += 1
-                    
+
             self.input.aero_data.aerodat = aerodat
-            
+
         # Post process some stuff, mostly arrays 2D arrays that come over as 1D
-        
+
         tf = self.input.wtin.Inertia.tf
         # TODO: tf can be input with 1st dim greater than one. Need to find out
         # how that is written / parsed.
         if tf.shape[0] > 0:
             self.set('input.wtin.Inertia.tf', array([tf]))
-        
+
         # Report diagnostics and raise any exceptions.
-            
+
         print "Empty Groups: %d, Unhandled Groups: %d, Unlinked Vars: %d" % \
               (len(empty_groups)-len(missions)-ndecks, \
                len(unlisted_groups)-self.npcon-self.nrern0-self.nseg0-num_mission, \
                len(unlinked_vars))
-        
+
         #print empty_groups
         #print unlisted_groups
-        
 
-if __name__ == "__main__": # pragma: no cover         
+
+if __name__ == "__main__": # pragma: no cover
 
     from openmdao.main.api import set_as_top
     from numpy import array
-    
+
     flops_comp = set_as_top(FlopsWrapper())
     flops_comp.input.option.Program_Control.mprint = 1
     flops_comp.input.title = "Testing"
@@ -5163,8 +5164,8 @@ if __name__ == "__main__": # pragma: no cover
     #flops_comp.nrerun = 2
     #flops_comp.npcons = [3, 4]
     #flops_comp.reinitialize()
-    
+
     flops_comp.run()
-    
-    
-    
+
+
+

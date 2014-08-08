@@ -289,7 +289,6 @@ SUPERSONIC TRANSPORT CONTOUR PLOT WITH NOISE CALCULATIONS
   igeo = 0
   dffac = 0.0
   fffac = 0.0
-  eifile = ''
 /
 &ENGINE
   ieng = 3

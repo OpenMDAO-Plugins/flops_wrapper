@@ -426,7 +426,6 @@ SUBSONIC TRANSPORT EXAMPLE PROBLEM WITH COSTS AND RERUN
   igeo = 0
   dffac = 0.0
   fffac = 0.0
-  eifile = ''
 /
 &ENGINE
   ieng = 2

@@ -293,7 +293,6 @@ SUBSONIC TRANSPORT 5 VARIABLE OPTIMIZATION EXAMPLE PROBLEM
   igeo = 0
   dffac = 0.0
   fffac = 0.0
-  eifile = ''
 /
 &ENGINE
   ieng = 2

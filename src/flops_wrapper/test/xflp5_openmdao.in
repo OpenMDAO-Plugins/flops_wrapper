@@ -293,7 +293,6 @@ AIR SUPERIORITY FIGHTER
   igeo = 0
   dffac = 0.0
   fffac = 0.0
-  eifile = ''
 /
 &ENGINE
   ieng = 3
